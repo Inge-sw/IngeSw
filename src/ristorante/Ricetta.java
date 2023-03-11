@@ -83,7 +83,6 @@ public class Ricetta {
         return "\n-----------" + nome + "-----------" +
                 "\nPorzioni: " + porzioni +
                 "\nTempo di preparazione: " + tempo_preparazione +
-                "\nIngredienti: " +
-                "\n\t -" + ingredienti;
+                "\nIngredienti: " + ingredienti;
     }
 }

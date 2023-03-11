@@ -41,11 +41,6 @@ public class Piatto {
 
     @Override
     public String toString() {
-        return "Piatto{" +
-                "nome='" + nome + '\'' +
-                ", stagione=" + stagione +
-                ", ricetta=" + ricetta +
-                ", carico_lavoro=" + carico_lavoro +
-                '}';
+        return "\n-" + nome;
     }
 }

@@ -20,6 +20,6 @@ public class Ingrediente extends Prodotto{
     }
 
     public String toString() {
-        return super.getNome() + " " + quantita + " " + Misura.GRAMMI;
+        return "\n\t- " + super.getNome() + " " + quantita + " " + Misura.GRAMMI;
     }
 }

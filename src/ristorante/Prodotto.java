@@ -26,4 +26,5 @@ public class Prodotto {
     public void setU_misura(Misura u_misura) {
         this.u_misura = u_misura;
     }
+
 }

@@ -11,6 +11,10 @@ public class Menu {
         this.piatti = new ArrayList<Piatto>();
     }
 
+    public Menu(ArrayList<Piatto> piatti) {
+        this.piatti = piatti;
+    }
+
     public ArrayList<Piatto> getPiatti() {
         return piatti;
     }
@@ -21,8 +25,6 @@ public class Menu {
 
     @Override
     public String toString() {
-        return "Menu{" +
-                "piatti=" + piatti +
-                '}';
+        return piatti.toString();
     }
 }
