@@ -14,4 +14,17 @@ public enum Stagioni {
             return INVERNO;
         }
     }
+
+    //da string a stagioni
+    public static Stagioni getStagione(String stagione) {
+        if (stagione.equalsIgnoreCase("primavera")) {
+            return PRIMAVERA;
+        } else if (stagione.equalsIgnoreCase("estate")) {
+            return ESTATE;
+        } else if (stagione.equalsIgnoreCase("autunno")) {
+            return AUTUNNO;
+        } else {
+            return INVERNO;
+        }
+    }
 }
