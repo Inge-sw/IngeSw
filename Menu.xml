@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<MenuTematici>
+	<menuTematico>
+		<nome>Pesce</nome>
+			<Piatti>
+				<Piatto>Insalata</Piatto>
+				<Piatto>Fritto misto</Piatto>
+			</Piatti>
+	</menuTematico>
+	<menuTematico>
+		<nome>Montagna</nome>
+		<Piatti>
+			<Piatto>Insalatona</Piatto>
+			<Piatto>BBQ</Piatto>
+		</Piatti>
+	</menuTematico>
+</MenuTematici>
+
+		
+		
+	
+
+
+			
+			
+			
+		

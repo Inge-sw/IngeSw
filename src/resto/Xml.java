@@ -1,92 +1,108 @@
 package resto;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import ristorante.Ingrediente;
 import ristorante.Ricetta;
 
-import javax.xml.stream.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 import java.util.ArrayList;
 
 public class Xml {
 
-    //legge un file xml e salva i dati delle persone in un ArrayList di tipo persona
-    public static ArrayList<Ricetta> leggiRicettario(String nome_file) {
+    public static ArrayList<Ricetta> leggiRicettario(){
+
         ArrayList<Ricetta> ricette = new ArrayList<>();
 
-        XMLInputFactory xmlif;
-        XMLStreamReader xmlr;
-
-        ArrayList<Ingrediente> ingredienti = new ArrayList<>();
-        String nome_ricetta = null;
-        String nome = null;
-        String tempo = null;
-        String carico_lavoro_per_persona = null;
-        String dosaggio = null;
-        String unita = null;
-        String porzione = null;
-        String stagione_str = null;
-
         try {
-            xmlif = XMLInputFactory.newInstance();
-            xmlr = xmlif.createXMLStreamReader(nome_file, new FileInputStream(nome_file));
 
-            while (xmlr.hasNext()) {
-                if (xmlr.getEventType() == XMLStreamConstants.START_ELEMENT) { //interessano solo i dati relativi alle persone
-                    switch (xmlr.getLocalName()) {
-                        case Costante.NOME_RICETTA:
-                            xmlr.next();
-                            nome_ricetta = xmlr.getText();
-                            System.out.println("nome ricetta: " + nome_ricetta);
-                            break;
-                        case Costante.TEMP:
-                            xmlr.next();
-                            tempo = xmlr.getText();
-                            System.out.println("tempo preparazione: " + tempo);
-                            break;
-                        case Costante.CARICO_LAVORO_PER_PORZIONE:
-                            xmlr.next();
-                            carico_lavoro_per_persona = xmlr.getText();
-                            System.out.println("carico di lavoro: " + carico_lavoro_per_persona);
-                            break;
-                        case Costante.NOME:
-                            xmlr.next();
-                            nome = xmlr.getText();
-                            System.out.println("nome ingrediente: " + nome);
-                            break;
-                        case Costante.DOSAGGIO:
-                            xmlr.next();
-                            dosaggio = xmlr.getText();
-                            System.out.println("dosaggio: " + dosaggio);
-                            break;
-                        case Costante.UNITA:
-                            xmlr.next();
-                            unita = xmlr.getText();
-                            System.out.println("unità di misura: " + unita);
+            // Leggi il file XML
+            File inputFile = new File(Costante.XML_RICETTARIO);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
+            doc.getDocumentElement().normalize();
 
-                            break;
-                        case Costante.PORZIONE:
-                            xmlr.next();
-                            porzione = xmlr.getText();
-                            System.out.println("porzione" + porzione);
-                            break;
-                        case Costante.STAGIONE:
-                            xmlr.next();
-                            stagione_str = xmlr.getText();
-                            System.out.println("stagione" + stagione_str);
-                            ingredienti.add(new Ingrediente(nome, Double.parseDouble(dosaggio)));
-                            break;
-                    }
+            // Trova tutte le ricette nel documento
+            NodeList ricetteList = doc.getElementsByTagName("ricetta");
 
-                    ricette.add(new Ricetta(nome_ricetta, Stagioni.getStagione(stagione_str), Integer.getInteger(porzione), Integer.getInteger(tempo), ingredienti));
+            // Scandisci ogni ricetta e stampa alcune informazioni
+            for (int i = 0; i < ricetteList.getLength(); i++) {
+                Element ricetta = (Element) ricetteList.item(i);
+                String nomeRicetta = ricetta.getElementsByTagName("nomeRicetta").item(0).getTextContent();
+                int porzioni = Integer.parseInt(ricetta.getElementsByTagName("porzione").item(0).getTextContent());
+                int tempo = Integer.parseInt(ricetta.getElementsByTagName("tempo").item(0).getTextContent());
+                Stagioni stagione = Stagioni.getStagione(ricetta.getElementsByTagName("stagione").item(0).getTextContent());
+                System.out.println("Ricetta: " + nomeRicetta);
+                System.out.println("Porzioni: " + porzioni);
+                System.out.println("Tempo di preparazione: " + tempo + " minuti");
+                System.out.println("Ingredienti:");
+                NodeList ingredientiList = ricetta.getElementsByTagName("ingrediente");
+                ArrayList<Ingrediente> ingredienti = new ArrayList<>();
+                for (int j = 0; j < ingredientiList.getLength(); j++) {
+                    Element ingrediente = (Element) ingredientiList.item(j);
+                    String nome = ingrediente.getElementsByTagName("nome").item(0).getTextContent();
+                    int dosaggio = Integer.parseInt(ingrediente.getElementsByTagName("dosaggio").item(0).getTextContent());
+                    String unita = ingrediente.getElementsByTagName("unità").item(0).getTextContent();
+                    System.out.println("- " + nome + ": " + dosaggio + " " + unita);
+                    ingredienti.add(new Ingrediente(nome, dosaggio));
                 }
-                xmlr.next();
+                ricette.add(new Ricetta(nomeRicetta, stagione, porzioni, tempo, ingredienti));
+                System.out.println();
             }
+
         } catch (Exception e) {
-            System.out.println(Costante.ERRORE_LETTURA);
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return ricette;
     }
+
+    public static void leggiMenuTematico(){
+        try {
+            File inputFile = new File(Costante.XML_MENU);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
+
+            doc.getDocumentElement().normalize();
+
+            NodeList menuTematici = doc.getElementsByTagName("menuTematico");
+
+            for (int i = 0; i < menuTematici.getLength(); i++) {
+
+                Node menuTematicoNode = menuTematici.item(i);
+
+                if (menuTematicoNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Node nomeNode = ((org.w3c.dom.Element) menuTematicoNode).getElementsByTagName("nome").item(0);
+                    System.out.println("Nome del menu tematico: " + nomeNode.getTextContent());
+
+                    NodeList piattiList = ((org.w3c.dom.Element) menuTematicoNode).getElementsByTagName("Piatti");
+
+                    for (int j = 0; j < piattiList.getLength(); j++) {
+                        Node piattiNode = piattiList.item(j);
+                        if (piattiNode.getNodeType() == Node.ELEMENT_NODE) {
+                            NodeList piattoList = ((org.w3c.dom.Element) piattiNode).getElementsByTagName("Piatto");
+                            System.out.println("Piatti: ");
+                            for (int k = 0; k < piattoList.getLength(); k++) {
+                                Node piattoNode = piattoList.item(k);
+                                if (piattoNode.getNodeType() == Node.ELEMENT_NODE) {
+                                    System.out.println(piattoNode.getTextContent());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 /*
     public static void scriviPersone(String nome_file, ArrayList<Persona> persone, ArrayList<codiceFiscale> codici_invalidi, ArrayList<codiceFiscale> codici_spaiati) {
 

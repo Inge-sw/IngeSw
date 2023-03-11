@@ -10,7 +10,7 @@ public class Ricettario {
     private ArrayList<Ricetta> ricette;
 
     public Ricettario(){
-        ricette = Xml.leggiRicettario(Costante.XML_RICETTARIO);
+       ricette = Xml.leggiRicettario();
     }
 
     public ArrayList<Ricetta> getRicette() {

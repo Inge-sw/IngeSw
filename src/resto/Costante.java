@@ -2,8 +2,8 @@ package resto;
 
 public class Costante {
 
-    public static final String XML_RICETTARIO="ricettario.xml";
-    public static final String XML_MENU="menu.xml";
+    public static final String XML_RICETTARIO="Ricettario.xml";
+    public static final String XML_MENU="Menu.xml";
 
     public static final String NOME="nome";
     public static final String NOME_RICETTA="nomeRicetta";

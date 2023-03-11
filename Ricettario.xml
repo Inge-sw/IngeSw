@@ -20,6 +20,27 @@
 			</ingrediente>
 		</ingredienti>
 	</ricetta>
+
+	<ricetta>
+		<nomeRicetta>Risotto funghi porcini</nomeRicetta>
+		<caricoLavoroPerPorzione>2</caricoLavoroPerPorzione>
+		<tempo>20</tempo>
+		<porzione>3</porzione>
+		<stagione>PRIMAVERA</stagione>
+		<ingredienti>
+			<ingrediente>
+				<nome>riso</nome>
+				<dosaggio>10</dosaggio>
+				<unità>g</unità>
+			</ingrediente>
+			<ingrediente>
+				<nome>funghi</nome>
+				<dosaggio>10</dosaggio>
+				<unità>g</unità>
+			</ingrediente>
+		</ingredienti>
+	</ricetta>
+
 </ricettario>
 
 		
