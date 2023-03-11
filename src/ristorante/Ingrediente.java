@@ -1,5 +1,7 @@
 package ristorante;
 
+import resto.Misura;
+
 public class Ingrediente extends Prodotto{
 
     private double quantita;
