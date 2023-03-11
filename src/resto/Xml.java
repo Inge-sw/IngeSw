@@ -1,5 +1,6 @@
 package resto;
 
+import ristorante.Ingrediente;
 import ristorante.Ricetta;
 
 import javax.xml.stream.*;
@@ -14,12 +15,15 @@ public class Xml {
         XMLInputFactory xmlif;
         XMLStreamReader xmlr;
 
+        ArrayList<Ingrediente> ingredienti = new ArrayList<>();
         String nome_ricetta = null;
         String nome = null;
         String tempo = null;
         String carico_lavoro_per_persona = null;
         String dosaggio = null;
         String unita = null;
+        String porzione = null;
+        String stagione = null;
 
         try {
             xmlif = XMLInputFactory.newInstance();
@@ -58,6 +62,19 @@ public class Xml {
                             unita = xmlr.getText();
                             System.out.println("unità di misura: " + unita);
                             //ricette.add(new Ricetta(nome, cognome, sesso, comune_nascita, data_nascita, new codiceFiscale(" "))); //ottenuti tutti i valori dell'xml di una persona.
+                            break;
+                        case Costante.PORZIONE:
+                            xmlr.next();
+                            porzione = xmlr.getText();
+                            System.out.println("porzione" + porzione);
+                            //ricette.add(new Ricetta(nome, cognome, sesso, comune_nascita, data_nascita, new codiceFiscale(" "))); //ottenuti tutti i valori dell'xml di una persona.
+                            break;
+                        case Costante.STAGIONE:
+                            xmlr.next();
+                            stagione = xmlr.getText();
+                            System.out.println("stagione" + stagione);
+                            ingredienti.add(new Ingrediente(nome, Double.parseDouble(dosaggio)));
+                            //ricette.add(new Ricetta(nome, cognome, sesso, comune_nascita, data_nascita, new codiceFiscale(" "))); //ottenuti tutti i valori dell'xml di una persona.
                             break;/*
                         case Costante.DATA_NASCITA:
                             xmlr.next();
@@ -65,6 +82,7 @@ public class Xml {
                             persone.add(new Persona(nome, cognome, sesso, comune_nascita, data_nascita, new codiceFiscale(" "))); //ottenuti tutti i valori dell'xml di una persona. Creazione Persona
                             break;*/
                     }
+                    //ricette.add(new Ricetta(nome_ricetta, stagione, porzione, tempo, ))
                 }
                 xmlr.next();
             }
