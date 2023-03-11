@@ -15,6 +15,8 @@ public class Costante {
     public static final String DOSAGGIO="dosaggio";
     public static final String UNITA="unità";
     public static final String TEMP="tempo";
+    public static final String PORZIONE="porzione";
+    public static final String STAGIONE="stagione";
 
     public static final String ERRORE_LETTURA="Impossibile leggere il file xml";
 

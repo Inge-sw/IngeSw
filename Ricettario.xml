@@ -5,6 +5,8 @@
 		<nomeRicetta>Pasta ragu</nomeRicetta>
 		<caricoLavoroPerPorzione>5</caricoLavoroPerPorzione>
 		<tempo>10</tempo>
+		<porzione>2</porzione>
+		<stagione>PRIMAVERA</stagione>
 		<ingredienti>
 			<ingrediente>
 				<nome>pasta</nome>
