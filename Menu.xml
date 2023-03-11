@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<MenuTematici>
+<menuTematici>
 	<menuTematico>
 		<nome>Pesce</nome>
 		<stagione>Primavera</stagione>
-			<Piatti>
-				<Piatto>Insalata</Piatto>
-				<Piatto>Fritto misto</Piatto>
-			</Piatti>
+			<piatti>
+				<piatto>Pasta ragu</piatto>
+				<piatto>Pasta al pesto</piatto>
+			</piatti>
 	</menuTematico>
 	<menuTematico>
 		<nome>Montagna</nome>
 		<stagione>Primavera</stagione>
-		<Piatti>
-			<Piatto>Insalatona</Piatto>
-			<Piatto>BBQ</Piatto>
-		</Piatti>
+		<piatti>
+			<piatto>Risotto funghi porcini</piatto>
+			<piatto>Pasta ragu</piatto>
+		</piatti>
 	</menuTematico>
-</MenuTematici>
+</menuTematici>
 
 		
 		

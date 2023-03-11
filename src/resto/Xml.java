@@ -9,6 +9,7 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Xml {
@@ -54,10 +55,12 @@ public class Xml {
         return new Ricettario(ricette);
     }
 
-    public static void leggiMenuTematico(){
+    public static ArrayList<MenuTematico> leggiMenuTematico(){
 
         ArrayList<Piatto> piatti = new ArrayList<>();
-
+        ArrayList<MenuTematico> menu_tematici = new ArrayList<>();
+        String nome = null;
+        Stagioni stagione = null;
         try {
             File inputFile = new File(Costante.XML_MENU);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -66,19 +69,21 @@ public class Xml {
 
             doc.getDocumentElement().normalize();
 
-            NodeList menu_tematici = doc.getElementsByTagName(Costante.MENU_TEMATICO);
+            NodeList menu_tematici_ele = doc.getElementsByTagName(Costante.MENU_TEMATICO);
 
-            for (int i = 0; i < menu_tematici.getLength(); i++) {
+            for (int i = 0; i < menu_tematici_ele.getLength(); i++) {
 
-                Node menu_tematico_node = menu_tematici.item(i);
+                Node menu_tematico_node = menu_tematici_ele.item(i);
 
                 if (menu_tematico_node.getNodeType() == Node.ELEMENT_NODE) {
 
                     Node nome_node = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.NOME).item(0);
+                    nome = nome_node.getTextContent();
                     System.out.println("Nome del menu tematico: " + nome_node.getTextContent());
 
                     Node stagione_node = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.STAGIONE).item(0);
-                    System.out.println("NStagione del menu tematico: " + stagione_node.getTextContent());
+                    stagione = Stagioni.getStagione(stagione_node.getTextContent());
+                    System.out.println("Stagione del menu tematico: " + stagione_node.getTextContent());
 
                     NodeList piatti_list = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.PIATTI);
 
@@ -91,15 +96,18 @@ public class Xml {
                                 Node piatto_node = piatto_list.item(k);
                                 if (piatto_node.getNodeType() == Node.ELEMENT_NODE) {
                                     System.out.println(piatto_node.getTextContent());
+                                    piatti.add(new Piatto(Ricettario.getRicettaByNome(piatto_node.getTextContent())));
                                 }
                             }
                         }
                     }
                 }
+                menu_tematici.add(new MenuTematico(nome, stagione));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return menu_tematici;
     }
 
     public static void aggiungiRicetta(Ricetta ricetta){

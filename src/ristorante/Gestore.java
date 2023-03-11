@@ -9,12 +9,12 @@ import java.util.ArrayList;
 public class Gestore {
 
     Ricettario ricettario;
-    MenuTematico menu_tematico;
+    ArrayList<MenuTematico> menu_tematici;
 
     public Gestore(){
         creaRistorante();
         ricettario = Xml.leggiRicettario();
-        menu_tematico = Xml.leggiMenuTematico();
+        menu_tematici = Xml.leggiMenuTematico();
     }
 
     public void creaRistorante(){
@@ -23,7 +23,7 @@ public class Gestore {
     }
 
     public void visualizzaMenuTematici(){
-        System.out.println(menu_tematico.toString());
+       System.out.println(menu_tematici.toString());
     }
 
     public void visualizzaRicettario(){
