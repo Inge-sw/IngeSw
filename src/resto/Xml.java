@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public class Xml {
 
     //legge un file xml e salva i dati delle persone in un ArrayList di tipo persona
-    public static void leggiRicettario(String nome_file, ArrayList<Ricetta> ricette) {
+    public static ArrayList<Ricetta> leggiRicettario(String nome_file) {
+        ArrayList<Ricetta> ricette = new ArrayList<>();
 
         XMLInputFactory xmlif;
         XMLStreamReader xmlr;
@@ -23,7 +24,7 @@ public class Xml {
         String dosaggio = null;
         String unita = null;
         String porzione = null;
-        String stagione = null;
+        String stagione_str = null;
 
         try {
             xmlif = XMLInputFactory.newInstance();
@@ -61,28 +62,22 @@ public class Xml {
                             xmlr.next();
                             unita = xmlr.getText();
                             System.out.println("unità di misura: " + unita);
-                            //ricette.add(new Ricetta(nome, cognome, sesso, comune_nascita, data_nascita, new codiceFiscale(" "))); //ottenuti tutti i valori dell'xml di una persona.
+
                             break;
                         case Costante.PORZIONE:
                             xmlr.next();
                             porzione = xmlr.getText();
                             System.out.println("porzione" + porzione);
-                            //ricette.add(new Ricetta(nome, cognome, sesso, comune_nascita, data_nascita, new codiceFiscale(" "))); //ottenuti tutti i valori dell'xml di una persona.
                             break;
                         case Costante.STAGIONE:
                             xmlr.next();
-                            stagione = xmlr.getText();
-                            System.out.println("stagione" + stagione);
+                            stagione_str = xmlr.getText();
+                            System.out.println("stagione" + stagione_str);
                             ingredienti.add(new Ingrediente(nome, Double.parseDouble(dosaggio)));
-                            //ricette.add(new Ricetta(nome, cognome, sesso, comune_nascita, data_nascita, new codiceFiscale(" "))); //ottenuti tutti i valori dell'xml di una persona.
-                            break;/*
-                        case Costante.DATA_NASCITA:
-                            xmlr.next();
-                            data_nascita = xmlr.getText();
-                            persone.add(new Persona(nome, cognome, sesso, comune_nascita, data_nascita, new codiceFiscale(" "))); //ottenuti tutti i valori dell'xml di una persona. Creazione Persona
-                            break;*/
+                            break;
                     }
-                    //ricette.add(new Ricetta(nome_ricetta, stagione, porzione, tempo, ))
+
+                    ricette.add(new Ricetta(nome_ricetta, Stagioni.getStagione(stagione_str), Integer.getInteger(porzione), Integer.getInteger(tempo), ingredienti));
                 }
                 xmlr.next();
             }
@@ -90,6 +85,7 @@ public class Xml {
             System.out.println(Costante.ERRORE_LETTURA);
             System.out.println(e.getMessage());
         }
+        return ricette;
     }
 /*
     public static void scriviPersone(String nome_file, ArrayList<Persona> persone, ArrayList<codiceFiscale> codici_invalidi, ArrayList<codiceFiscale> codici_spaiati) {
