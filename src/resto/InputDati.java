@@ -30,7 +30,7 @@ public class InputDati {
      */
     public static String leggiStringa(String messaggio) {
         System.out.print(messaggio);
-        return lettore.next();
+        return lettore.nextLine();
     }
 
     /**

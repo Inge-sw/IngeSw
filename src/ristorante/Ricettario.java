@@ -1,6 +1,7 @@
 package ristorante;
 
 import resto.Costante;
+import resto.Stagioni;
 import resto.Xml;
 
 import java.util.ArrayList;
@@ -17,10 +18,12 @@ public class Ricettario {
         return ricette;
     }
 
-    @Override
+    public void aggiungiRicetta(String nome, Stagioni stagione, int porzioni, int tempo_preparazione, ArrayList<Ingrediente> ingredienti){
+        ricette.add(new Ricetta(nome, stagione, porzioni, tempo_preparazione, ingredienti));
+        Xml.aggiungiRicetta(new Ricetta(nome, stagione, porzioni, tempo_preparazione, ingredienti));
+    }
+
     public String toString() {
-        return "Ricettario{" +
-                "ricette=" + ricette +
-                '}';
+        return ricette.toString();
     }
 }

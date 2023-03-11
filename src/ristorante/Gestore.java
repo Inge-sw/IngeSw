@@ -9,10 +9,12 @@ import java.util.ArrayList;
 public class Gestore {
 
     Ricettario ricettario;
+    MenuTematico menu_tematico;
 
     public Gestore(){
         creaRistorante();
         ricettario = Xml.leggiRicettario();
+        menu_tematico = Xml.leggiMenuTematico();
     }
 
     public void creaRistorante(){
@@ -21,21 +23,20 @@ public class Gestore {
     }
 
     public void visualizzaMenuTematici(){
-
+        System.out.println(menu_tematico.toString());
     }
 
     public void visualizzaRicettario(){
-        System.out.println("ciao");
         System.out.println(ricettario.toString());
     }
 
-    public Ricetta creaRicetta(){
+    public void creaRicetta(){
 
         boolean check_stagione = false;
         String check = null;
         ArrayList<Ingrediente> ingredienti = new ArrayList<>();
 
-        String nome_ricetta = InputDati.leggiStringaNonVuota("Inserisci il nome della ricetta: ");
+        String nome_ricetta = InputDati.leggiStringa("Inserisci il nome della ricetta: ");
         int porzione = InputDati.leggiInteroNonNegativo("Inserisci il numero di porzione: ");
         int tempo = InputDati.leggiInteroNonNegativo("Inserisci il tempo di preparazione: ");
 
@@ -53,7 +54,7 @@ public class Gestore {
             check = InputDati.leggiStringa("Inserire un altro ingrediente?(Si/No)");
         }while(check.equalsIgnoreCase("si"));
 
-        return new Ricetta(nome_ricetta, Stagioni.getStagione(stagione), porzione, tempo);
+        ricettario.aggiungiRicetta(nome_ricetta, Stagioni.getStagione(stagione), porzione, tempo, ingredienti);
 
     }
 

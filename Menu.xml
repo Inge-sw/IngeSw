@@ -3,6 +3,7 @@
 <MenuTematici>
 	<menuTematico>
 		<nome>Pesce</nome>
+		<stagione>Primavera</stagione>
 			<Piatti>
 				<Piatto>Insalata</Piatto>
 				<Piatto>Fritto misto</Piatto>
@@ -10,6 +11,7 @@
 	</menuTematico>
 	<menuTematico>
 		<nome>Montagna</nome>
+		<stagione>Primavera</stagione>
 		<Piatti>
 			<Piatto>Insalatona</Piatto>
 			<Piatto>BBQ</Piatto>

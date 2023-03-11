@@ -1,5 +1,7 @@
 package ristorante;
 
+import resto.Stagioni;
+
 import java.util.ArrayList;
 
 public class Menu {
@@ -17,4 +19,10 @@ public class Menu {
         piatti.add(piatto);
     }
 
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "piatti=" + piatti +
+                '}';
+    }
 }

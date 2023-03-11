@@ -79,9 +79,8 @@ public class Ricetta {
         this.stagione = stagione;
     }
 
-    @Override
     public String toString() {
-        return "Nome della ricetta: " + nome +
+        return "\n-----------" + nome + "-----------" +
                 "\nPorzioni: " + porzioni +
                 "\nTempo di preparazione: " + tempo_preparazione +
                 "\nIngredienti: " +

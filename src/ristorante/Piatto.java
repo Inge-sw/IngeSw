@@ -39,4 +39,13 @@ public class Piatto {
         return carico_lavoro;
     }
 
+    @Override
+    public String toString() {
+        return "Piatto{" +
+                "nome='" + nome + '\'' +
+                ", stagione=" + stagione +
+                ", ricetta=" + ricetta +
+                ", carico_lavoro=" + carico_lavoro +
+                '}';
+    }
 }

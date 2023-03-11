@@ -1,11 +1,13 @@
 package resto;
 
 import org.w3c.dom.*;
-import ristorante.Ingrediente;
-import ristorante.Ricetta;
-import ristorante.Ricettario;
+import org.xml.sax.SAXException;
+import ristorante.*;
 
 import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -34,18 +36,12 @@ public class Xml {
                 int porzioni = Integer.parseInt(ricetta.getElementsByTagName(Costante.PORZIONE).item(0).getTextContent());
                 int tempo = Integer.parseInt(ricetta.getElementsByTagName(Costante.TEMPO).item(0).getTextContent());
                 Stagioni stagione = Stagioni.getStagione(ricetta.getElementsByTagName(Costante.STAGIONE).item(0).getTextContent());
-                System.out.println("Ricetta: " + nomeRicetta);
-                System.out.println("Porzioni: " + porzioni);
-                System.out.println("Tempo di preparazione: " + tempo + " minuti");
-                System.out.println("Ingredienti:");
                 NodeList ingredientiList = ricetta.getElementsByTagName(Costante.INGREDIENTE);
                 ArrayList<Ingrediente> ingredienti = new ArrayList<>();
                 for (int j = 0; j < ingredientiList.getLength(); j++) {
                     Element ingrediente = (Element) ingredientiList.item(j);
                     String nome = ingrediente.getElementsByTagName(Costante.NOME).item(0).getTextContent();
-                    int dosaggio = Integer.parseInt(ingrediente.getElementsByTagName(Costante.DOSAGGIO).item(0).getTextContent());
-                    String unita = ingrediente.getElementsByTagName(Costante.UNITA).item(0).getTextContent();
-                    System.out.println("- " + nome + ": " + dosaggio + " " + unita);
+                    int dosaggio = (int)Double.parseDouble(ingrediente.getElementsByTagName(Costante.DOSAGGIO).item(0).getTextContent());
                     ingredienti.add(new Ingrediente(nome, dosaggio));
                 }
                 ricette.add(new Ricetta(nomeRicetta, stagione, porzioni, tempo, ingredienti));
@@ -59,6 +55,9 @@ public class Xml {
     }
 
     public static void leggiMenuTematico(){
+
+        ArrayList<Piatto> piatti = new ArrayList<>();
+
         try {
             File inputFile = new File(Costante.XML_MENU);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -67,34 +66,165 @@ public class Xml {
 
             doc.getDocumentElement().normalize();
 
-            NodeList menuTematici = doc.getElementsByTagName(Costante.MENU_TEMATICO);
+            NodeList menu_tematici = doc.getElementsByTagName(Costante.MENU_TEMATICO);
 
-            for (int i = 0; i < menuTematici.getLength(); i++) {
+            for (int i = 0; i < menu_tematici.getLength(); i++) {
 
-                Node menuTematicoNode = menuTematici.item(i);
+                Node menu_tematico_node = menu_tematici.item(i);
 
-                if (menuTematicoNode.getNodeType() == Node.ELEMENT_NODE) {
+                if (menu_tematico_node.getNodeType() == Node.ELEMENT_NODE) {
 
-                    Node nomeNode = ((org.w3c.dom.Element) menuTematicoNode).getElementsByTagName(Costante.NOME).item(0);
-                    System.out.println("Nome del menu tematico: " + nomeNode.getTextContent());
+                    Node nome_node = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.NOME).item(0);
+                    System.out.println("Nome del menu tematico: " + nome_node.getTextContent());
 
-                    NodeList piattiList = ((org.w3c.dom.Element) menuTematicoNode).getElementsByTagName(Costante.PIATTI);
+                    Node stagione_node = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.STAGIONE).item(0);
+                    System.out.println("NStagione del menu tematico: " + stagione_node.getTextContent());
 
-                    for (int j = 0; j < piattiList.getLength(); j++) {
-                        Node piattiNode = piattiList.item(j);
-                        if (piattiNode.getNodeType() == Node.ELEMENT_NODE) {
-                            NodeList piattoList = ((org.w3c.dom.Element) piattiNode).getElementsByTagName(Costante.PIATTO);
+                    NodeList piatti_list = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.PIATTI);
+
+                    for (int j = 0; j < piatti_list.getLength(); j++) {
+                        Node piatti_node = piatti_list.item(j);
+                        if (piatti_node.getNodeType() == Node.ELEMENT_NODE) {
+                            NodeList piatto_list = ((org.w3c.dom.Element) piatti_node).getElementsByTagName(Costante.PIATTO);
                             System.out.println("Piatti: ");
-                            for (int k = 0; k < piattoList.getLength(); k++) {
-                                Node piattoNode = piattoList.item(k);
-                                if (piattoNode.getNodeType() == Node.ELEMENT_NODE) {
-                                    System.out.println(piattoNode.getTextContent());
+                            for (int k = 0; k < piatto_list.getLength(); k++) {
+                                Node piatto_node = piatto_list.item(k);
+                                if (piatto_node.getNodeType() == Node.ELEMENT_NODE) {
+                                    System.out.println(piatto_node.getTextContent());
                                 }
                             }
                         }
                     }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void aggiungiRicetta(Ricetta ricetta){
+        try {
+            // Carica il documento XML
+            File inputFile = new File(Costante.XML_RICETTARIO);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
+            doc.getDocumentElement().normalize();
+
+            // Crea la nuova ricetta
+            Element nuovaRicetta = doc.createElement(Costante.RICETTA);
+
+            Element nomeRicetta = doc.createElement(Costante.NOME_RICETTA);
+            nomeRicetta.appendChild(doc.createTextNode(ricetta.getNome()));
+            nuovaRicetta.appendChild(nomeRicetta);
+
+            Element caricoLavoroPerPorzione = doc.createElement(Costante.CARICO_LAVORO_PER_PORZIONE);
+            caricoLavoroPerPorzione.appendChild(doc.createTextNode(String.valueOf(ricetta.getCarico_lavoro_porzione())));
+            nuovaRicetta.appendChild(caricoLavoroPerPorzione);
+
+            Element tempo = doc.createElement(Costante.TEMPO);
+            tempo.appendChild(doc.createTextNode(String.valueOf(ricetta.getTempo_preparazione())));
+            nuovaRicetta.appendChild(tempo);
+
+            Element porzione = doc.createElement(Costante.PORZIONE);
+            porzione.appendChild(doc.createTextNode(String.valueOf(ricetta.getPorzioni())));
+            nuovaRicetta.appendChild(porzione);
+
+            Element stagione = doc.createElement(Costante.STAGIONE);
+            stagione.appendChild(doc.createTextNode(ricetta.getStagione().toString()));
+            nuovaRicetta.appendChild(stagione);
+
+            Element ingredienti = doc.createElement(Costante.INGREDIENTI);
+
+            for (int i = 0; i < ricetta.getIngredienti().size(); i++){
+
+                Ingrediente ingrediente = ricetta.getIngredienti().get(i);
+
+                Element ingrediente_ele = doc.createElement(Costante.INGREDIENTE);
+                Element nome_ingrediente = doc.createElement(Costante.NOME);
+                nome_ingrediente.appendChild(doc.createTextNode(ingrediente.getNome()));
+                ingrediente_ele.appendChild(nome_ingrediente);
+                Element dosaggio = doc.createElement(Costante.DOSAGGIO);
+                dosaggio.appendChild(doc.createTextNode(String.valueOf(ingrediente.getQuantita())));
+                ingrediente_ele.appendChild(dosaggio);
+                Element unita = doc.createElement(Costante.UNITA);
+                unita.appendChild(doc.createTextNode(Misura.GRAMMI.toString()));
+
+                ingredienti.appendChild(ingrediente_ele);
+            }
+
+            nuovaRicetta.appendChild(ingredienti);
+
+            // Aggiunge la nuova ricetta alla radice del documento
+            Node radice = doc.getDocumentElement();
+            radice.appendChild(nuovaRicetta);
+
+            // Scrive il documento XML modificato su un file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File(Costante.XML_RICETTARIO));
+            transformer.transform(source, result);
+
+            System.out.println("Nuova ricetta aggiunta con successo!");
+
+        } catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void aggiungiMenuTematico(){
+        try {
+            String filepath = Costante.XML_MENU;
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            Document doc = docBuilder.parse(filepath);
+
+            // Prendi il nodo radice
+            Element root = doc.getDocumentElement();
+
+            // Crea un nuovo menuTematico
+            Element menuTematico = doc.createElement(Costante.MENU_TEMATICO);
+            root.appendChild(menuTematico);
+
+            // Aggiungi il nome del menuTematico
+            Element nome = doc.createElement(Costante.NOME);
+            nome.appendChild(doc.createTextNode("Vegetariano"));
+            menuTematico.appendChild(nome);
+
+            // Aggiungi la stagione del menuTematico
+            Element stagione = doc.createElement(Costante.STAGIONE);
+            stagione.appendChild(doc.createTextNode("Autunno"));
+            menuTematico.appendChild(stagione);
+
+            // Aggiungi i piatti del menuTematico
+            Element piatti = doc.createElement(Costante.PIATTI);
+            menuTematico.appendChild(piatti);
+
+            Element piatto1 = doc.createElement("Piatto");
+            piatto1.appendChild(doc.createTextNode("Lasagne"));
+            piatti.appendChild(piatto1);
+
+            Element piatto2 = doc.createElement("Piatto");
+            piatto2.appendChild(doc.createTextNode("Parmigiana"));
+            piatti.appendChild(piatto2);
+
+            // Scrivi le modifiche sul file XML
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File(filepath));
+            transformer.transform(source, result);
+
+            System.out.println("Elemento aggiunto con successo!");
+
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
