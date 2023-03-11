@@ -5,7 +5,7 @@ import resto.Stagioni;
 import java.util.Date;
 
 public class MenuCarta extends Menu {
-/*
+
     public MenuCarta() {
         super();
     }
@@ -16,6 +16,6 @@ public class MenuCarta extends Menu {
                 this.addPiatto(new Piatto(ricetta));
             }
         }
-    }*/
+    }
 }
 
