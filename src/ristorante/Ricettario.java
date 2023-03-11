@@ -9,12 +9,18 @@ public class Ricettario {
 
     private ArrayList<Ricetta> ricette;
 
-    public Ricettario(){
-       ricette = Xml.leggiRicettario();
+    public Ricettario(ArrayList<Ricetta> ricette){
+        this.ricette = ricette;
     }
 
     public ArrayList<Ricetta> getRicette() {
         return ricette;
     }
 
+    @Override
+    public String toString() {
+        return "Ricettario{" +
+                "ricette=" + ricette +
+                '}';
+    }
 }

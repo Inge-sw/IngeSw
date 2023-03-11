@@ -24,6 +24,14 @@ public class Costante {
 
     public static final String ERRORE_LETTURA="Impossibile leggere il file xml";
 
+    public static final String [] voci = {
+            "Visualizza i menu tematici",
+            "Crea menu tematico",
+            "Visualizza le ricette",
+            "Crea una ricetta",
+            "Esci"
+    };
+
 
 
 

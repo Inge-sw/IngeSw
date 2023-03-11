@@ -3,6 +3,7 @@ package resto;
 import org.w3c.dom.*;
 import ristorante.Ingrediente;
 import ristorante.Ricetta;
+import ristorante.Ricettario;
 
 import javax.xml.parsers.*;
 import java.io.*;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class Xml {
 
-    public static ArrayList<Ricetta> leggiRicettario(){
+    public static Ricettario leggiRicettario(){
 
         ArrayList<Ricetta> ricette = new ArrayList<>();
 
@@ -54,7 +55,7 @@ public class Xml {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ricette;
+        return new Ricettario(ricette);
     }
 
     public static void leggiMenuTematico(){

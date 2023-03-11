@@ -18,4 +18,9 @@ public class Ingrediente extends Prodotto{
     public void setQuantita(double quantita) {
         this.quantita = quantita;
     }
+
+    @Override
+    public String toString() {
+        return super.getNome() + " " + quantita + " " + Misura.GRAMMI;
+    }
 }
