@@ -22,6 +22,15 @@ public class Ricetta {
         this.carico_lavoro_porzione = tempo_preparazione / ((double) porzioni);
     }
 
+    public Ricetta(String nome, Stagioni stagione,int porzioni, int tempo_preparazione, ArrayList<Ingrediente> ingredienti) {
+        this.nome = nome;
+        this.stagione = stagione;
+        this.ingredienti = ingredienti;
+        this.porzioni = porzioni;
+        this.tempo_preparazione = tempo_preparazione;
+        this.carico_lavoro_porzione = tempo_preparazione / ((double) porzioni);
+    }
+
     public ArrayList<Ingrediente> getIngredienti() {
         return ingredienti;
     }
