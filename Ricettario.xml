@@ -3,7 +3,6 @@
 <ricettario>
 	<ricetta>
 		<nomeRicetta>Pasta ragu</nomeRicetta>
-		<caricoLavoroPerPorzione>5</caricoLavoroPerPorzione>
 		<tempo>10</tempo>
 		<porzione>2</porzione>
 		<stagione>PRIMAVERA</stagione>
@@ -23,7 +22,6 @@
 
 	<ricetta>
 		<nomeRicetta>Risotto funghi porcini</nomeRicetta>
-		<caricoLavoroPerPorzione>2</caricoLavoroPerPorzione>
 		<tempo>20</tempo>
 		<porzione>3</porzione>
 		<stagione>PRIMAVERA</stagione>
