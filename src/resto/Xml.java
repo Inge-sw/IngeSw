@@ -1,14 +1,10 @@
 package resto;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 import ristorante.Ingrediente;
 import ristorante.Ricetta;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.*;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -28,26 +24,26 @@ public class Xml {
             doc.getDocumentElement().normalize();
 
             // Trova tutte le ricette nel documento
-            NodeList ricetteList = doc.getElementsByTagName("ricetta");
+            NodeList ricetteList = doc.getElementsByTagName(Costante.RICETTA);
 
             // Scandisci ogni ricetta e stampa alcune informazioni
             for (int i = 0; i < ricetteList.getLength(); i++) {
                 Element ricetta = (Element) ricetteList.item(i);
-                String nomeRicetta = ricetta.getElementsByTagName("nomeRicetta").item(0).getTextContent();
-                int porzioni = Integer.parseInt(ricetta.getElementsByTagName("porzione").item(0).getTextContent());
-                int tempo = Integer.parseInt(ricetta.getElementsByTagName("tempo").item(0).getTextContent());
-                Stagioni stagione = Stagioni.getStagione(ricetta.getElementsByTagName("stagione").item(0).getTextContent());
+                String nomeRicetta = ricetta.getElementsByTagName(Costante.NOME_RICETTA).item(0).getTextContent();
+                int porzioni = Integer.parseInt(ricetta.getElementsByTagName(Costante.PORZIONE).item(0).getTextContent());
+                int tempo = Integer.parseInt(ricetta.getElementsByTagName(Costante.TEMPO).item(0).getTextContent());
+                Stagioni stagione = Stagioni.getStagione(ricetta.getElementsByTagName(Costante.STAGIONE).item(0).getTextContent());
                 System.out.println("Ricetta: " + nomeRicetta);
                 System.out.println("Porzioni: " + porzioni);
                 System.out.println("Tempo di preparazione: " + tempo + " minuti");
                 System.out.println("Ingredienti:");
-                NodeList ingredientiList = ricetta.getElementsByTagName("ingrediente");
+                NodeList ingredientiList = ricetta.getElementsByTagName(Costante.INGREDIENTE);
                 ArrayList<Ingrediente> ingredienti = new ArrayList<>();
                 for (int j = 0; j < ingredientiList.getLength(); j++) {
                     Element ingrediente = (Element) ingredientiList.item(j);
-                    String nome = ingrediente.getElementsByTagName("nome").item(0).getTextContent();
-                    int dosaggio = Integer.parseInt(ingrediente.getElementsByTagName("dosaggio").item(0).getTextContent());
-                    String unita = ingrediente.getElementsByTagName("unità").item(0).getTextContent();
+                    String nome = ingrediente.getElementsByTagName(Costante.NOME).item(0).getTextContent();
+                    int dosaggio = Integer.parseInt(ingrediente.getElementsByTagName(Costante.DOSAGGIO).item(0).getTextContent());
+                    String unita = ingrediente.getElementsByTagName(Costante.UNITA).item(0).getTextContent();
                     System.out.println("- " + nome + ": " + dosaggio + " " + unita);
                     ingredienti.add(new Ingrediente(nome, dosaggio));
                 }
@@ -70,7 +66,7 @@ public class Xml {
 
             doc.getDocumentElement().normalize();
 
-            NodeList menuTematici = doc.getElementsByTagName("menuTematico");
+            NodeList menuTematici = doc.getElementsByTagName(Costante.MENU_TEMATICO);
 
             for (int i = 0; i < menuTematici.getLength(); i++) {
 
@@ -78,15 +74,15 @@ public class Xml {
 
                 if (menuTematicoNode.getNodeType() == Node.ELEMENT_NODE) {
 
-                    Node nomeNode = ((org.w3c.dom.Element) menuTematicoNode).getElementsByTagName("nome").item(0);
+                    Node nomeNode = ((org.w3c.dom.Element) menuTematicoNode).getElementsByTagName(Costante.NOME).item(0);
                     System.out.println("Nome del menu tematico: " + nomeNode.getTextContent());
 
-                    NodeList piattiList = ((org.w3c.dom.Element) menuTematicoNode).getElementsByTagName("Piatti");
+                    NodeList piattiList = ((org.w3c.dom.Element) menuTematicoNode).getElementsByTagName(Costante.PIATTI);
 
                     for (int j = 0; j < piattiList.getLength(); j++) {
                         Node piattiNode = piattiList.item(j);
                         if (piattiNode.getNodeType() == Node.ELEMENT_NODE) {
-                            NodeList piattoList = ((org.w3c.dom.Element) piattiNode).getElementsByTagName("Piatto");
+                            NodeList piattoList = ((org.w3c.dom.Element) piattiNode).getElementsByTagName(Costante.PIATTO);
                             System.out.println("Piatti: ");
                             for (int k = 0; k < piattoList.getLength(); k++) {
                                 Node piattoNode = piattoList.item(k);
