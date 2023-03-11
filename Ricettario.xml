@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ricettario>
+	<ricetta>
+		<nomeRicetta>Pasta ragu</nomeRicetta>
+		<caricoLavoroPerPorzione>5</caricoLavoroPerPorzione>
+		<tempo>10</tempo>
+		<ingredienti>
+			<ingrediente>
+				<nome>pasta</nome>
+				<dosaggio>10</dosaggio>
+				<unità>g</unità>
+			</ingrediente>
+			<ingrediente>
+				<nome>pomodoro</nome>
+				<dosaggio>10</dosaggio>
+				<unità>g</unità>
+			</ingrediente>
+		</ingredienti>
+	</ricetta>
+</ricettario>
+
+		
+		
+	
+
+
+			
+			
+			
+		
