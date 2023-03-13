@@ -21,6 +21,7 @@ public class Costante {
     public static final String PIATTO="piatto";
     public static final String PIATTI="piatti";
     public static final String MENU_TEMATICO="menuTematico";
+    public static final String DISPONIBLITA = "disponibilità";
 
     public static final String ERRORE_LETTURA="Impossibile leggere il file xml";
 

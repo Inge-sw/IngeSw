@@ -1,53 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menuTematici>
-    	
+        	
+    
     <menuTematico>
-        		
+                		
+        
         <nome>Pesce</nome>
-        		
-        <stagione>Primavera</stagione>
-        			
+                
+        <disponibilità>
+                        
+            <stagione>Primavera</stagione>
+                        
+            <stagione>Autunno</stagione>
+                    
+        </disponibilità>
+                
         <piatti>
-            				
+                        
             <piatto>Pasta ragu</piatto>
-            				
-            <piatto>Pasta al pesto</piatto>
-            			
+                        				
+            
+            <piatto>Risotto funghi</piatto>
+                        			
+        
         </piatti>
-        	
-    </menuTematico>
-    	
-    <menuTematico>
-        		
-        <nome>Montagna</nome>
-        		
-        <stagione>Primavera</stagione>
-        		
-        <piatti>
-            			
-            <piatto>Risotto funghi porcini</piatto>
-            			
-            <piatto>Pasta ragu</piatto>
-            		
-        </piatti>
-        	
+                	
+    
     </menuTematico>
     
     <menuTematico>
-        <nome>prova</nome>
-        <stagione>INVERNO</stagione>
+        <nome>montagna</nome>
+        <disponibilità>
+            <stagione>INVERNO</stagione>
+            <stagione>AUTUNNO</stagione>
+        </disponibilità>
         <piatti>
             <piatto>Pasta ragu</piatto>
-            <piatto>pasta al pesto</piatto>
-        </piatti>
-    </menuTematico>
-    <menuTematico>
-        <nome>prova23</nome>
-        <stagione>ESTATE</stagione>
-        <piatti>
-            <piatto>Pasta ragu</piatto>
-            <piatto>pasta al pesto</piatto>
-            <piatto>Risotto funghi porcini</piatto>
         </piatti>
     </menuTematico>
 </menuTematici>

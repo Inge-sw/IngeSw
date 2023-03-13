@@ -18,7 +18,7 @@ public class Ricettario {
         return ricette;
     }
 
-    public void aggiungiRicetta(String nome, Stagioni stagione, int porzioni, int tempo_preparazione, ArrayList<Ingrediente> ingredienti){
+    public void aggiungiRicetta(String nome, ArrayList<Stagioni> stagione, int porzioni, int tempo_preparazione, ArrayList<Ingrediente> ingredienti){
         ricette.add(new Ricetta(nome, stagione, porzioni, tempo_preparazione, ingredienti));
         Xml.aggiungiRicetta(new Ricetta(nome, stagione, porzioni, tempo_preparazione, ingredienti));
     }

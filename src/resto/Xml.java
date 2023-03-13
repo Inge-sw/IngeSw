@@ -35,7 +35,16 @@ public class Xml {
                 String nomeRicetta = ricetta.getElementsByTagName(Costante.NOME_RICETTA).item(0).getTextContent();
                 int porzioni = Integer.parseInt(ricetta.getElementsByTagName(Costante.PORZIONE).item(0).getTextContent());
                 int tempo = Integer.parseInt(ricetta.getElementsByTagName(Costante.TEMPO).item(0).getTextContent());
-                Stagioni stagione = Stagioni.getStagione(ricetta.getElementsByTagName(Costante.STAGIONE).item(0).getTextContent());
+
+                ArrayList<Stagioni> stagioni = new ArrayList<>();
+                NodeList listaStagioni = ricetta.getElementsByTagName(Costante.DISPONIBLITA).item(0).getChildNodes();
+                for (int j = 0; j < listaStagioni.getLength(); j++) {
+                    if (listaStagioni.item(j).getNodeType() == Element.ELEMENT_NODE) {
+                        String stagione = listaStagioni.item(j).getTextContent();
+                        stagioni.add(Stagioni.getStagione(stagione));
+                    }
+                }
+
                 NodeList ingredientiList = ricetta.getElementsByTagName(Costante.INGREDIENTE);
                 ArrayList<Ingrediente> ingredienti = new ArrayList<>();
                 for (int j = 0; j < ingredientiList.getLength(); j++) {
@@ -44,7 +53,7 @@ public class Xml {
                     int dosaggio = (int)Double.parseDouble(ingrediente.getElementsByTagName(Costante.DOSAGGIO).item(0).getTextContent());
                     ingredienti.add(new Ingrediente(nome, dosaggio));
                 }
-                ricette.add(new Ricetta(nomeRicetta, stagione, porzioni, tempo, ingredienti));
+                ricette.add(new Ricetta(nomeRicetta, stagioni, porzioni, tempo, ingredienti));
                 System.out.println();
             }
 
@@ -57,9 +66,10 @@ public class Xml {
     public static ArrayList<MenuTematico> leggiMenuTematico(){
 
         ArrayList<Piatto> piatti = null;
+        ArrayList<Stagioni> stagioni = null;
         ArrayList<MenuTematico> menu_tematici = new ArrayList<>();
         String nome = null;
-        Stagioni stagione = null;
+
         try {
             File inputFile = new File(Costante.XML_MENU);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -78,32 +88,44 @@ public class Xml {
 
                     Node nome_node = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.NOME).item(0);
                     nome = nome_node.getTextContent();
-                    System.out.println("Nome del menu tematico: " + nome_node.getTextContent());
 
-                    Node stagione_node = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.STAGIONE).item(0);
-                    stagione = Stagioni.getStagione(stagione_node.getTextContent());
-                    System.out.println("Stagione del menu tematico: " + stagione_node.getTextContent());
+                    NodeList disponibilita = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.DISPONIBLITA);
+                    stagioni = new ArrayList<>();
+                    for(int j = 0; j < disponibilita.getLength(); j++){
+                        Node stagioni_node = disponibilita.item(j);
+                        if(stagioni_node.getNodeType() == Node.ELEMENT_NODE){
+                            NodeList stagione_list = ((org.w3c.dom.Element) stagioni_node).getElementsByTagName(Costante.STAGIONE);
+                            for (int k = 0; k < stagione_list.getLength(); k++) {
+                                Node stagione_node = stagione_list.item(k);
+                                if (stagione_node.getNodeType() == Node.ELEMENT_NODE) {
+                                    stagioni.add(Stagioni.getStagione(stagione_node.getTextContent()));
+                                }
+                            }
+                        }
+                    }
 
                     NodeList piatti_list = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.PIATTI);
-
                     piatti = new ArrayList<>();
                     for (int j = 0; j < piatti_list.getLength(); j++) {
                         Node piatti_node = piatti_list.item(j);
                         if (piatti_node.getNodeType() == Node.ELEMENT_NODE) {
                             NodeList piatto_list = ((org.w3c.dom.Element) piatti_node).getElementsByTagName(Costante.PIATTO);
-                            System.out.println("Piatti: ");
                             for (int k = 0; k < piatto_list.getLength(); k++) {
                                 Node piatto_node = piatto_list.item(k);
                                 if (piatto_node.getNodeType() == Node.ELEMENT_NODE) {
-                                    System.out.println(piatto_node.getTextContent());
                                     piatti.add(new Piatto(Ricettario.getRicettaByNome(piatto_node.getTextContent())));
                                 }
                             }
                         }
                     }
                 }
-                menu_tematici.add(new MenuTematico(nome, stagione, piatti));
-            }
+                menu_tematici.add(new MenuTematico(nome, stagioni, piatti));}
+            } catch (ParserConfigurationException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (SAXException ex) {
+            ex.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -138,12 +160,20 @@ public class Xml {
             porzione.appendChild(doc.createTextNode(String.valueOf(ricetta.getPorzioni())));
             nuovaRicetta.appendChild(porzione);
 
-            Element stagione = doc.createElement(Costante.STAGIONE);
-            stagione.appendChild(doc.createTextNode(ricetta.getStagione().toString()));
-            nuovaRicetta.appendChild(stagione);
+            Element disponibilita = doc.createElement(Costante.DISPONIBLITA);
+
+            for(int i = 0; i < ricetta.getStagione().size(); i++){
+                Stagioni stagione = ricetta.getStagione().get(i);
+
+                Element stagione_tag = doc.createElement(Costante.STAGIONE);
+                stagione_tag.appendChild(doc.createTextNode(stagione.name()));
+
+                disponibilita.appendChild(stagione_tag);
+            }
+
+            nuovaRicetta.appendChild(disponibilita);
 
             Element ingredienti = doc.createElement(Costante.INGREDIENTI);
-
             for (int i = 0; i < ricetta.getIngredienti().size(); i++){
 
                 Ingrediente ingrediente = ricetta.getIngredienti().get(i);
@@ -202,9 +232,17 @@ public class Xml {
             menuTematico.appendChild(nome);
 
             // Aggiungi la stagione del menuTematico
-            Element stagione = doc.createElement(Costante.STAGIONE);
-            stagione.appendChild(doc.createTextNode(m.getStagione().name()));
-            menuTematico.appendChild(stagione);
+            Element disponibilita = doc.createElement(Costante.DISPONIBLITA);
+
+            for(int i = 0; i < m.getStagione().size(); i++){
+                Stagioni stagione = m.getStagione().get(i);
+
+                Element stagione_tag = doc.createElement(Costante.STAGIONE);
+                stagione_tag.appendChild(doc.createTextNode(stagione.name()));
+
+                disponibilita.appendChild(stagione_tag);
+            }
+            menuTematico.appendChild(disponibilita);
 
             // Aggiungi i piatti del menuTematico
             Element piatti = doc.createElement(Costante.PIATTI);

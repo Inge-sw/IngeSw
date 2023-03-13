@@ -11,9 +11,9 @@ public class Ricetta {
     private int tempo_preparazione;
     private double carico_lavoro_porzione;
     private String nome;
-    private Stagioni stagione;
+    private ArrayList<Stagioni> stagione;
 
-    public Ricetta(String nome, Stagioni stagione,int porzioni, int tempo_preparazione) {
+    public Ricetta(String nome, ArrayList<Stagioni> stagione,int porzioni, int tempo_preparazione) {
         this.nome = nome;
         this.stagione = stagione;
         this.ingredienti = new ArrayList<Ingrediente>();
@@ -22,7 +22,7 @@ public class Ricetta {
         this.carico_lavoro_porzione = tempo_preparazione / ((double) porzioni);
     }
 
-    public Ricetta(String nome, Stagioni stagione,int porzioni, int tempo_preparazione, ArrayList<Ingrediente> ingredienti) {
+    public Ricetta(String nome, ArrayList<Stagioni> stagione,int porzioni, int tempo_preparazione, ArrayList<Ingrediente> ingredienti) {
         this.nome = nome;
         this.stagione = stagione;
         this.ingredienti = ingredienti;
@@ -71,11 +71,11 @@ public class Ricetta {
         this.nome = nome;
     }
 
-    public Stagioni getStagione() {
+    public ArrayList<Stagioni> getStagione() {
         return stagione;
     }
 
-    public void setStagione(Stagioni stagione) {
+    public void setStagione(ArrayList<Stagioni> stagione) {
         this.stagione = stagione;
     }
 
@@ -83,6 +83,7 @@ public class Ricetta {
         return "\n-----------" + nome + "-----------" +
                 "\nPorzioni: " + porzioni +
                 "\nTempo di preparazione: " + tempo_preparazione +
+                "\nDisponibilita': " + stagione +
                 "\nIngredienti: " + ingredienti;
     }
 }

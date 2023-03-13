@@ -2,9 +2,11 @@ package ristorante;
 
 import resto.Stagioni;
 
+import java.util.ArrayList;
+
 public class Piatto {
     private String nome;
-    private Stagioni stagione;
+    private ArrayList<Stagioni> stagione;
     private Ricetta ricetta;
     private double carico_lavoro;
 
@@ -23,11 +25,11 @@ public class Piatto {
         this.nome = nome;
     }
 
-    public Stagioni getStagione() {
+    public ArrayList<Stagioni> getStagione() {
         return stagione;
     }
 
-    public void setStagione(Stagioni stagione) {
+    public void setStagione(ArrayList<Stagioni> stagione) {
         this.stagione = stagione;
     }
 
@@ -41,6 +43,6 @@ public class Piatto {
 
     @Override
     public String toString() {
-        return "\n-" + nome;
+        return "\n\t-" + nome;
     }
 }

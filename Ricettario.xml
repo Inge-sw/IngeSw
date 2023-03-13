@@ -1,130 +1,102 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ricettario>
-        
-    <ricetta>
                 
-        <nomeRicetta>Pasta ragu</nomeRicetta>
-                
-        <tempo>10</tempo>
-                
-        <porzione>2</porzione>
-                
-        <stagione>PRIMAVERA</stagione>
-                
-        <ingredienti>
-                        
-            <ingrediente>
-                                
-                <nome>pasta</nome>
-                                
-                <dosaggio>10</dosaggio>
-                                
-                <unità>g</unità>
-                            
-            </ingrediente>
-                        
-            <ingrediente>
-                                
-                <nome>pomodoro</nome>
-                                
-                <dosaggio>10</dosaggio>
-                                
-                <unità>g</unità>
-                            
-            </ingrediente>
-                    
-        </ingredienti>
-            
-    </ricetta>
-        
-    <ricetta>
-                
-        <nomeRicetta>Risotto funghi porcini</nomeRicetta>
-                
-        <tempo>20</tempo>
-                
-        <porzione>3</porzione>
-                
-        <stagione>PRIMAVERA</stagione>
-                
-        <ingredienti>
-                        
-            <ingrediente>
-                                
-                <nome>riso</nome>
-                                
-                <dosaggio>10</dosaggio>
-                                
-                <unità>g</unità>
-                            
-            </ingrediente>
-                        
-            <ingrediente>
-                                
-                <nome>funghi</nome>
-                                
-                <dosaggio>10</dosaggio>
-                                
-                <unità>g</unità>
-                            
-            </ingrediente>
-                    
-        </ingredienti>
-            
-    </ricetta>
-        
-    <ricetta>
-                
-        <nomeRicetta>pasta al pesto</nomeRicetta>
-                
-        <caricoLavoroPerPorzione>10.0</caricoLavoroPerPorzione>
-                
-        <tempo>10</tempo>
-                
-        <porzione>1</porzione>
-                
-        <stagione>ESTATE</stagione>
-                
-        <ingredienti>
-                        
-            <ingrediente>
-                                
-                <nome>pasta</nome>
-                                
-                <dosaggio>10.0</dosaggio>
-                            
-            </ingrediente>
-                        
-            <ingrediente>
-                                
-                <nome>sale</nome>
-                                
-                <dosaggio>10.0</dosaggio>
-                            
-            </ingrediente>
-                        
-            <ingrediente>
-                                
-                <nome>acqua</nome>
-                                
-                <dosaggio>20.0</dosaggio>
-                            
-            </ingrediente>
-                    
-        </ingredienti>
-            
-    </ricetta>
+    
     
     <ricetta>
-        <nomeRicetta>prova</nomeRicetta>
-        <caricoLavoroPerPorzione>1.0</caricoLavoroPerPorzione>
-        <tempo>1</tempo>
-        <porzione>1</porzione>
-        <stagione>AUTUNNO</stagione>
+                                
+        
+        
+        <nomeRicetta>Pasta ragu</nomeRicetta>
+                                
+        
+        
+        <tempo>10</tempo>
+                                
+        
+        
+        <porzione>2</porzione>
+                        
+        
+        <disponibilità>
+                                    
+            
+            <stagione>PRIMAVERA</stagione>
+                                    
+            
+            <stagione>AUTUNNO</stagione>
+                                    
+            
+            <stagione>ESTATE</stagione>
+                                
+        
+        </disponibilità>
+                        
+        
+        <ingredienti>
+                                                
+            
+            
+            <ingrediente>
+                                                                
+                
+                
+                <nome>pasta</nome>
+                                                                
+                
+                
+                <dosaggio>10</dosaggio>
+                                                                
+                
+                
+                <unità>g</unità>
+                                                            
+            
+            
+            </ingrediente>
+                                                
+            
+            
+            <ingrediente>
+                                                                
+                
+                
+                <nome>pomodoro</nome>
+                                                                
+                
+                
+                <dosaggio>10</dosaggio>
+                                                                
+                
+                
+                <unità>g</unità>
+                                                            
+            
+            
+            </ingrediente>
+                                            
+        
+        
+        </ingredienti>
+                            
+    
+    
+    </ricetta>
+        
+
+    <ricetta>
+        <nomeRicetta>risotto funghi</nomeRicetta>
+        <caricoLavoroPerPorzione>0.5</caricoLavoroPerPorzione>
+        <tempo>10</tempo>
+        <porzione>20</porzione>
+        <disponibilità>
+            <stagione>AUTUNNO</stagione>
+            <stagione>PRIMAVERA</stagione>
+        </disponibilità>
         <ingredienti>
             <ingrediente>
-                <nome>pasta</nome>
-                <dosaggio>20.0</dosaggio>
+                <nome>riso</nome>
+                <dosaggio>10.0</dosaggio>
             </ingrediente>
         </ingredienti>
     </ricetta>
