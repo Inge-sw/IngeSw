@@ -23,7 +23,33 @@ public class Costante {
     public static final String MENU_TEMATICO="menuTematico";
     public static final String DISPONIBLITA = "disponibilità";
 
+    public static final String INVERNO = "inverno";
+    public static final String ESTATE = "estate";
+    public static final String AUTUNNO = "autunno";
+    public static final String PRIMAVERA = "primavera";
+
     public static final String ERRORE_LETTURA="Impossibile leggere il file xml";
+
+    public static final String [] MENU_GESTORE = {
+            "Gestisci il ristorante",
+            "Gestisci i menu tematici",
+            "Gestisci il ricettario",
+            "Esci"
+    };
+
+    public static final String [] MENU_MENU = {
+            "Visualizza i menu tematici",
+            "Crea un menu tematico",
+            "Modifica un menu tematico",
+            "Indietro"
+    };
+
+    public static final String [] MENU_RICETTARIO = {
+            "Visualizza il ricettario",
+            "Crea una ricetta",
+            "Modifica una ricetta",
+            "Indietro"
+    };
 
     public static final String [] voci = {
             "Visualizza i menu tematici",

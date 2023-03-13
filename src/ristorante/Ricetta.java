@@ -79,6 +79,10 @@ public class Ricetta {
         this.stagione = stagione;
     }
 
+    public String stampaNome(){
+        return "\n - " + nome;
+    }
+
     public String toString() {
         return "\n-----------" + nome + "-----------" +
                 "\nPorzioni: " + porzioni +

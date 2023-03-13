@@ -1,38 +1,158 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menuTematici>
-        	
+                    	
+    
+    
+    
     
     <menuTematico>
-                		
+                                        		
+        
+        
+        
         
         <nome>Pesce</nome>
+                                        
+        
+        
+        
+        <disponibilità>
+                                                            
+            
+            
+            
+            <stagione>Primavera</stagione>
+                                                            
+            
+            
+            
+            <stagione>Autunno</stagione>
+                                                        
+        
+        
+        
+        </disponibilità>
+                                        
+        
+        
+        
+        <piatti>
+                                                            
+            
+            
+            
+            <piatto>Pasta ragu</piatto>
+                                                            				
+            
+            
+            
+            
+            <piatto>Risotto funghi</piatto>
+                                                            			
+        
+        
+        
+        
+        </piatti>
+                                        	
+    
+    
+    
+    
+    </menuTematico>
+                
+    
+    
+    
+    <menuTematico>
+                                
+        
+        
+        <nome>montagna</nome>
+                                
+        
+        
+        <disponibilità>
+                                                
+            
+            
+            <stagione>INVERNO</stagione>
+                                                
+            
+            
+            <stagione>AUTUNNO</stagione>
+                                            
+        
+        
+        </disponibilità>
+                                
+        
+        
+        <piatti>
+                                                
+            
+            
+            <piatto>Pasta ragu</piatto>
+                                            
+        
+        
+        </piatti>
+                            
+    
+    
+    </menuTematico>
+            
+    
+    
+    <menuTematico>
+                        
+        
+        <nome>prova</nome>
+                        
+        
+        <disponibilità>
+                                    
+            
+            <stagione>INVERNO</stagione>
+                                
+        
+        </disponibilità>
+                        
+        
+        <piatti>
+                                    
+            
+            <piatto>risotto funghi</piatto>
+                                
+        
+        </piatti>
+                    
+    
+    </menuTematico>
+        
+    
+    <menuTematico>
+                
+        <nome>l</nome>
                 
         <disponibilità>
                         
-            <stagione>Primavera</stagione>
-                        
-            <stagione>Autunno</stagione>
+            <stagione>INVERNO</stagione>
                     
         </disponibilità>
                 
         <piatti>
                         
             <piatto>Pasta ragu</piatto>
-                        				
-            
-            <piatto>Risotto funghi</piatto>
-                        			
-        
+                    
         </piatti>
-                	
-    
+            
     </menuTematico>
     
     <menuTematico>
-        <nome>montagna</nome>
+        <nome>l</nome>
         <disponibilità>
             <stagione>INVERNO</stagione>
-            <stagione>AUTUNNO</stagione>
         </disponibilità>
         <piatti>
             <piatto>Pasta ragu</piatto>

@@ -32,6 +32,12 @@ public class Ricettario {
         return null;
     }
 
+    public static void stampaRicette(){
+        for (Ricetta ricetta : ricette){
+            System.out.println("- " + ricetta.getNome().toUpperCase());
+        }
+    }
+
     public String toString() {
         return ricette.toString();
     }
