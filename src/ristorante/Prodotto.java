@@ -27,4 +27,13 @@ public class Prodotto {
         this.u_misura = u_misura;
     }
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

@@ -2,11 +2,10 @@ package resto;
 
 import ristorante.Bevanda;
 import ristorante.GeneriExtra;
+import ristorante.Gestore;
 import ristorante.Prodotto;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 
 public class FileTesto {
@@ -41,5 +40,26 @@ public class FileTesto {
         return generiMap;
     }
 
+    public static void aggiungiBevande(Bevanda bevanda){
+        String filePath = "Bevande.txt";
+
+        try (FileWriter fw = new FileWriter(filePath, true);
+             PrintWriter pw = new PrintWriter(fw)) {
+            pw.print("\n" + bevanda.getNome().toUpperCase());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void aggiungiGenere(GeneriExtra genere){
+        String filePath = "Generi.txt";
+
+        try (FileWriter fw = new FileWriter(filePath, true);
+             PrintWriter pw = new PrintWriter(fw)) {
+            pw.print("\n" + genere.getNome().toUpperCase());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -4,6 +4,7 @@ import resto.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Gestore extends Utente {
 
@@ -134,6 +135,42 @@ public class Gestore extends Utente {
         });
     }
 
+    public void aggiungiBevande(){
+        boolean duplicato = false;
+        String bevanda_input = InputDati.leggiStringaNonVuota("Inserisci una nuova bevanda: ");
+        HashMap<Bevanda, Double> bevande_esistenti = ristorante.getBevande_persona();
+
+        if (bevande_esistenti.containsKey(new Bevanda(bevanda_input.toUpperCase()))){
+            duplicato = true;
+        }
+
+        if (duplicato) System.out.println("La bevanda esiste già");
+        else{
+            Bevanda bevanda_da_aggiungere = new Bevanda(bevanda_input.toUpperCase());
+            ristorante.getBevande_persona().put(bevanda_da_aggiungere, ristorante.getQnt());
+            FileTesto.aggiungiBevande(bevanda_da_aggiungere);
+        }
+    }
+
+    public void aggiungiGeneri(){
+        boolean duplicato = false;
+        String genere_input = InputDati.leggiStringaNonVuota("Inserisci un nuovo genere: ");
+        HashMap<GeneriExtra, Double> generi_esistenti = ristorante.getGeneri_extra_persona();
+
+        GeneriExtra genere_da_aggiungere = new GeneriExtra(genere_input.toUpperCase());
+
+        if (generi_esistenti.containsKey(genere_da_aggiungere)){
+            duplicato = true;
+        }
+
+        if (duplicato) System.out.println("Il genere esiste già");
+        else{
+
+            ristorante.getGeneri_extra_persona().put(genere_da_aggiungere, ristorante.getQnt());
+            FileTesto.aggiungiGenere(genere_da_aggiungere);
+        }
+    }
+
     public void visualizzaGeneri(){
         HashMap<GeneriExtra, Double> generi = ristorante.getGeneri_extra_persona();
         generi.forEach((key, value) -> {
@@ -176,4 +213,7 @@ public class Gestore extends Utente {
         return stagioni;
     }
 
+    public Ristorante getRistorante() {
+        return ristorante;
+    }
 }

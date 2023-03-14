@@ -103,6 +103,10 @@ public class MainClass {
                 opzioniBevande(gestore);
                 break;
             case 2:
+                do {
+                    gestore.aggiungiBevande();
+                }while(InputDati.yesOrNo("Inserire ancora?"));
+                opzioniBevande(gestore);
                 break;
             case 3:
                 break;
@@ -119,6 +123,10 @@ public class MainClass {
                 opzioniGeneri(gestore);
                 break;
             case 2:
+                do {
+                    gestore.aggiungiGeneri();
+                }while(InputDati.yesOrNo("Inserire ancora?"));
+                opzioniGeneri(gestore);
                 break;
             case 3:
                 break;
