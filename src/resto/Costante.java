@@ -58,6 +58,12 @@ public class Costante {
             "Indietro"
     };
 
+    public static final String [] MENU_USERDB = {
+            "Sign up",
+            "Sign in",
+            "Esci"
+    };
+
     public static final String [] voci = {
             "Visualizza i menu tematici",
             "Crea menu tematico",

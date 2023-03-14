@@ -1,102 +1,167 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ricettario>
-                
+                    
+    
     
     
     <ricetta>
-                                
+                                        
+        
         
         
         <nomeRicetta>Pasta ragu</nomeRicetta>
-                                
+                                        
+        
         
         
         <tempo>10</tempo>
-                                
+                                        
+        
         
         
         <porzione>2</porzione>
-                        
-        
-        <disponibilità>
-                                    
-            
-            <stagione>PRIMAVERA</stagione>
-                                    
-            
-            <stagione>AUTUNNO</stagione>
-                                    
-            
-            <stagione>ESTATE</stagione>
                                 
         
-        </disponibilità>
-                        
         
-        <ingredienti>
+        <disponibilità>
                                                 
             
             
-            <ingrediente>
-                                                                
-                
-                
-                <nome>pasta</nome>
-                                                                
-                
-                
-                <dosaggio>10</dosaggio>
-                                                                
-                
-                
-                <unità>g</unità>
-                                                            
-            
-            
-            </ingrediente>
+            <stagione>PRIMAVERA</stagione>
                                                 
             
             
-            <ingrediente>
-                                                                
-                
-                
-                <nome>pomodoro</nome>
-                                                                
-                
-                
-                <dosaggio>10</dosaggio>
-                                                                
-                
-                
-                <unità>g</unità>
-                                                            
+            <stagione>AUTUNNO</stagione>
+                                                
             
             
-            </ingrediente>
+            <stagione>ESTATE</stagione>
                                             
         
         
+        </disponibilità>
+                                
+        
+        
+        <ingredienti>
+                                                            
+            
+            
+            
+            <ingrediente>
+                                                                                
+                
+                
+                
+                <nome>pasta</nome>
+                                                                                
+                
+                
+                
+                <dosaggio>10</dosaggio>
+                                                                                
+                
+                
+                
+                <unità>g</unità>
+                                                                            
+            
+            
+            
+            </ingrediente>
+                                                            
+            
+            
+            
+            <ingrediente>
+                                                                                
+                
+                
+                
+                <nome>pomodoro</nome>
+                                                                                
+                
+                
+                
+                <dosaggio>10</dosaggio>
+                                                                                
+                
+                
+                
+                <unità>g</unità>
+                                                                            
+            
+            
+            
+            </ingrediente>
+                                                        
+        
+        
+        
         </ingredienti>
-                            
+                                    
+    
     
     
     </ricetta>
-        
+            
 
+    
     <ricetta>
+                
         <nomeRicetta>risotto funghi</nomeRicetta>
+                
         <caricoLavoroPerPorzione>0.5</caricoLavoroPerPorzione>
+                
         <tempo>10</tempo>
+                
         <porzione>20</porzione>
+                
         <disponibilità>
+                        
+            <stagione>AUTUNNO</stagione>
+                        
+            <stagione>PRIMAVERA</stagione>
+                    
+        </disponibilità>
+                
+        <ingredienti>
+                        
+            <ingrediente>
+                                
+                <nome>riso</nome>
+                                
+                <dosaggio>10.0</dosaggio>
+                            
+            </ingrediente>
+                    
+        </ingredienti>
+            
+    </ricetta>
+    
+    <ricetta>
+        <nomeRicetta>casoncelli burro e salvia</nomeRicetta>
+        <caricoLavoroPerPorzione>3.3333333333333335</caricoLavoroPerPorzione>
+        <tempo>10</tempo>
+        <porzione>3</porzione>
+        <disponibilità>
+            <stagione>INVERNO</stagione>
             <stagione>AUTUNNO</stagione>
             <stagione>PRIMAVERA</stagione>
+            <stagione>ESTATE</stagione>
         </disponibilità>
         <ingredienti>
             <ingrediente>
-                <nome>riso</nome>
+                <nome>casoncelli</nome>
+                <dosaggio>250.0</dosaggio>
+            </ingrediente>
+            <ingrediente>
+                <nome>salvia</nome>
                 <dosaggio>10.0</dosaggio>
+            </ingrediente>
+            <ingrediente>
+                <nome>burro</nome>
+                <dosaggio>30.0</dosaggio>
             </ingrediente>
         </ingredienti>
     </ricetta>
