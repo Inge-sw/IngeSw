@@ -41,6 +41,8 @@ public class Costante {
             "Visualizza i dati del ristorante",
             "Modifica il nome del ristorante",
             "Modifica i posto disponibili del ristorante",
+            "Gestisci le bevande",
+            "Gestisci i generi extra",
             "Indietro"
     };
 
@@ -64,15 +66,16 @@ public class Costante {
             "Esci"
     };
 
-    public static final String [] voci = {
-            "Visualizza i menu tematici",
-            "Crea menu tematico",
-            "Visualizza le ricette",
-            "Crea una ricetta",
-            "Esci"
+    public static final String [] MENU_BEVANDA = {
+            "Visualizza l'insieme delle bevande",
+            "Aggiungi una bevanda",
+            "Indietro"
     };
 
-
-
+    public static final String [] MENU_GENERI = {
+            "Visualizza l'insieme dei generi extra",
+            "Aggiungi un genere extra",
+            "Indietro"
+    };
 
 }

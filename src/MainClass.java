@@ -1,14 +1,25 @@
-import resto.Costante;
-import resto.InputDati;
-import resto.MyMenu;
-import resto.UserDB;
+import resto.*;
 import ristorante.Gestore;
+import ristorante.Ristorante;
 
 public class MainClass {
     public static void main(String[] args) {
 
+/*
+        Ristorante r = new Ristorante("c", 30);
+        System.out.println(r.getBevande_persona());
+        r.getBevande_persona().forEach((key, value) -> {
+            System.out.println(key.getNome() + " : " + value);
+        });
+        r.getGeneri_extra_persona().forEach((key, value) -> {
+            System.out.println(key.getNome() + " : " + value);
+        });
+
+*/
         UserDB userDB = new UserDB();
-        Login(userDB);
+        login(userDB);
+
+
     }
 
     public static void opzioniGestore(Gestore gestore){
@@ -42,6 +53,10 @@ public class MainClass {
                 gestore.modificaRistorante(3);
                 opzioniRistorante(gestore);
             case 4:
+                opzioniBevande(gestore);
+            case 5:
+                opzioniGeneri(gestore);
+            case 6:
                 opzioniGestore(gestore);
         }
     }
@@ -80,14 +95,46 @@ public class MainClass {
         }
     }
 
-    public static void Login(UserDB userDB){
+    public static void opzioniBevande(Gestore gestore){
+        MyMenu menu_bevanda = new MyMenu("GESTIONE BEVANDE", Costante.MENU_BEVANDA);
+        switch (menu_bevanda.scegli()){
+            case 1:
+                gestore.visualizzaBevande();
+                opzioniBevande(gestore);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                opzioniRistorante(gestore);
+        }
+    }
+
+    public static void opzioniGeneri(Gestore gestore){
+        MyMenu menu_bevanda = new MyMenu("GESTIONE GENERI EXTRA ", Costante.MENU_GENERI);
+        switch (menu_bevanda.scegli()){
+            case 1:
+                gestore.visualizzaGeneri();
+                opzioniGeneri(gestore);
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                opzioniRistorante(gestore);
+        }
+    }
+
+    public static void login(UserDB userDB){
         MyMenu menu = new MyMenu("SIGN UP SIGN IN", Costante.MENU_USERDB);
         switch (menu.scegli()){
             case 1:
                 String user = InputDati.leggiStringaNonVuota("Inserisci il tuo username: ");
                 String pw = InputDati.leggiStringaNonVuota("Inserisci la tua password: ");
                 userDB.register(user, pw);
-                Login(userDB);
+                login(userDB);
                 break;
             case 2:
                 if(userDB.getUtenti().keySet().isEmpty())
@@ -110,7 +157,7 @@ public class MainClass {
                     }
                     else System.out.println("Username o password errati");
                 }
-                Login(userDB);
+                login(userDB);
                 break;
             case 3:
                 break;

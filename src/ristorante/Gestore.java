@@ -3,6 +3,7 @@ package ristorante;
 import resto.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Gestore extends Utente {
 
@@ -12,6 +13,12 @@ public class Gestore extends Utente {
 
     public Gestore(String username, String password) {
         super(username, password, RuoloUtente.GESTORE);
+        creaRistorante();
+        ricettario = Xml.leggiRicettario();
+        menu_tematici = Xml.leggiMenuTematico();
+    }
+
+    public void avvio(){
         creaRistorante();
         ricettario = Xml.leggiRicettario();
         menu_tematici = Xml.leggiMenuTematico();
@@ -30,11 +37,11 @@ public class Gestore extends Utente {
 
     public void modificaRistorante(int scelta){
         if (scelta == 2) {
-            ristorante.setNome(InputDati.leggiStringaNonVuota("Inserire un nuovo nome per il ristorante"));
+            ristorante.setNome(InputDati.leggiStringaNonVuota("Inserire un nuovo nome per il ristorante: "));
             System.out.println("Modificato con successo!");
         }
         else {
-            ristorante.setNum_posti(InputDati.leggiInteroPositivo("Inserire posti disponibili per il ristorante"));
+            ristorante.setNum_posti(InputDati.leggiInteroPositivo("Inserire posti disponibili per il ristorante: "));
             System.out.println("Modificato con successo!");
         }
     }
@@ -106,7 +113,6 @@ public class Gestore extends Utente {
                                 corrispondenza_stagione = true;
                                 break;
                             }
-
                         }
                     }
 
@@ -119,6 +125,20 @@ public class Gestore extends Utente {
 
         menu_tematici.add(new MenuTematico(nome_menu, stagioni, piatti));
         Xml.aggiungiMenuTematico(menu_tematici.get(menu_tematici.size() - 1));
+    }
+
+    public void visualizzaBevande(){
+        HashMap<Bevanda, Double> bevande = ristorante.getBevande_persona();
+        bevande.forEach((key, value) -> {
+            System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura());
+        });
+    }
+
+    public void visualizzaGeneri(){
+        HashMap<GeneriExtra, Double> generi = ristorante.getGeneri_extra_persona();
+        generi.forEach((key, value) -> {
+            System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura());
+        });
     }
 
     public boolean checkStagione(String stagione){
