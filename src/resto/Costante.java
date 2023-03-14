@@ -37,6 +37,13 @@ public class Costante {
             "Esci"
     };
 
+    public static final String [] MENU_RISTORANTE = {
+            "Visualizza i dati del ristorante",
+            "Modifica il nome del ristorante",
+            "Modifica i posto disponibili del ristorante",
+            "Indietro"
+    };
+
     public static final String [] MENU_MENU = {
             "Visualizza i menu tematici",
             "Crea un menu tematico",

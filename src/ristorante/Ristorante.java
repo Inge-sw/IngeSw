@@ -12,12 +12,9 @@ public class Ristorante {
     private double qnt;
     private HashMap<GeneriExtra, Double> generi_extra_persona;
 
-    public Ristorante() {
-
-    }
-
-    public Ristorante(String nome) {
+    public Ristorante(String nome, int num_posti) {
         this.nome = nome;
+        this.num_posti = num_posti;
     }
 
     public String getNome() {
@@ -78,5 +75,12 @@ public class Ristorante {
         for (GeneriExtra genere : this.generi_extra_persona.keySet()){
                 this.generi_extra_persona.put(genere, qnt);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "\n-----------RISTORANTE: " + nome + "-----------" +
+                "\n - nome: " + nome +
+                "\n - posti disponibili: " + num_posti;
     }
 }
