@@ -15,6 +15,7 @@ public class MainClass {
         MyMenu menu_gestore = new MyMenu("OPERAZIONI GESTORE", Costante.MENU_GESTORE);
         switch (menu_gestore.scegli()){
             case 1:
+                opzioniRistorante(gestore);
                 break;
             case 2:
                 opzioniMenuTematici(gestore);
@@ -26,7 +27,25 @@ public class MainClass {
                 break;
         }
     }
-    
+
+    public static void opzioniRistorante(Gestore gestore){
+        MyMenu menu_ricettario = new MyMenu("GESTIONE RISTORANTE", Costante.MENU_RISTORANTE);
+        switch (menu_ricettario.scegli()){
+            case 1:
+                gestore.visulizzaRistorante();
+                opzioniRistorante(gestore);
+                break;
+            case 2:
+                gestore.modificaRistorante(2);
+                opzioniRistorante(gestore);
+            case 3:
+                gestore.modificaRistorante(3);
+                opzioniRistorante(gestore);
+            case 4:
+                opzioniGestore(gestore);
+        }
+    }
+
     public static void opzioniMenuTematici(Gestore gestore){
         MyMenu menu_menu = new MyMenu("GESTIONE MENU TEMATICI", Costante.MENU_MENU);
         switch (menu_menu.scegli()){

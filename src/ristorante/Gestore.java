@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Gestore extends Utente {
 
+    Ristorante ristorante;
     Ricettario ricettario;
     ArrayList<MenuTematico> menu_tematici;
 
@@ -16,9 +17,26 @@ public class Gestore extends Utente {
         menu_tematici = Xml.leggiMenuTematico();
     }
 
+    public void visulizzaRistorante(){
+        System.out.println(ristorante.toString());
+    }
+
     public void creaRistorante(){
         String nome_ristorante = InputDati.leggiStringaNonVuota("Inserisci un nome per il tuo ristorante: ");
         int num_posti = InputDati.leggiInteroNonNegativo("Inserisci il numero di posti a sedere: ");
+
+        ristorante = new Ristorante(nome_ristorante, num_posti);
+    }
+
+    public void modificaRistorante(int scelta){
+        if (scelta == 2) {
+            ristorante.setNome(InputDati.leggiStringaNonVuota("Inserire un nuovo nome per il ristorante"));
+            System.out.println("Modificato con successo!");
+        }
+        else {
+            ristorante.setNum_posti(InputDati.leggiInteroPositivo("Inserire posti disponibili per il ristorante"));
+            System.out.println("Modificato con successo!");
+        }
     }
 
     public void visualizzaMenuTematici(){
@@ -56,12 +74,14 @@ public class Gestore extends Utente {
 
         ArrayList<Piatto> piatti = new ArrayList<>();
         ArrayList<Stagioni> stagioni;
+        boolean corrispondenza_stagione;
+        boolean duplicato;
 
         String nome_menu = InputDati.leggiStringa("Inserisci il nome del menu tematico: ");
 
         stagioni = aggiungiStagione();
 
-        boolean duplicato = false;
+
         Ricettario.stampaRicette();
         String piatto = InputDati.leggiStringa("Inserisci il piatto da inserire nel menu tematico (0 per uscire): ");
         do{
@@ -69,6 +89,7 @@ public class Gestore extends Utente {
                 piatto = InputDati.leggiStringa("Il piatto non fa parte delle ricette presenti, reinserire (0 per uscire): ");
             }
             else{
+                duplicato = false;
                 for (int i = 0; i < piatti.size(); i++){
                     if (piatti.get(i).getNome().equalsIgnoreCase(piatto)){
                         duplicato = true;
@@ -76,7 +97,22 @@ public class Gestore extends Utente {
                     }
                 }
                 if (duplicato) System.out.println("Piatto gia' inserito");
-                else piatti.add(new Piatto(Ricettario.getRicettaByNome(piatto)));
+                else {
+                    Ricetta ricetta = Ricettario.getRicettaByNome(piatto);
+                    corrispondenza_stagione = false;
+                    for (int i = 0; i < stagioni.size(); i++){
+                        for (int j = 0; j < ricetta.getStagione().size(); j++){
+                            if (stagioni.get(i).equals(ricetta.getStagione().get(j))){
+                                corrispondenza_stagione = true;
+                                break;
+                            }
+
+                        }
+                    }
+
+                    if (!corrispondenza_stagione) System.out.println("Il piatto non e' disponibile in quella stagione");
+                    else piatti.add(new Piatto(Ricettario.getRicettaByNome(piatto)));
+                }
                 piatto = InputDati.leggiStringa("Inserisci il piatto da inserire nel menu tematico (0 per uscire): ");
             }
         }while(!piatto.equalsIgnoreCase("0") || piatti.size() == 0);
