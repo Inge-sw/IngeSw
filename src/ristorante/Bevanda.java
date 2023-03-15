@@ -15,6 +15,10 @@ public class Bevanda extends Prodotto{
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (this == obj) return true;
+        else if (!(obj instanceof Bevanda)) return false;
+
+        Bevanda b = (Bevanda) obj;
+        return getNome().equalsIgnoreCase(b.getNome());
     }
 }
