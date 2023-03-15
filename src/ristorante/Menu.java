@@ -1,14 +1,12 @@
 package ristorante;
 
-import resto.Stagioni;
-
 import java.util.ArrayList;
 
 public class Menu {
     private ArrayList<Piatto> piatti;
 
     public Menu() {
-        this.piatti = new ArrayList<Piatto>();
+        this.piatti = new ArrayList<>();
     }
 
     public Menu(ArrayList<Piatto> piatti) {

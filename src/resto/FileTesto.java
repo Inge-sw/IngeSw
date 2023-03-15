@@ -2,7 +2,6 @@ package resto;
 
 import ristorante.Bevanda;
 import ristorante.GeneriExtra;
-import ristorante.Gestore;
 import ristorante.Prodotto;
 
 import java.io.*;

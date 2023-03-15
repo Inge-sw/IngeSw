@@ -80,9 +80,7 @@ public class Ristorante {
     }
 
     public void setGeneri_extra_persona() {
-        for (GeneriExtra genere : this.generi_extra_persona.keySet()){
-                this.generi_extra_persona.put(genere, qnt);
-        }
+        this.generi_extra_persona.replaceAll((g, v) -> qnt);
     }
 
     @Override
@@ -94,8 +92,7 @@ public class Ristorante {
 
     public boolean checkProdotto(Prodotto da_aggiungere) {
         if (isBevanda(da_aggiungere)){
-            boolean sium = this.bevande_persona.containsKey(da_aggiungere);
-            return sium;
+            return this.bevande_persona.containsKey(da_aggiungere);
         } else {
             return this.generi_extra_persona.containsKey(da_aggiungere);
         }
@@ -119,13 +116,9 @@ public class Ristorante {
 
     public void visualizza(String discriminante) {
         if(discriminante.equalsIgnoreCase("BEVANDE")){
-                this.bevande_persona.forEach((key, value) -> {
-                    System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura());
-                });
+                this.bevande_persona.forEach((key, value) -> System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura()));
         } else if (discriminante.equalsIgnoreCase("GENERI")){
-            this.generi_extra_persona.forEach((key, value) -> {
-                System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura());
-            });
+            this.generi_extra_persona.forEach((key, value) -> System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura()));
         }
     }
 }

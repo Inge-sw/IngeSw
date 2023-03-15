@@ -2,22 +2,10 @@ import resto.*;
 import ristorante.Bevanda;
 import ristorante.GeneriExtra;
 import ristorante.Gestore;
-import ristorante.Ristorante;
 
 public class MainClass {
     public static void main(String[] args) {
 
-/*
-        Ristorante r = new Ristorante("c", 30);
-        System.out.println(r.getBevande_persona());
-        r.getBevande_persona().forEach((key, value) -> {
-            System.out.println(key.getNome() + " : " + value);
-        });
-        r.getGeneri_extra_persona().forEach((key, value) -> {
-            System.out.println(key.getNome() + " : " + value);
-        });
-
-*/
         UserDB userDB = new UserDB();
         login(userDB);
 

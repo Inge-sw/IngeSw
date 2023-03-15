@@ -120,14 +120,8 @@ public class Xml {
                     }
                 }
                 menu_tematici.add(new MenuTematico(nome, stagioni, piatti));}
-            } catch (ParserConfigurationException ex) {
+            } catch (Exception ex) {
             ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (SAXException ex) {
-            ex.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return menu_tematici;
     }
@@ -264,14 +258,8 @@ public class Xml {
 
             System.out.println("Elemento aggiunto con successo!");
 
-        } catch (ParserConfigurationException pce) {
+        } catch (Exception pce) {
             pce.printStackTrace();
-        } catch (TransformerException tfe) {
-            tfe.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

@@ -1,6 +1,5 @@
 package ristorante;
 
-import resto.Costante;
 import resto.Stagioni;
 import resto.Xml;
 
@@ -11,7 +10,7 @@ public class Ricettario {
     private static ArrayList<Ricetta> ricette;
 
     public Ricettario(ArrayList<Ricetta> ricette){
-        this.ricette = ricette;
+        Ricettario.ricette = ricette;
     }
 
     public ArrayList<Ricetta> getRicette() {

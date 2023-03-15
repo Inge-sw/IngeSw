@@ -3,8 +3,6 @@ package ristorante;
 import resto.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Gestore extends Utente {
 
@@ -39,12 +37,11 @@ public class Gestore extends Utente {
     public void modificaRistorante(int scelta){
         if (scelta == 2) {
             ristorante.setNome(InputDati.leggiStringaNonVuota("Inserire un nuovo nome per il ristorante: "));
-            System.out.println("Modificato con successo!");
         }
         else {
             ristorante.setNum_posti(InputDati.leggiInteroPositivo("Inserire posti disponibili per il ristorante: "));
-            System.out.println("Modificato con successo!");
         }
+        System.out.println("Modificato con successo!");
     }
 
     public void visualizzaMenuTematici(){
@@ -98,8 +95,8 @@ public class Gestore extends Utente {
             }
             else{
                 duplicato = false;
-                for (int i = 0; i < piatti.size(); i++){
-                    if (piatti.get(i).getNome().equalsIgnoreCase(piatto)){
+                for (Piatto value : piatti) {
+                    if (value.getNome().equalsIgnoreCase(piatto)) {
                         duplicato = true;
                         break;
                     }
@@ -108,9 +105,9 @@ public class Gestore extends Utente {
                 else {
                     Ricetta ricetta = Ricettario.getRicettaByNome(piatto);
                     corrispondenza_stagione = false;
-                    for (int i = 0; i < stagioni.size(); i++){
-                        for (int j = 0; j < ricetta.getStagione().size(); j++){
-                            if (stagioni.get(i).equals(ricetta.getStagione().get(j))){
+                    for (Stagioni value : stagioni) {
+                        for (int j = 0; j < ricetta.getStagione().size(); j++) {
+                            if (value.equals(ricetta.getStagione().get(j))) {
                                 corrispondenza_stagione = true;
                                 break;
                             }
@@ -121,8 +118,6 @@ public class Gestore extends Utente {
                     else piatti.add(new Piatto(Ricettario.getRicettaByNome(piatto)));
                 }
                 piatto = InputDati.leggiStringaNonVuota("Inserisci il piatto da inserire nel menu tematico (0 per uscire): ");
-
-                boolean error = false;
 
                 if(piatto.equalsIgnoreCase("0") &&
                         piatti.size() == 0 &&
@@ -141,10 +136,7 @@ public class Gestore extends Utente {
     }
 
     public boolean checkStagione(String stagione){
-            if(stagione.equalsIgnoreCase(Costante.INVERNO) || stagione.equalsIgnoreCase(Costante.PRIMAVERA) || stagione.equalsIgnoreCase(Costante.ESTATE) || stagione.equalsIgnoreCase(Costante.AUTUNNO))
-                return true;
-
-        return false;
+        return stagione.equalsIgnoreCase(Costante.INVERNO) || stagione.equalsIgnoreCase(Costante.PRIMAVERA) || stagione.equalsIgnoreCase(Costante.ESTATE) || stagione.equalsIgnoreCase(Costante.AUTUNNO);
     }
 
     public void aggiungiProdotto(Prodotto prodotto, String nome_file){
@@ -171,8 +163,8 @@ public class Gestore extends Utente {
             boolean duplicato = false;
             stagione_str = InputDati.leggiStringa("Inserisci la disponibilita'(Inverno/Primavera/Estate/Autunno): ");
             if(checkStagione(stagione_str)){
-                for (int i = 0; i < stagioni.size(); i++){
-                    if (stagioni.get(i).name().equalsIgnoreCase(stagione_str)){
+                for (Stagioni value : stagioni) {
+                    if (value.name().equalsIgnoreCase(stagione_str)) {
                         duplicato = true;
                         break;
                     }

@@ -1,6 +1,5 @@
 package ristorante;
 
-import resto.Misura;
 import resto.Stagioni;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public class Ricetta {
     public Ricetta(String nome, ArrayList<Stagioni> stagione,int porzioni, int tempo_preparazione) {
         this.nome = nome;
         this.stagione = stagione;
-        this.ingredienti = new ArrayList<Ingrediente>();
+        this.ingredienti = new ArrayList<>();
         this.porzioni = porzioni;
         this.tempo_preparazione = tempo_preparazione;
         this.carico_lavoro_porzione = tempo_preparazione / ((double) porzioni);

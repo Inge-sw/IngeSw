@@ -77,7 +77,6 @@ public class UserDB {
 
     //metodo per il login di un utente
     public boolean login(String username, String password) {
-        if (checkUtente(username, password)) return true;
-        return false;
+        return checkUtente(username, password);
     }
 }
