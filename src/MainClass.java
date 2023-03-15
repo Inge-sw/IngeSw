@@ -1,4 +1,6 @@
 import resto.*;
+import ristorante.Bevanda;
+import ristorante.GeneriExtra;
 import ristorante.Gestore;
 import ristorante.Ristorante;
 
@@ -99,12 +101,14 @@ public class MainClass {
         MyMenu menu_bevanda = new MyMenu("GESTIONE BEVANDE", Costante.MENU_BEVANDA);
         switch (menu_bevanda.scegli()){
             case 1:
-                gestore.visualizzaBevande();
+                gestore.visualizzaProdotti("bevande");
                 opzioniBevande(gestore);
                 break;
             case 2:
                 do {
-                    gestore.aggiungiBevande();
+                    String bevanda_input = InputDati.leggiStringaNonVuota("Inserisci nuova bevanda: ");
+                    Bevanda bevanda = new Bevanda(bevanda_input);
+                    gestore.aggiungiProdotto(bevanda,"Bevande.txt");
                 }while(InputDati.yesOrNo("Inserire ancora?"));
                 opzioniBevande(gestore);
                 break;
@@ -119,12 +123,14 @@ public class MainClass {
         MyMenu menu_bevanda = new MyMenu("GESTIONE GENERI EXTRA ", Costante.MENU_GENERI);
         switch (menu_bevanda.scegli()){
             case 1:
-                gestore.visualizzaGeneri();
+                gestore.visualizzaProdotti("generi");
                 opzioniGeneri(gestore);
                 break;
             case 2:
                 do {
-                    gestore.aggiungiGeneri();
+                    String genere_input = InputDati.leggiStringaNonVuota("Inserisci nuovo genere: ");
+                    GeneriExtra genere = new GeneriExtra(genere_input);
+                    gestore.aggiungiProdotto(genere,"Generi.txt");
                 }while(InputDati.yesOrNo("Inserire ancora?"));
                 opzioniGeneri(gestore);
                 break;

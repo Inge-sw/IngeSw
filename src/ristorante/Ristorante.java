@@ -91,4 +91,41 @@ public class Ristorante {
                 "\n - nome: " + nome +
                 "\n - posti disponibili: " + num_posti;
     }
+
+    public boolean checkProdotto(Prodotto da_aggiungere) {
+        if (isBevanda(da_aggiungere)){
+            boolean sium = this.bevande_persona.containsKey(da_aggiungere);
+            return sium;
+        } else {
+            return this.generi_extra_persona.containsKey(da_aggiungere);
+        }
+    }
+
+    private boolean isBevanda(Prodotto da_aggiungere) {
+        return da_aggiungere instanceof Bevanda;
+    }
+
+    private boolean isGenere(Prodotto da_aggiungere) {
+        return da_aggiungere instanceof GeneriExtra;
+    }
+
+    public void addProdotto(Prodotto da_aggiungere) {
+        if (isBevanda(da_aggiungere)){
+            this.bevande_persona.put((Bevanda) da_aggiungere, qnt);
+        } else if (isGenere(da_aggiungere)){
+            this.generi_extra_persona.put((GeneriExtra) da_aggiungere, qnt);
+        }
+    }
+
+    public void visualizza(String discriminante) {
+        if(discriminante.equalsIgnoreCase("BEVANDE")){
+                this.bevande_persona.forEach((key, value) -> {
+                    System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura());
+                });
+        } else if (discriminante.equalsIgnoreCase("GENERI")){
+            this.generi_extra_persona.forEach((key, value) -> {
+                System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura());
+            });
+        }
+    }
 }

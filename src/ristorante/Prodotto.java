@@ -11,6 +11,11 @@ public class Prodotto {
         this.u_misura = u_misura;
     }
 
+    public Prodotto(String nome) {
+        this.nome = nome;
+        this.u_misura = null;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -25,6 +30,14 @@ public class Prodotto {
 
     public void setU_misura(Misura u_misura) {
         this.u_misura = u_misura;
+    }
+
+    @Override
+    public String toString() {
+        return "Prodotto{" +
+                "nome='" + nome + '\'' +
+                ", u_misura=" + u_misura +
+                '}';
     }
 
     @Override

@@ -140,62 +140,26 @@ public class Gestore extends Utente {
         }
     }
 
-    public void visualizzaBevande(){
-        HashMap<Bevanda, Double> bevande = ristorante.getBevande_persona();
-        bevande.forEach((key, value) -> {
-            System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura());
-        });
-    }
-
-    public void aggiungiBevande(){
-        boolean duplicato = false;
-        String bevanda_input = InputDati.leggiStringaNonVuota("Inserisci una nuova bevanda: ");
-        HashMap<Bevanda, Double> bevande_esistenti = ristorante.getBevande_persona();
-
-        if (bevande_esistenti.containsKey(new Bevanda(bevanda_input.toUpperCase()))){
-            duplicato = true;
-        }
-
-        if (duplicato) System.out.println("La bevanda esiste già");
-        else{
-            Bevanda bevanda_da_aggiungere = new Bevanda(bevanda_input.toUpperCase());
-            ristorante.getBevande_persona().put(bevanda_da_aggiungere, ristorante.getQnt());
-            FileTesto.aggiungiProdotto(bevanda_da_aggiungere, "Bevande.txt");
-        }
-    }
-
-    public void aggiungiGeneri(){
-        boolean duplicato = false;
-        String genere_input = InputDati.leggiStringaNonVuota("Inserisci un nuovo genere: ");
-        HashMap<GeneriExtra, Double> generi_esistenti = ristorante.getGeneri_extra_persona();
-
-        GeneriExtra genere_da_aggiungere = new GeneriExtra(genere_input.toUpperCase());
-
-        if (generi_esistenti.containsKey(genere_da_aggiungere)){
-            duplicato = true;
-        }
-
-        if (duplicato) System.out.println("Il genere esiste già");
-        else{
-
-            ristorante.getGeneri_extra_persona().put(genere_da_aggiungere, ristorante.getQnt());
-            FileTesto.aggiungiProdotto(genere_da_aggiungere, "Generi.txt");
-        }
-    }
-
-    public void visualizzaGeneri(){
-        HashMap<GeneriExtra, Double> generi = ristorante.getGeneri_extra_persona();
-        generi.forEach((key, value) -> {
-            System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura());
-        });
-    }
-
     public boolean checkStagione(String stagione){
             if(stagione.equalsIgnoreCase(Costante.INVERNO) || stagione.equalsIgnoreCase(Costante.PRIMAVERA) || stagione.equalsIgnoreCase(Costante.ESTATE) || stagione.equalsIgnoreCase(Costante.AUTUNNO))
                 return true;
 
         return false;
     }
+
+    public void aggiungiProdotto(Prodotto prodotto, String nome_file){
+
+        if (ristorante.checkProdotto(prodotto)) System.out.println("esiste già!");
+        else{
+            ristorante.addProdotto(prodotto);
+            FileTesto.aggiungiProdotto(prodotto, nome_file);
+        }
+    }
+
+    public void visualizzaProdotti(String discriminante){
+        ristorante.visualizza(discriminante);
+    }
+
 
     public ArrayList<Stagioni> aggiungiStagione(){
         ArrayList<Stagioni> stagioni = new ArrayList<>();
