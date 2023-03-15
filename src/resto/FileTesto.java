@@ -40,23 +40,11 @@ public class FileTesto {
         return generiMap;
     }
 
-    public static void aggiungiBevande(Bevanda bevanda){
-        String filePath = "Bevande.txt";
+    public static void aggiungiProdotto(Prodotto  prod, String filename){
 
-        try (FileWriter fw = new FileWriter(filePath, true);
+        try (FileWriter fw = new FileWriter(filename, true);
              PrintWriter pw = new PrintWriter(fw)) {
-            pw.print("\n" + bevanda.getNome().toUpperCase());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void aggiungiGenere(GeneriExtra genere){
-        String filePath = "Generi.txt";
-
-        try (FileWriter fw = new FileWriter(filePath, true);
-             PrintWriter pw = new PrintWriter(fw)) {
-            pw.print("\n" + genere.getNome().toUpperCase());
+            pw.print("\n" + prod.getNome().toUpperCase());
         } catch (IOException e) {
             e.printStackTrace();
         }

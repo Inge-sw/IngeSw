@@ -241,17 +241,5 @@
         </piatti>
             
     </menuTematico>
-    
-    <menuTematico>
-        <nome>opposti</nome>
-        <disponibilità>
-            <stagione>ESTATE</stagione>
-            <stagione>INVERNO</stagione>
-        </disponibilità>
-        <piatti>
-            <piatto>minestrone</piatto>
-            <piatto>fegato d'anatra all'arancia</piatto>
-            <piatto>Pasta ragu</piatto>
-        </piatti>
-    </menuTematico>
+
 </menuTematici>

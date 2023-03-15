@@ -160,7 +160,7 @@ public class Gestore extends Utente {
         else{
             Bevanda bevanda_da_aggiungere = new Bevanda(bevanda_input.toUpperCase());
             ristorante.getBevande_persona().put(bevanda_da_aggiungere, ristorante.getQnt());
-            FileTesto.aggiungiBevande(bevanda_da_aggiungere);
+            FileTesto.aggiungiProdotto(bevanda_da_aggiungere, "Bevande.txt");
         }
     }
 
@@ -179,7 +179,7 @@ public class Gestore extends Utente {
         else{
 
             ristorante.getGeneri_extra_persona().put(genere_da_aggiungere, ristorante.getQnt());
-            FileTesto.aggiungiGenere(genere_da_aggiungere);
+            FileTesto.aggiungiProdotto(genere_da_aggiungere, "Generi.txt");
         }
     }
 
