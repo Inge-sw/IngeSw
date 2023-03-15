@@ -1,127 +1,117 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ricettario>
-                    
-    
-    
-    
+        
     <ricetta>
-                                        
-        
-        
-        
+                
         <nomeRicetta>Pasta ragu</nomeRicetta>
-                                        
+                
+        <tempo>10</tempo>
+                
+        <porzione>2</porzione>
+                
+        <disponibilità>
+                        
+            <stagione>PRIMAVERA</stagione>
+                        
+            <stagione>AUTUNNO</stagione>
+                        
+            <stagione>ESTATE</stagione>
+                    
+        </disponibilità>
+                
+        <ingredienti>
+                        
+            <ingrediente>2
+                                
+                <nome>pasta</nome>
+                                
+                <dosaggio>10</dosaggio>
+                                
+                <unità>g</unità>
+                            
+            </ingrediente>
+                        
+            <ingrediente>
+                                
+                <nome>pomodoro</nome>
+                                
+                <dosaggio>10</dosaggio>
+                                
+                <unità>g</unità>
+                            
+            </ingrediente>
+                    
+        </ingredienti>
+            
+    </ricetta>
         
+    <ricetta>
+                        
         
+        <nomeRicetta>risotto funghi</nomeRicetta>
+                        
+        
+        <caricoLavoroPerPorzione>0.5</caricoLavoroPerPorzione>
+                        
         
         <tempo>10</tempo>
-                                        
+                        
         
-        
-        
-        <porzione>2</porzione>
-                                
-        
+        <porzione>20</porzione>
+                        
         
         <disponibilità>
-                                                
-            
-            
-            <stagione>PRIMAVERA</stagione>
-                                                
-            
+                                    
             
             <stagione>AUTUNNO</stagione>
-                                                
+                                    
             
-            
-            <stagione>ESTATE</stagione>
-                                            
-        
-        
-        </disponibilità>
+            <stagione>PRIMAVERA</stagione>
                                 
         
+        </disponibilità>
+                        
         
         <ingredienti>
-                                                            
-            
-            
+                                    
             
             <ingrediente>
-                                                                                
+                                                
                 
+                <nome>riso</nome>
+                                                
                 
-                
-                <nome>pasta</nome>
-                                                                                
-                
-                
-                
-                <dosaggio>10</dosaggio>
-                                                                                
-                
-                
-                
-                <unità>g</unità>
-                                                                            
-            
-            
+                <dosaggio>10.0</dosaggio>
+                                            
             
             </ingrediente>
-                                                            
-            
-            
-            
-            <ingrediente>
-                                                                                
-                
-                
-                
-                <nome>pomodoro</nome>
-                                                                                
-                
-                
-                
-                <dosaggio>10</dosaggio>
-                                                                                
-                
-                
-                
-                <unità>g</unità>
-                                                                            
-            
-            
-            
-            </ingrediente>
-                                                        
-        
-        
+                                
         
         </ingredienti>
-                                    
-    
-    
+                    
     
     </ricetta>
-            
-
+        
     
     <ricetta>
                 
-        <nomeRicetta>risotto funghi</nomeRicetta>
+        <nomeRicetta>casoncelli burro e salvia</nomeRicetta>
                 
-        <caricoLavoroPerPorzione>0.5</caricoLavoroPerPorzione>
+        <caricoLavoroPerPorzione>3.3333333333333335</caricoLavoroPerPorzione>
                 
         <tempo>10</tempo>
                 
-        <porzione>20</porzione>
+        <porzione>3</porzione>
                 
         <disponibilità>
+                        
+            <stagione>INVERNO</stagione>
                         
             <stagione>AUTUNNO</stagione>
                         
             <stagione>PRIMAVERA</stagione>
+                        
+            <stagione>ESTATE</stagione>
                     
         </disponibilità>
                 
@@ -129,9 +119,25 @@
                         
             <ingrediente>
                                 
-                <nome>riso</nome>
+                <nome>casoncelli</nome>
+                                
+                <dosaggio>250.0</dosaggio>
+                            
+            </ingrediente>
+                        
+            <ingrediente>
+                                
+                <nome>salvia</nome>
                                 
                 <dosaggio>10.0</dosaggio>
+                            
+            </ingrediente>
+                        
+            <ingrediente>
+                                
+                <nome>burro</nome>
+                                
+                <dosaggio>30.0</dosaggio>
                             
             </ingrediente>
                     
@@ -140,28 +146,26 @@
     </ricetta>
     
     <ricetta>
-        <nomeRicetta>casoncelli burro e salvia</nomeRicetta>
-        <caricoLavoroPerPorzione>3.3333333333333335</caricoLavoroPerPorzione>
-        <tempo>10</tempo>
-        <porzione>3</porzione>
+        <nomeRicetta>fegato d'anatra all'arancia</nomeRicetta>
+        <caricoLavoroPerPorzione>30.0</caricoLavoroPerPorzione>
+        <tempo>60</tempo>
+        <porzione>2</porzione>
         <disponibilità>
-            <stagione>INVERNO</stagione>
             <stagione>AUTUNNO</stagione>
-            <stagione>PRIMAVERA</stagione>
             <stagione>ESTATE</stagione>
         </disponibilità>
         <ingredienti>
             <ingrediente>
-                <nome>casoncelli</nome>
-                <dosaggio>250.0</dosaggio>
+                <nome>fegato d'anatra</nome>
+                <dosaggio>150.0</dosaggio>
             </ingrediente>
             <ingrediente>
-                <nome>salvia</nome>
-                <dosaggio>10.0</dosaggio>
+                <nome>arance</nome>
+                <dosaggio>100.0</dosaggio>
             </ingrediente>
             <ingrediente>
-                <nome>burro</nome>
-                <dosaggio>30.0</dosaggio>
+                <nome>timo</nome>
+                <dosaggio>5.0</dosaggio>
             </ingrediente>
         </ingredienti>
     </ricetta>

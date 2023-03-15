@@ -120,12 +120,24 @@ public class Gestore extends Utente {
                     if (!corrispondenza_stagione) System.out.println("Il piatto non e' disponibile in quella stagione");
                     else piatti.add(new Piatto(Ricettario.getRicettaByNome(piatto)));
                 }
-                piatto = InputDati.leggiStringa("Inserisci il piatto da inserire nel menu tematico (0 per uscire): ");
-            }
-        }while(!piatto.equalsIgnoreCase("0") || piatti.size() == 0);
+                piatto = InputDati.leggiStringaNonVuota("Inserisci il piatto da inserire nel menu tematico (0 per uscire): ");
 
-        menu_tematici.add(new MenuTematico(nome_menu, stagioni, piatti));
-        Xml.aggiungiMenuTematico(menu_tematici.get(menu_tematici.size() - 1));
+                boolean error = false;
+
+                if(piatto.equalsIgnoreCase("0") &&
+                        piatti.size() == 0 &&
+                            InputDati.yesOrNo("Non hai inserito nessun piatto, vuoi uscire?")) break;
+            }
+        }while(!piatto.equalsIgnoreCase("0"));
+
+        if(!piatti.isEmpty()){
+            MenuTematico da_aggiungere = new MenuTematico(nome_menu, stagioni, piatti);
+            if (menu_tematici.contains(da_aggiungere)) System.out.println("Menu gia' presente");
+            else {
+                menu_tematici.add(da_aggiungere);
+                Xml.aggiungiMenuTematico(menu_tematici.get(menu_tematici.size() - 1));
+            }
+        }
     }
 
     public void visualizzaBevande(){

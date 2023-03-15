@@ -1,4 +1,3 @@
 1. corrispondeza tra ricetta e piatto: ho fatto un metodo statico nella classe Ricettario (da pensare come modificarlo)
-2. nella creazione del menu tematico non ho ancora tenuto considerazione della disponibilità (stagione): cioè se il menu tematico è disponibile solo in estate posso comunque
-    aggiungere piatti non di estate
-3. non abbiamo tenuto considerazione che i menu e i piatti possono avere più stagioni di disponibilità
+
+

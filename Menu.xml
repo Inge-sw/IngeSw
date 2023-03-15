@@ -1,150 +1,111 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menuTematici>
-                            	
-    
-    
-    
+                    
     
     
     
     <menuTematico>
-                                                        		
-        
-        
-        
+                                        
         
         
         
         <nome>Pesce</nome>
-                                                        
-        
-        
+                                        
         
         
         
         <disponibilità>
-                                                                                    
-            
-            
+                                                            
             
             
             
             <stagione>Primavera</stagione>
-                                                                                    
-            
-            
+                                                            
             
             
             
             <stagione>Autunno</stagione>
-                                                                                
-        
-        
-        
-        
-        
-        </disponibilità>
                                                         
         
         
         
+        </disponibilità>
+                                        
+        
         
         
         <piatti>
-                                                                                    
-            
-            
+                                                            
             
             
             
             <piatto>Pasta ragu</piatto>
-                                                                                    				
-            
-            
-            
+                                                            
             
             
             
             <piatto>Risotto funghi</piatto>
-                                                                                    			
-        
-        
-        
-        
-        
-        
-        </piatti>
-                                                        	
-    
-    
-    
-    
-    
-    
-    </menuTematico>
-                        
-    
-    
-    
-    
-    
-    <menuTematico>
-                                                
-        
-        
-        
-        
-        <nome>montagna</nome>
-                                                
-        
-        
-        
-        
-        <disponibilità>
-                                                                        
-            
-            
-            
-            
-            <stagione>INVERNO</stagione>
-                                                                        
-            
-            
-            
-            
-            <stagione>AUTUNNO</stagione>
-                                                                    
-        
-        
-        
-        
-        </disponibilità>
-                                                
-        
-        
-        
-        
-        <piatti>
-                                                                        
-            
-            
-            
-            
-            <piatto>Pasta ragu</piatto>
-                                                                    
-        
+                                                        
         
         
         
         </piatti>
-                                            
-    
+                                    
     
     
     
     </menuTematico>
                     
     
+    
+    
+    <menuTematico>
+                                        
+        
+        
+        
+        <nome>montagna</nome>
+                                        
+        
+        
+        
+        <disponibilità>
+                                                            
+            
+            
+            
+            <stagione>INVERNO</stagione>
+                                                            
+            
+            
+            
+            <stagione>AUTUNNO</stagione>
+                                                        
+        
+        
+        
+        </disponibilità>
+                                        
+        
+        
+        
+        <piatti>
+                                                            
+            
+            
+            
+            <piatto>Pasta ragu</piatto>
+                                                        
+        
+        
+        
+        </piatti>
+                                    
+    
+    
+    
+    </menuTematico>
+                    
     
     
     
@@ -189,7 +150,8 @@
     
     
     </menuTematico>
-                
+                    
+
     
     
     
@@ -197,7 +159,7 @@
                                 
         
         
-        <nome>l</nome>
+        <nome>sium's special</nome>
                                 
         
         
@@ -205,7 +167,7 @@
                                                 
             
             
-            <stagione>INVERNO</stagione>
+            <stagione>PRIMAVERA</stagione>
                                             
         
         
@@ -217,7 +179,11 @@
                                                 
             
             
-            <piatto>Pasta ragu</piatto>
+            <piatto>casoncelli burro e salvia</piatto>
+                                                
+            
+            
+            <piatto>risotto funghi</piatto>
                                             
         
         
@@ -232,56 +198,59 @@
     <menuTematico>
                         
         
-        <nome>l</nome>
+        <nome>seh estathe</nome>
                         
         
         <disponibilità>
                                     
             
+            <stagione>ESTATE</stagione>
+                                
+        
+        </disponibilità>
+                        
+        
+        <piatti>
+                                    
+            
+            <piatto>fegato d'anatra all'arancia</piatto>
+                                
+        
+        </piatti>
+                    
+    
+    </menuTematico>
+        
+    
+    <menuTematico>
+                
+        <nome>gaina</nome>
+                
+        <disponibilità>
+                        
+            <stagione>ESTATE</stagione>
+                    
+        </disponibilità>
+                
+        <piatti>
+                        
+            <piatto>fegato d'anatra all'arancia</piatto>
+                        
+            <piatto>casoncelli burro e salvia</piatto>
+                    
+        </piatti>
+            
+    </menuTematico>
+    
+    <menuTematico>
+        <nome>opposti</nome>
+        <disponibilità>
+            <stagione>ESTATE</stagione>
             <stagione>INVERNO</stagione>
-                                
-        
-        </disponibilità>
-                        
-        
-        <piatti>
-                                    
-            
-            <piatto>Pasta ragu</piatto>
-                                
-        
-        </piatti>
-                    
-    
-    </menuTematico>
-        
-    
-    <menuTematico>
-                
-        <nome>lolo</nome>
-                
-        <disponibilità>
-                        
-            <stagione>ESTATE</stagione>
-                    
-        </disponibilità>
-                
-        <piatti>
-                        
-            <piatto>Pasta ragu</piatto>
-                        
-            <piatto>risotto funghi</piatto>
-                    
-        </piatti>
-            
-    </menuTematico>
-    
-    <menuTematico>
-        <nome>popo</nome>
-        <disponibilità>
-            <stagione>ESTATE</stagione>
         </disponibilità>
         <piatti>
+            <piatto>minestrone</piatto>
+            <piatto>fegato d'anatra all'arancia</piatto>
             <piatto>Pasta ragu</piatto>
         </piatti>
     </menuTematico>
