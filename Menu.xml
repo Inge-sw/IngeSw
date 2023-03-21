@@ -1,56 +1,1053 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menuTematici>
-                    
+                                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
     <menuTematico>
-                                        
+                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
         <nome>Pesce</nome>
-                                        
+                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
         <disponibilità>
-                                                            
+                                                                                                                                                                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             
             <stagione>Primavera</stagione>
-                                                            
+                                                                                                                                                                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             
             <stagione>Autunno</stagione>
-                                                        
+                                                                                                                                                                    
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
         </disponibilità>
-                                        
+                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
         <piatti>
-                                                            
+                                                                                                                                                                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             
             <piatto>Pasta ragu</piatto>
-                                                            
+                                                                                                                                                                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             
             <piatto>Risotto funghi</piatto>
-                                                        
+                                                                                                                                                                    
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
         </piatti>
+                                                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </menuTematico>
+                                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <menuTematico>
+                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <nome>montagna</nome>
+                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <disponibilità>
+                                                                                                                                                                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <stagione>INVERNO</stagione>
+                                                                                                                                                                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <stagione>AUTUNNO</stagione>
+                                                                                                                                                                    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </disponibilità>
+                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <piatti>
+                                                                                                                                                                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <piatto>Pasta ragu</piatto>
+                                                                                                                                                                    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </piatti>
+                                                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </menuTematico>
+                                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <menuTematico>
+                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <nome>prova</nome>
+                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <disponibilità>
+                                                                                                                                                                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <stagione>INVERNO</stagione>
+                                                                                                                                                                    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </disponibilità>
+                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <piatti>
+                                                                                                                                                                        
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <piatto>risotto funghi</piatto>
+                                                                                                                                                                    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </piatti>
+                                                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </menuTematico>
+                                                        
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <menuTematico>
+                                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <nome>sium's special</nome>
+                                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <disponibilità>
+                                                                                                                                                            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <stagione>PRIMAVERA</stagione>
+                                                                                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </disponibilità>
+                                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <piatti>
+                                                                                                                                                            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <piatto>casoncelli burro e salvia</piatto>
+                                                                                                                                                            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <piatto>risotto funghi</piatto>
+                                                                                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </piatti>
+                                                                                                    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </menuTematico>
+                                                
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <menuTematico>
+                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <nome>seh estathe</nome>
+                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <disponibilità>
+                                                                                                                                                
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <stagione>ESTATE</stagione>
+                                                                                                                                            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </disponibilità>
+                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <piatti>
+                                                                                                                                                
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <piatto>fegato d'anatra all'arancia</piatto>
+                                                                                                                                            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </piatti>
+                                                                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </menuTematico>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <menuTematico>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <nome>gaina</nome>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <disponibilità>
+                                                                                                                                    
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <stagione>ESTATE</stagione>
+                                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </disponibilità>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <piatti>
+                                                                                                                                    
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <piatto>fegato d'anatra all'arancia</piatto>
+                                                                                                                                    
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <piatto>casoncelli burro e salvia</piatto>
+                                                                                                                                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </piatti>
+                                                                                    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </menuTematico>
                                     
+    
+    
+    
+    
+    
+    
+    
+    
+    <menuTematico>
+                                                                        
+        
+        
+        
+        
+        
+        
+        
+        <nome>GALLO</nome>
+                                                                        
+        
+        
+        
+        
+        
+        
+        
+        <disponibilità>
+                                                                                                            
+            
+            
+            
+            
+            
+            
+            
+            <stagione>PRIMAVERA</stagione>
+                                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        </disponibilità>
+                                                                        
+        
+        
+        
+        
+        
+        
+        
+        <piatti>
+                                                                                                            
+            
+            
+            
+            
+            
+            
+            
+            <piatto>Pasta ragu</piatto>
+                                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        </piatti>
+                                                                    
+    
+    
+    
+    
+    
+    
+    
+    </menuTematico>
+                                
+    
+    
+    
+    
+    
+    
+    
+    <menuTematico>
+                                                                
+        
+        
+        
+        
+        
+        
+        <nome>R	</nome>
+                                                                
+        
+        
+        
+        
+        
+        
+        <disponibilità>
+                                                                                                
+            
+            
+            
+            
+            
+            
+            <stagione>AUTUNNO</stagione>
+                                                                                            
+        
+        
+        
+        
+        
+        
+        </disponibilità>
+                                                                
+        
+        
+        
+        
+        
+        
+        <piatti>
+                                                                                                
+            
+            
+            
+            
+            
+            
+            <piatto>risotto funghi</piatto>
+                                                                                            
+        
+        
+        
+        
+        
+        
+        </piatti>
+                                                            
+    
+    
+    
+    
+    
+    
+    </menuTematico>
+                            
+    
+    
+    
+    
+    
+    
+    <menuTematico>
+                                                        
+        
+        
+        
+        
+        
+        <nome>FFGFHG</nome>
+                                                        
+        
+        
+        
+        
+        
+        <disponibilità>
+                                                                                    
+            
+            
+            
+            
+            
+            <stagione>AUTUNNO</stagione>
+                                                                                
+        
+        
+        
+        
+        
+        </disponibilità>
+                                                        
+        
+        
+        
+        
+        
+        <piatti>
+                                                                                    
+            
+            
+            
+            
+            
+            <piatto>Pasta ragu</piatto>
+                                                                                
+        
+        
+        
+        
+        
+        </piatti>
+                                                    
+    
+    
+    
+    
+    
+    </menuTematico>
+                        
+    
+    
+    
+    
+    
+    <menuTematico>
+                                                
+        
+        
+        
+        
+        <nome>FFGFHG</nome>
+                                                
+        
+        
+        
+        
+        <disponibilità>
+                                                                        
+            
+            
+            
+            
+            <stagione>AUTUNNO</stagione>
+                                                                    
+        
+        
+        
+        
+        </disponibilità>
+                                                
+        
+        
+        
+        
+        <piatti>
+                                                                        
+            
+            
+            
+            
+            <piatto>Pasta ragu</piatto>
+                                                                        
+            
+            
+            
+            
+            <piatto>risotto funghi</piatto>
+                                                                    
+        
+        
+        
+        
+        </piatti>
+                                            
+    
     
     
     
@@ -59,22 +1056,18 @@
     
     
     
+    
     <menuTematico>
                                         
         
         
         
-        <nome>montagna</nome>
+        <nome>FFGFHG</nome>
                                         
         
         
         
         <disponibilità>
-                                                            
-            
-            
-            
-            <stagione>INVERNO</stagione>
                                                             
             
             
@@ -95,51 +1088,16 @@
             
             
             <piatto>Pasta ragu</piatto>
-                                                        
-        
-        
-        
-        </piatti>
-                                    
-    
-    
-    
-    </menuTematico>
-                    
-    
-    
-    
-    <menuTematico>
-                                        
-        
-        
-        
-        <nome>prova</nome>
-                                        
-        
-        
-        
-        <disponibilità>
-                                                            
-            
-            
-            
-            <stagione>INVERNO</stagione>
-                                                        
-        
-        
-        
-        </disponibilità>
-                                        
-        
-        
-        
-        <piatti>
                                                             
             
             
             
             <piatto>risotto funghi</piatto>
+                                                            
+            
+            
+            
+            <piatto>fegato d'anatra all'arancia</piatto>
                                                         
         
         
@@ -150,8 +1108,7 @@
     
     
     </menuTematico>
-                    
-
+                
     
     
     
@@ -159,7 +1116,7 @@
                                 
         
         
-        <nome>sium's special</nome>
+        <nome>FFGFHG</nome>
                                 
         
         
@@ -167,7 +1124,7 @@
                                                 
             
             
-            <stagione>PRIMAVERA</stagione>
+            <stagione>AUTUNNO</stagione>
                                             
         
         
@@ -179,11 +1136,15 @@
                                                 
             
             
-            <piatto>casoncelli burro e salvia</piatto>
+            <piatto>Pasta ragu</piatto>
                                                 
             
             
             <piatto>risotto funghi</piatto>
+                                                
+            
+            
+            <piatto>fegato d'anatra all'arancia</piatto>
                                             
         
         
@@ -198,19 +1159,25 @@
     <menuTematico>
                         
         
-        <nome>seh estathe</nome>
+        <nome>FFGFHG</nome>
                         
         
         <disponibilità>
                                     
             
-            <stagione>ESTATE</stagione>
+            <stagione>AUTUNNO</stagione>
                                 
         
         </disponibilità>
                         
         
         <piatti>
+                                    
+            
+            <piatto>Pasta ragu</piatto>
+                                    
+            
+            <piatto>risotto funghi</piatto>
                                     
             
             <piatto>fegato d'anatra all'arancia</piatto>
@@ -224,22 +1191,29 @@
     
     <menuTematico>
                 
-        <nome>gaina</nome>
+        <nome>ERTYU</nome>
                 
         <disponibilità>
                         
-            <stagione>ESTATE</stagione>
+            <stagione>INVERNO</stagione>
                     
         </disponibilità>
                 
         <piatti>
-                        
-            <piatto>fegato d'anatra all'arancia</piatto>
                         
             <piatto>casoncelli burro e salvia</piatto>
                     
         </piatti>
             
     </menuTematico>
-
+    
+    <menuTematico>
+        <nome>SERTYUILKJHG</nome>
+        <disponibilità>
+            <stagione>INVERNO</stagione>
+        </disponibilità>
+        <piatti>
+            <piatto>casoncelli burro e salvia</piatto>
+        </piatti>
+    </menuTematico>
 </menuTematici>

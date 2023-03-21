@@ -75,68 +75,79 @@ public class Gestore extends Utente {
 
     }
 
-    public void creaMenuTematico(){
+    public void creaMenuTematico() {
 
         ArrayList<Piatto> piatti = new ArrayList<>();
         ArrayList<Stagioni> stagioni;
         boolean corrispondenza_stagione;
         boolean duplicato;
 
-        String nome_menu = InputDati.leggiStringa("Inserisci il nome del menu tematico: ");
-
-        stagioni = aggiungiStagione();
-
-
-        Ricettario.stampaRicette();
-        String piatto = InputDati.leggiStringa("Inserisci il piatto da inserire nel menu tematico (0 per uscire): ");
-        do{
-            if (Ricettario.getRicettaByNome(piatto) == null){
-                piatto = InputDati.leggiStringa("Il piatto non fa parte delle ricette presenti, reinserire (0 per uscire): ");
+        String nome_menu;
+        do {
+            nome_menu = InputDati.leggiStringa("Inserisci il nome del menu tematico: ").toUpperCase();
+            if (!checkNomeTematico(nome_menu)) {
+                System.out.println("il menu tematico con questo nome esiste già");
+                boolean ancora = InputDati.yesOrNo("Reinserire il nome? ");
+                if (!ancora) break;
             }
-            else{
-                duplicato = false;
-                for (Piatto value : piatti) {
-                    if (value.getNome().equalsIgnoreCase(piatto)) {
-                        duplicato = true;
-                        break;
-                    }
-                }
-                if (duplicato) System.out.println("Piatto gia' inserito");
-                else {
-                    Ricetta ricetta = Ricettario.getRicettaByNome(piatto);
-                    corrispondenza_stagione = false;
-                    for (Stagioni value : stagioni) {
-                        for (int j = 0; j < ricetta.getStagione().size(); j++) {
-                            if (value.equals(ricetta.getStagione().get(j))) {
-                                corrispondenza_stagione = true;
-                                break;
-                            }
+        } while (!checkNomeTematico(nome_menu));
+
+        if (checkNomeTematico((nome_menu))) {
+            stagioni = aggiungiStagione();
+
+            Ricettario.stampaRicette();
+            String piatto = InputDati.leggiStringa("Inserisci il piatto da inserire nel menu tematico (0 per uscire): ");
+
+            while (!piatto.equalsIgnoreCase("0")) {
+                if (Ricettario.getRicettaByNome(piatto) == null) {
+                    piatto = InputDati.leggiStringa("Il piatto non fa parte delle ricette presenti, reinserire (0 per uscire): ");
+                } else {
+                    duplicato = false;
+                    for (Piatto value : piatti) {
+                        if (value.getNome().equalsIgnoreCase(piatto)) {
+                            duplicato = true;
+                            break;
                         }
                     }
+                    if (duplicato) System.out.println("Piatto gia' inserito");
+                    else {
+                        Ricetta ricetta = Ricettario.getRicettaByNome(piatto);
+                        corrispondenza_stagione = false;
+                        for (Stagioni value : stagioni) {
+                            for (int j = 0; j < ricetta.getStagione().size(); j++) {
+                                if (value.equals(ricetta.getStagione().get(j))) {
+                                    corrispondenza_stagione = true;
+                                    break;
+                                }
+                            }
+                        }
 
-                    if (!corrispondenza_stagione) System.out.println("Il piatto non e' disponibile in quella stagione");
-                    else piatti.add(new Piatto(Ricettario.getRicettaByNome(piatto)));
+                        if (!corrispondenza_stagione)
+                            System.out.println("Il piatto non e' disponibile in quella stagione");
+                        else piatti.add(new Piatto(Ricettario.getRicettaByNome(piatto)));
+                    }
+
+                    piatto = InputDati.leggiStringaNonVuota("Inserisci il piatto da inserire nel menu tematico (0 per uscire): ");
                 }
-                piatto = InputDati.leggiStringaNonVuota("Inserisci il piatto da inserire nel menu tematico (0 per uscire): ");
-
-                if(piatto.equalsIgnoreCase("0") &&
-                        piatti.size() == 0 &&
-                            InputDati.yesOrNo("Non hai inserito nessun piatto, vuoi uscire?")) break;
             }
-        }while(!piatto.equalsIgnoreCase("0"));
-
-        if(!piatti.isEmpty()){
-            MenuTematico da_aggiungere = new MenuTematico(nome_menu, stagioni, piatti);
-            if (menu_tematici.contains(da_aggiungere)) System.out.println("Menu gia' presente");
-            else {
+            if (!piatti.isEmpty()) {
+                MenuTematico da_aggiungere = new MenuTematico(nome_menu, stagioni, piatti);
                 menu_tematici.add(da_aggiungere);
                 Xml.aggiungiMenuTematico(menu_tematici.get(menu_tematici.size() - 1));
             }
+
         }
     }
 
     public boolean checkStagione(String stagione){
         return stagione.equalsIgnoreCase(Costante.INVERNO) || stagione.equalsIgnoreCase(Costante.PRIMAVERA) || stagione.equalsIgnoreCase(Costante.ESTATE) || stagione.equalsIgnoreCase(Costante.AUTUNNO);
+    }
+
+    public boolean checkNomeTematico(String nome){
+        for (int i = 0; i < menu_tematici.size(); i++){
+            if (menu_tematici.get(i).getNome().equalsIgnoreCase(nome)) return false;
+        }
+        return true;
     }
 
     public void aggiungiProdotto(Prodotto prodotto, String nome_file){
@@ -151,7 +162,6 @@ public class Gestore extends Utente {
     public void visualizzaProdotti(String discriminante){
         ristorante.visualizza(discriminante);
     }
-
 
     public ArrayList<Stagioni> aggiungiStagione(){
         ArrayList<Stagioni> stagioni = new ArrayList<>();
