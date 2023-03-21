@@ -58,20 +58,31 @@ public class Gestore extends Utente {
         ArrayList<Ingrediente> ingredienti = new ArrayList<>();
         ArrayList<Stagioni> stagioni;
 
-        String nome_ricetta = InputDati.leggiStringa("Inserisci il nome della ricetta: ");
-        int porzione = InputDati.leggiInteroNonNegativo("Inserisci il numero di porzione: ");
-        int tempo = InputDati.leggiInteroNonNegativo("Inserisci il tempo di preparazione: ");
+        String nome_ricetta;
+        do{
+            nome_ricetta = InputDati.leggiStringa("Inserisci il nome della ricetta: ");
+            if (!checkNomeRicetta(nome_ricetta)){
+                System.out.println("Il nome della ricetta esiste gia'");
+                boolean ancora = InputDati.yesOrNo("Reinserire il nome? ");
+                if (!ancora) break;
+            }
+        }while(!checkNomeRicetta(nome_ricetta));
 
-        stagioni = aggiungiStagione();
+        if (checkNomeRicetta(nome_ricetta)) {
+            int porzione = InputDati.leggiInteroNonNegativo("Inserisci il numero di porzione: ");
+            int tempo = InputDati.leggiInteroNonNegativo("Inserisci il tempo di preparazione: ");
 
-        do{             // Inserimento degli ingredienti
-            String nome_ingrediente = InputDati.leggiStringa("Inserisci il nome dell'ingrediente: ");
-            int dosaggio = InputDati.leggiIntero("Inserisci il dosaggio: ");
-            ingredienti.add(new Ingrediente(nome_ingrediente, dosaggio));
-            check = InputDati.leggiStringa("Inserire un altro ingrediente?(Si/No)");
-        }while(check.equalsIgnoreCase("si"));
+            stagioni = aggiungiStagione();
 
-        ricettario.aggiungiRicetta(nome_ricetta, stagioni, porzione, tempo, ingredienti);
+            do {             // Inserimento degli ingredienti
+                String nome_ingrediente = InputDati.leggiStringa("Inserisci il nome dell'ingrediente: ");
+                int dosaggio = InputDati.leggiIntero("Inserisci il dosaggio: ");
+                ingredienti.add(new Ingrediente(nome_ingrediente, dosaggio));
+                check = InputDati.leggiStringa("Inserire un altro ingrediente?(Si/No)");
+            } while (check.equalsIgnoreCase("si"));
+
+            ricettario.aggiungiRicetta(nome_ricetta, stagioni, porzione, tempo, ingredienti);
+        }
 
     }
 
@@ -147,6 +158,15 @@ public class Gestore extends Utente {
         for (int i = 0; i < menu_tematici.size(); i++){
             if (menu_tematici.get(i).getNome().equalsIgnoreCase(nome)) return false;
         }
+        return true;
+    }
+
+    public boolean checkNomeRicetta(String nome){
+        for (int i = 0; i < ricettario.getRicette().size(); i++){
+            Ricetta ricetta = ricettario.getRicette().get(i);
+            if (ricetta.getNome().equalsIgnoreCase(nome)) return false;
+        }
+
         return true;
     }
 
