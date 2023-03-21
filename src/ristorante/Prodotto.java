@@ -2,6 +2,8 @@ package ristorante;
 
 import resto.Misura;
 
+import java.util.Objects;
+
 public class Prodotto {
     private String nome;
     private Misura u_misura;
@@ -42,11 +44,22 @@ public class Prodotto {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(getNome().toUpperCase());
     }
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj);
+        if (this == obj) return true;
+        if (!(obj instanceof Prodotto)) return false;
+
+        if (obj instanceof Bevanda) {
+            Bevanda b = (Bevanda) obj;
+            return getNome().equalsIgnoreCase(b.getNome());
+        }
+        else {
+            Prodotto p = (Prodotto) obj;
+            return getNome().equalsIgnoreCase(p.getNome());
+        }
     }
+
 }

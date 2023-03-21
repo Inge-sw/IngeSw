@@ -94,7 +94,7 @@ public class MainClass {
                 break;
             case 2:
                 do {
-                    String bevanda_input = InputDati.leggiStringaNonVuota("Inserisci nuova bevanda: ");
+                    String bevanda_input = InputDati.leggiStringaNonVuota("Inserisci nuova bevanda: ").toUpperCase();
                     Bevanda bevanda = new Bevanda(bevanda_input);
                     gestore.aggiungiProdotto(bevanda,"Bevande.txt");
                 }while(InputDati.yesOrNo("Inserire ancora?"));
@@ -116,7 +116,7 @@ public class MainClass {
                 break;
             case 2:
                 do {
-                    String genere_input = InputDati.leggiStringaNonVuota("Inserisci nuovo genere: ");
+                    String genere_input = InputDati.leggiStringaNonVuota("Inserisci nuovo genere: ").toUpperCase();
                     GeneriExtra genere = new GeneriExtra(genere_input);
                     gestore.aggiungiProdotto(genere,"Generi.txt");
                 }while(InputDati.yesOrNo("Inserire ancora?"));
