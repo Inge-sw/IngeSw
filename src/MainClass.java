@@ -150,6 +150,11 @@ public class MainClass {
                                 opzioniGestore((Gestore) userDB.getUtenti().get(user1));
                                 break;
 
+                            case CLIENTE:
+                                 Cliente c = (Cliente) userDB.getUtenti().get(user1);
+                                 c.effettuaPrenotazione();
+                                break;
+
                             case ADDETTO_PRENOTAZIONI:
                                 break;
 

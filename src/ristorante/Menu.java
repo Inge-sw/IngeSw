@@ -2,7 +2,7 @@ package ristorante;
 
 import java.util.ArrayList;
 
-public class Menu {
+public class Menu implements Prenotabile{
     private ArrayList<Piatto> piatti;
 
     public Menu() {
@@ -25,4 +25,5 @@ public class Menu {
     public String toString() {
         return piatti.toString();
     }
+
 }

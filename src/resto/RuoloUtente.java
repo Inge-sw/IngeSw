@@ -3,7 +3,8 @@ package resto;
 public enum RuoloUtente {
     GESTORE,
     ADDETTO_PRENOTAZIONI,
-    MAGAZZINIERE;
+    MAGAZZINIERE,
+    CLIENTE;
 
     public static RuoloUtente getRuolo(String role) {
         if (role.equalsIgnoreCase("gestore")) {
@@ -12,7 +13,10 @@ public enum RuoloUtente {
             return MAGAZZINIERE;
         } else if (role.equalsIgnoreCase("addetto_prenotazioni")) {
             return ADDETTO_PRENOTAZIONI;
-        } else {
+        } else if(role.equalsIgnoreCase("cliente")){
+            return CLIENTE;
+        }
+        else{
             return null;
         }
     }

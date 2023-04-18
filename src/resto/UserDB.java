@@ -70,6 +70,10 @@ public class UserDB {
                     Magazziniere magazziniere = new Magazziniere(username, password);
                     addUtente(magazziniere);
                     return true;
+                case CLIENTE:
+                    Cliente cliente = new Cliente(username, password);
+                    addUtente(cliente);
+                    return true;
             }
         }
         return false;

@@ -4,7 +4,7 @@ import resto.Stagioni;
 
 import java.util.ArrayList;
 
-public class Piatto {
+public class Piatto implements Prenotabile {
     private String nome;
     private ArrayList<Stagioni> stagione;
     private Ricetta ricetta;

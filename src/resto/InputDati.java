@@ -1,5 +1,6 @@
 package resto;
 
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -270,5 +271,11 @@ public class InputDati {
         isInvioPremuto(daOutputtare, messaggio);
         pulisciConsole();
         System.out.println(System.lineSeparator());
+    }
+
+    public static LocalDate leggiData(String messaggio) {
+
+        LocalDate d = LocalDate.parse(InputDati.leggiStringaNonVuota(messaggio));
+        return d;
     }
 }
