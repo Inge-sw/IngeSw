@@ -6,8 +6,11 @@ import ristorante.Gestore;
 public class MainClass {
     public static void main(String[] args) {
 
-        UserDB userDB = new UserDB();
-        login(userDB);
+        Xml.leggiPrenotazioni();
+        Xml.aggiungiPrenotazione();
+
+        /*UserDB userDB = new UserDB();
+        login(userDB);*/
 
 
     }

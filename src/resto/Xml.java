@@ -10,6 +10,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Xml {
 
@@ -124,6 +125,55 @@ public class Xml {
             ex.printStackTrace();
         }
         return menu_tematici;
+    }
+
+    public static void leggiPrenotazioni() {
+
+        try {
+            // Crea un'istanza di DocumentBuilderFactory
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+
+            // Crea un'istanza di DocumentBuilder
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
+            // Parsa il file XML e lo converte in un oggetto Document
+            Document doc = dBuilder.parse("Prenotazioni.xml");
+
+            // Normalizza il documento per gestire eventuali spazi bianchi
+            doc.getDocumentElement().normalize();
+
+            // Legge tutti gli elementi <prenotazione>
+            NodeList nodeList = doc.getElementsByTagName("prenotazione");
+
+            // Scorre tutti gli elementi <prenotazione>
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+
+                    // Legge la data
+                    String anno = element.getElementsByTagName("anno").item(0).getTextContent();
+                    String mese = element.getElementsByTagName("mese").item(0).getTextContent();
+                    String giorno = element.getElementsByTagName("giorno").item(0).getTextContent();
+                    String data = giorno + "/" + mese + "/" + anno;
+
+                    // Legge il numero di coperti
+                    String numeroCoperti = element.getElementsByTagName("numeroCoperti").item(0).getTextContent();
+
+                    // Legge tutti i piatti ordinati
+                    NodeList piattiOrdinati = element.getElementsByTagName("piatto");
+                    for (int j = 0; j < piattiOrdinati.getLength(); j++) {
+                        Node piatto = piattiOrdinati.item(j);
+                        String numero = ((Element) piatto).getAttribute("numero");
+                        String nome = piatto.getTextContent();
+                        System.out.println("Prenotazione del " + data + " per " + numeroCoperti + " coperti: " + nome + " (numero " + numero + ")");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void aggiungiRicetta(Ricetta ricetta){
@@ -260,6 +310,72 @@ public class Xml {
 
         } catch (Exception pce) {
             pce.printStackTrace();
+        }
+    }
+
+    public static void aggiungiPrenotazione() {
+
+        String filePath = "Prenotazioni.xml";
+        String nuovaPrenotazioneAnno = "2023";
+        String nuovaPrenotazioneMese = "12";
+        String nuovaPrenotazioneGiorno = "31";
+        String nuovaPrenotazioneNumeroCoperti = "3";
+        List<String> nuovaPrenotazionePiatti = new ArrayList<>();
+        nuovaPrenotazionePiatti.add("pasta al pomodoro");
+        nuovaPrenotazionePiatti.add("tagliata di manzo");
+        nuovaPrenotazionePiatti.add("tiramisù");
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(new File(filePath));
+
+            Element nuovaPrenotazione = doc.createElement("prenotazione");
+
+            // Creazione elemento data
+            Element data = doc.createElement("data");
+            Element anno = doc.createElement("anno");
+            anno.setTextContent(nuovaPrenotazioneAnno);
+            Element mese = doc.createElement("mese");
+            mese.setTextContent(nuovaPrenotazioneMese);
+            Element giorno = doc.createElement("giorno");
+            giorno.setTextContent(nuovaPrenotazioneGiorno);
+            data.appendChild(anno);
+            data.appendChild(mese);
+            data.appendChild(giorno);
+            nuovaPrenotazione.appendChild(data);
+
+            // Creazione elemento numeroCoperti
+            Element numeroCoperti = doc.createElement("numeroCoperti");
+            numeroCoperti.setTextContent(nuovaPrenotazioneNumeroCoperti);
+            nuovaPrenotazione.appendChild(numeroCoperti);
+
+            // Creazione elemento piattiOrdinati
+            Element piattiOrdinati = doc.createElement("piattiOrdinati");
+            for (int i = 0; i < nuovaPrenotazionePiatti.size(); i++) {
+                Element piatto = doc.createElement("piatto");
+                piatto.setTextContent(nuovaPrenotazionePiatti.get(i));
+                piatto.setAttribute("numero", String.valueOf(i + 1));
+                piattiOrdinati.appendChild(piatto);
+            }
+            nuovaPrenotazione.appendChild(piattiOrdinati);
+
+            // Aggiunta della nuova prenotazione al documento
+            doc.getDocumentElement().appendChild(nuovaPrenotazione);
+
+            // Scrittura del documento su file
+
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File(Costante.XML_PRENOTAZIONI));
+            transformer.transform(source, result);
+
+            System.out.println("Nuova prenotazione aggiunta con successo!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
