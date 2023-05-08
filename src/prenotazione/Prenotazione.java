@@ -40,6 +40,18 @@ public class Prenotazione {
         this.lista_prenotazioni.put(elem, Integer.valueOf(qnt));
     }
 
+    public boolean check_posti(Prenotazione this){
+        int check = 0;
+        for (Prenotabile elem: this.lista_prenotazioni.keySet()) {
+            check += this.lista_prenotazioni.get(elem);
+        }
+
+        if(check >= this.num_coperti) return true;
+
+        return false;
+    }
+
+
     @Override
     public String toString() {
         return "Prenotazione{" +
