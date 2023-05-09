@@ -253,7 +253,7 @@ public class Xml {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(Costante.XML_UTENTI);
+            StreamResult result = new StreamResult(new File(Costante.XML_UTENTI));
             transformer.transform(source, result);
 
             System.out.println("Utente aggiunto correttamente.");

@@ -30,6 +30,7 @@ public class Cliente extends Utente{
         return p;
     }
 
+
    /* private void aggiungiCibo(Prenotazione p){
         boolean exit;
         HashSet<Prenotabile> prenotabili =
