@@ -5,6 +5,7 @@ public class Costante {
     public static final String XML_RICETTARIO="Ricettario.xml";
     public static final String XML_MENU="Menu.xml";
     public static final String XML_PRENOTAZIONI="Prenotazioni.xml";
+    public static final String XML_UTENTI="Utenti.xml";
 
     public static final String NOME="nome";
     public static final String NOME_RICETTA="nomeRicetta";

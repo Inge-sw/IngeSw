@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<utenti>
+    <utente>
+        <username>marco</username>
+        <password>123</password>
+        <ruolo>gestore</ruolo>
+    </utente>
+    <utente>
+        <username>olluz</username>
+        <password>123</password>
+        <ruolo>gestore</ruolo>
+    </utente>
+</utenti>

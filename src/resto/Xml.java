@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Xml {
 
-    public static Ricettario leggiRicettario(){
+    public static Ricettario leggiRicettario() {
 
         ArrayList<Ricetta> ricette = new ArrayList<>();
 
@@ -51,7 +51,7 @@ public class Xml {
                 for (int j = 0; j < ingredientiList.getLength(); j++) {
                     Element ingrediente = (Element) ingredientiList.item(j);
                     String nome = ingrediente.getElementsByTagName(Costante.NOME).item(0).getTextContent();
-                    int dosaggio = (int)Double.parseDouble(ingrediente.getElementsByTagName(Costante.DOSAGGIO).item(0).getTextContent());
+                    int dosaggio = (int) Double.parseDouble(ingrediente.getElementsByTagName(Costante.DOSAGGIO).item(0).getTextContent());
                     ingredienti.add(new Ingrediente(nome, dosaggio));
                 }
                 ricette.add(new Ricetta(nomeRicetta, stagioni, porzioni, tempo, ingredienti));
@@ -64,7 +64,7 @@ public class Xml {
         return new Ricettario(ricette);
     }
 
-    public static ArrayList<MenuTematico> leggiMenuTematico(){
+    public static ArrayList<MenuTematico> leggiMenuTematico() {
 
         ArrayList<Piatto> piatti = null;
         ArrayList<Stagioni> stagioni = null;
@@ -92,9 +92,9 @@ public class Xml {
 
                     NodeList disponibilita = ((org.w3c.dom.Element) menu_tematico_node).getElementsByTagName(Costante.DISPONIBLITA);
                     stagioni = new ArrayList<>();
-                    for(int j = 0; j < disponibilita.getLength(); j++){
+                    for (int j = 0; j < disponibilita.getLength(); j++) {
                         Node stagioni_node = disponibilita.item(j);
-                        if(stagioni_node.getNodeType() == Node.ELEMENT_NODE){
+                        if (stagioni_node.getNodeType() == Node.ELEMENT_NODE) {
                             NodeList stagione_list = ((org.w3c.dom.Element) stagioni_node).getElementsByTagName(Costante.STAGIONE);
                             for (int k = 0; k < stagione_list.getLength(); k++) {
                                 Node stagione_node = stagione_list.item(k);
@@ -120,8 +120,9 @@ public class Xml {
                         }
                     }
                 }
-                menu_tematici.add(new MenuTematico(nome, stagioni, piatti));}
-            } catch (Exception ex) {
+                menu_tematici.add(new MenuTematico(nome, stagioni, piatti));
+            }
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return menu_tematici;
@@ -176,7 +177,93 @@ public class Xml {
         }
     }
 
-    public static void aggiungiRicetta(Ricetta ricetta){
+    public static Utente leggiUtente() {
+
+        String username = "";
+        String password = "";
+        String ruolo = "";
+
+        try {
+            File inputFile = new File(Costante.XML_UTENTI);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
+            doc.getDocumentElement().normalize();
+
+            NodeList utentiList = doc.getElementsByTagName("utente");
+
+            for (int i = 0; i < utentiList.getLength(); i++) {
+                Node utenteNode = utentiList.item(i);
+
+                if (utenteNode.getNodeType() == Node.ELEMENT_NODE) {
+                    NodeList infoUtenteList = utenteNode.getChildNodes();
+
+
+                    for (int j = 0; j < infoUtenteList.getLength(); j++) {
+                        Node infoUtenteNode = infoUtenteList.item(j);
+
+                        if (infoUtenteNode.getNodeType() == Node.ELEMENT_NODE) {
+                            String tagName = infoUtenteNode.getNodeName();
+
+                            if (tagName.equals("username")) {
+                                username = infoUtenteNode.getTextContent();
+                            } else if (tagName.equals("password")) {
+                                password = infoUtenteNode.getTextContent();
+                            } else if (tagName.equals("ruolo")) {
+                                ruolo = infoUtenteNode.getTextContent();
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new Utente(username, password, RuoloUtente.getRuolo(ruolo));
+    }
+
+    public static void aggiungiUtente(Utente utente) {
+        try {
+            File inputFile = new File(Costante.XML_UTENTI);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
+            doc.getDocumentElement().normalize();
+
+            // Creazione del nuovo utente
+            Element newUtente = doc.createElement("utente");
+            Element newUsername = doc.createElement("username");
+            newUsername.setTextContent(utente.getUsername());
+            Element newPassword = doc.createElement("password");
+            newPassword.setTextContent(utente.getPassword());
+            Element newRuolo = doc.createElement("ruolo");
+            newRuolo.setTextContent(utente.getRuolo().toString());
+
+            newUtente.appendChild(newUsername);
+            newUtente.appendChild(newPassword);
+            newUtente.appendChild(newRuolo);
+
+            // Aggiunta del nuovo utente alla lista di utenti
+            Element root = doc.getDocumentElement();
+            root.appendChild(newUtente);
+
+            // Salva le modifiche nel file XML
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(new File(Costante.XML_UTENTI);
+            transformer.transform(source, result);
+
+            System.out.println("Utente aggiunto correttamente.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void aggiungiRicetta(Ricetta ricetta) {
         try {
             // Carica il documento XML
             File inputFile = new File(Costante.XML_RICETTARIO);
@@ -206,7 +293,7 @@ public class Xml {
 
             Element disponibilita = doc.createElement(Costante.DISPONIBLITA);
 
-            for(int i = 0; i < ricetta.getStagione().size(); i++){
+            for (int i = 0; i < ricetta.getStagione().size(); i++) {
                 Stagioni stagione = ricetta.getStagione().get(i);
 
                 Element stagione_tag = doc.createElement(Costante.STAGIONE);
@@ -218,7 +305,7 @@ public class Xml {
             nuovaRicetta.appendChild(disponibilita);
 
             Element ingredienti = doc.createElement(Costante.INGREDIENTI);
-            for (int i = 0; i < ricetta.getIngredienti().size(); i++){
+            for (int i = 0; i < ricetta.getIngredienti().size(); i++) {
 
                 Ingrediente ingrediente = ricetta.getIngredienti().get(i);
 
@@ -256,7 +343,7 @@ public class Xml {
         }
     }
 
-    public static void aggiungiMenuTematico(MenuTematico m){
+    public static void aggiungiMenuTematico(MenuTematico m) {
         try {
             String filepath = Costante.XML_MENU;
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -278,7 +365,7 @@ public class Xml {
             // Aggiungi la stagione del menuTematico
             Element disponibilita = doc.createElement(Costante.DISPONIBLITA);
 
-            for(int i = 0; i < m.getStagione().size(); i++){
+            for (int i = 0; i < m.getStagione().size(); i++) {
                 Stagioni stagione = m.getStagione().get(i);
 
                 Element stagione_tag = doc.createElement(Costante.STAGIONE);
@@ -292,7 +379,7 @@ public class Xml {
             Element piatti = doc.createElement(Costante.PIATTI);
             menuTematico.appendChild(piatti);
 
-            for (int i = 0; i < m.getPiatti().size(); i++){
+            for (int i = 0; i < m.getPiatti().size(); i++) {
                 Element piatto = doc.createElement(Costante.PIATTO);
                 piatto.appendChild(doc.createTextNode(m.getPiatti().get(i).getNome()));
                 piatti.appendChild(piatto);
