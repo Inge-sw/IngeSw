@@ -27,4 +27,8 @@ public class Menu implements Prenotabile{
     public String toString() {
         return piatti.toString();
     }
+
+    public void stampa (){
+        System.out.println(piatti.toString());
+    }
 }

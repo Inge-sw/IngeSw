@@ -1,16 +1,19 @@
+import prenotazione.AddettoPrenotazioni;
+import prenotazione.Prenotazione;
 import resto.*;
 import ristorante.Bevanda;
 import ristorante.GeneriExtra;
 import ristorante.Gestore;
+import ristorante.Ristorante;
+
+import java.util.ArrayList;
 
 public class MainClass {
     public static void main(String[] args) {
 
-        Xml.leggiPrenotazioni();
-        Xml.aggiungiPrenotazione();
 
-        /*UserDB userDB = new UserDB();
-        login(userDB);*/
+        UserDB userDB = new UserDB();
+        login(userDB);
 
 
     }
@@ -133,6 +136,7 @@ public class MainClass {
     }
 
     public static void login(UserDB userDB){
+        ArrayList<Prenotazione> lista_pren = new ArrayList<>();
         MyMenu menu = new MyMenu("SIGN UP SIGN IN", Costante.MENU_USERDB);
         switch (menu.scegli()){
             case 1:
@@ -150,15 +154,18 @@ public class MainClass {
                     if(userDB.login(user1, pw1)) {
                         switch (userDB.getUtenti().get(user1).getRuolo()){
                             case GESTORE:
-                                opzioniGestore((Gestore) userDB.getUtenti().get(user1));
+                                Gestore g = (Gestore) userDB.getUtenti().get(user1);
+                                opzioniGestore(g);
                                 break;
 
                             case CLIENTE:
                                  Cliente c = (Cliente) userDB.getUtenti().get(user1);
-                                 c.effettuaPrenotazione();
+                                 lista_pren.add(c.effettuaPrenotazione());
                                 break;
 
                             case ADDETTO_PRENOTAZIONI:
+                                AddettoPrenotazioni a = (AddettoPrenotazioni) userDB.getUtenti().get(user1);
+                                a.setLista_prenotazioni(lista_pren);
                                 break;
 
                             case MAGAZZINIERE:

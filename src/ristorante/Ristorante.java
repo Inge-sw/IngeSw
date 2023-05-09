@@ -22,7 +22,6 @@ public class Ristorante {
         this.qnt = 5;
         bevanda_persona();
         setGeneri_extra_persona();
-
     }
 
     public String getNome() {
