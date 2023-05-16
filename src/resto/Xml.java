@@ -181,7 +181,7 @@ public class Xml {
                         //lista_piatti.put(, Integer.valueOf(numero));
                         System.out.println("Prenotazione del " + data + " per " + numero_coperti + " coperti: " + nome + " (numero " + numero + ")");
                     }
-                    Prenotazione p = new Prenotazione(Integer.valueOf(numero_coperti), data);
+                    Prenotazione p = new Prenotazione(Integer.valueOf(numero_coperti), data, lista_piatti);
                 }
             }
         } catch (Exception e) {
