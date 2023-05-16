@@ -16,6 +16,12 @@ public class Prenotazione {
         this.lista_prenotazioni = new HashMap<>();
     }
 
+    public Prenotazione(int num_coperti, LocalDate data, HashMap<Prenotabile, Integer> l) {
+        this.num_coperti = num_coperti;
+        this.data = data;
+        this.lista_prenotazioni = l;
+    }
+
     public int getNum_coperti() {
         return num_coperti;
     }

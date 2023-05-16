@@ -31,6 +31,8 @@ public class Cliente extends Utente{
 
         AddettoPrenotazioni.checkPosti();
 
+        Xml.aggiungiPrenotazione(p);
+
         return p;
     }
 

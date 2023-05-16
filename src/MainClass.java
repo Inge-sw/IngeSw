@@ -136,7 +136,8 @@ public class MainClass {
     }
 
     public static void login(UserDB userDB){
-        ArrayList<Prenotazione> lista_pren = new ArrayList<>();
+        //ArrayList<Prenotazione> lista_pren = new ArrayList<>();
+        ArrayList<Prenotazione> lista_pren = Xml.leggiPrenotazioni();
         MyMenu menu = new MyMenu("SIGN UP SIGN IN", Costante.MENU_USERDB);
         switch (menu.scegli()){
             case 1:

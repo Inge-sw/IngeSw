@@ -2,6 +2,7 @@ package resto;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
+import prenotazione.Prenotazione;
 import ristorante.*;
 
 import javax.xml.parsers.*;
@@ -9,7 +10,9 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Xml {
@@ -128,7 +131,7 @@ public class Xml {
         return menu_tematici;
     }
 
-    public static void leggiPrenotazioni() {
+    public static ArrayList<Prenotazione> leggiPrenotazioni() {
 
         try {
             // Crea un'istanza di DocumentBuilderFactory
@@ -146,6 +149,8 @@ public class Xml {
             // Legge tutti gli elementi <prenotazione>
             NodeList nodeList = doc.getElementsByTagName("prenotazione");
 
+            String anno, mese, giorno, numero_coperti;
+
             // Scorre tutti gli elementi <prenotazione>
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
@@ -154,22 +159,29 @@ public class Xml {
                     Element element = (Element) node;
 
                     // Legge la data
-                    String anno = element.getElementsByTagName("anno").item(0).getTextContent();
-                    String mese = element.getElementsByTagName("mese").item(0).getTextContent();
-                    String giorno = element.getElementsByTagName("giorno").item(0).getTextContent();
-                    String data = giorno + "/" + mese + "/" + anno;
+                    anno = element.getElementsByTagName("anno").item(0).getTextContent();
+                    mese = element.getElementsByTagName("mese").item(0).getTextContent();
+                    giorno = element.getElementsByTagName("giorno").item(0).getTextContent();
+
+                    LocalDate data = LocalDate.of(Integer.valueOf(anno), Integer.valueOf(mese), Integer.valueOf(giorno));
+
+                    //String data = giorno + "/" + mese + "/" + anno;
 
                     // Legge il numero di coperti
-                    String numeroCoperti = element.getElementsByTagName("numeroCoperti").item(0).getTextContent();
+                    numero_coperti = element.getElementsByTagName("numero_coperti").item(0).getTextContent();
 
                     // Legge tutti i piatti ordinati
-                    NodeList piattiOrdinati = element.getElementsByTagName("piatto");
-                    for (int j = 0; j < piattiOrdinati.getLength(); j++) {
-                        Node piatto = piattiOrdinati.item(j);
+                    NodeList piatti_ordinati = element.getElementsByTagName("piatto");
+                    HashMap<Prenotabile, Integer> lista_piatti = new HashMap<>();
+
+                    for (int j = 0; j < piatti_ordinati.getLength(); j++) {
+                        Node piatto = piatti_ordinati.item(j);
                         String numero = ((Element) piatto).getAttribute("numero");
                         String nome = piatto.getTextContent();
-                        System.out.println("Prenotazione del " + data + " per " + numeroCoperti + " coperti: " + nome + " (numero " + numero + ")");
+                        //lista_piatti.put(, Integer.valueOf(numero));
+                        System.out.println("Prenotazione del " + data + " per " + numero_coperti + " coperti: " + nome + " (numero " + numero + ")");
                     }
+                    Prenotazione p = new Prenotazione(Integer.valueOf(numero_coperti), data);
                 }
             }
         } catch (Exception e) {
@@ -400,17 +412,17 @@ public class Xml {
         }
     }
 
-    public static void aggiungiPrenotazione() {
+    public static void aggiungiPrenotazione(Prenotazione prenotazione) {
 
-        String filePath = "Prenotazioni.xml";
-        String nuovaPrenotazioneAnno = "2023";
-        String nuovaPrenotazioneMese = "12";
-        String nuovaPrenotazioneGiorno = "31";
-        String nuovaPrenotazioneNumeroCoperti = "3";
+        String filePath = Costante.XML_PRENOTAZIONI;
+        String nuovaPrenotazioneAnno = String.valueOf(prenotazione.getData().getYear());
+        String nuovaPrenotazioneMese = String.valueOf(prenotazione.getData().getMonthValue());
+        String nuovaPrenotazioneGiorno = String.valueOf(prenotazione.getData().getDayOfMonth());
+        String nuovaPrenotazioneNumeroCoperti = String.valueOf(prenotazione.getNum_coperti());
         List<String> nuovaPrenotazionePiatti = new ArrayList<>();
-        nuovaPrenotazionePiatti.add("pasta al pomodoro");
-        nuovaPrenotazionePiatti.add("tagliata di manzo");
-        nuovaPrenotazionePiatti.add("tiramisù");
+        for (Prenotabile prenotabile : prenotazione.getLista_prenotazioni().keySet()) {
+            nuovaPrenotazionePiatti.add(prenotabile.toString());
+        }
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
