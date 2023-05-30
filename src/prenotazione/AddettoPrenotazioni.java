@@ -57,6 +57,7 @@ public class AddettoPrenotazioni {
 
         for (Prenotazione p : da_eliminare) {
             lista_prenotazioni.remove(p);
+            Xml.eliminaPrenotazione(p);
         }
     }
 
