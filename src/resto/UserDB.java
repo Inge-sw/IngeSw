@@ -51,7 +51,7 @@ public class UserDB {
         }
         return false;
     }
-
+/*
     //metodo per la registrazione di un utente
     public boolean register(String username, String password) {
         RuoloUtente role = RuoloUtente.
@@ -78,7 +78,7 @@ public class UserDB {
         }
         return false;
     }
-
+*/
     //metodo per il login di un utente
     public boolean login(String username, String password) {
         return checkUtente(username, password);

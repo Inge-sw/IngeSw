@@ -8,13 +8,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Cliente extends Utente{
-
+public class Cliente{
+/*
     public Cliente(String username, String password) {
         super(username, password, RuoloUtente.CLIENTE);
     }
+*/
+    public Cliente (){}
 
-    public Prenotazione effettuaPrenotazione(){
+    public Prenotazione effettuaPrenotazione(Gestore gestore, AddettoPrenotazioni addetto){
         int num_coperti = InputDati.leggiInteroNonNegativo("Inserisci num persone della prenotazione");
         LocalDate data= null;
        do {
@@ -29,7 +31,7 @@ public class Cliente extends Utente{
         Prenotazione p = new Prenotazione(num_coperti, data);
         aggiungiCibo(p);
 
-        AddettoPrenotazioni.checkPosti();
+        addetto.checkPosti(gestore.getRistorante());
 
         Xml.aggiungiPrenotazione(p);
 

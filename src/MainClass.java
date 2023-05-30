@@ -12,10 +12,36 @@ public class MainClass {
     public static void main(String[] args) {
 
 
+        opzioniRuolo();
+        /*
         UserDB userDB = new UserDB();
         login(userDB);
+*/
 
+    }
 
+    public static void opzioniRuolo(){
+        MyMenu menu_ruolo = new MyMenu("SCEGLI RUOLO", Costante.MENU_RUOLO);
+
+        Gestore gestore = new Gestore();
+        AddettoPrenotazioni addetto = new AddettoPrenotazioni(Xml.leggiPrenotazioni());
+
+        switch(menu_ruolo.scegli()){
+            case 1:
+                opzioniGestore(gestore);
+                break;
+            case 2:
+                opzioniAddetto(addetto);
+                break;
+            case 3:
+                break;
+            case 4:
+                Cliente cliente = new Cliente();
+                cliente.effettuaPrenotazione(gestore, addetto);
+                break;
+            case 5:
+                break;
+        }
     }
 
     public static void opzioniGestore(Gestore gestore){
@@ -31,6 +57,17 @@ public class MainClass {
                 opzioniRicettario(gestore);
                 break;
             case 4:
+                break;
+        }
+    }
+
+    public static void opzioniAddetto(AddettoPrenotazioni addetto){
+        MyMenu menu_addetto = new MyMenu("OPERAZIONI ADDETTO PRENOTAZIONI", Costante.MENU_ADDETTO);
+        switch (menu_addetto.scegli()){
+            case 1:
+                addetto.toString();
+                break;
+            case 2:
                 break;
         }
     }
@@ -134,7 +171,7 @@ public class MainClass {
                 opzioniRistorante(gestore);
         }
     }
-
+/*
     public static void login(UserDB userDB){
         //ArrayList<Prenotazione> lista_pren = new ArrayList<>();
         ArrayList<Prenotazione> lista_pren = Xml.leggiPrenotazioni();
@@ -181,4 +218,5 @@ public class MainClass {
                 break;
         }
     }
+    */
 }

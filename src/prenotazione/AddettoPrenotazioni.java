@@ -2,15 +2,16 @@ package prenotazione;
 
 import resto.RuoloUtente;
 import resto.Utente;
+import resto.Xml;
 import ristorante.Ristorante;
 
 import java.util.ArrayList;
 
 
-public class AddettoPrenotazioni extends Utente {
+public class AddettoPrenotazioni{
 
     private ArrayList<Prenotazione> lista_prenotazioni;
-
+/*
     public AddettoPrenotazioni(String username, String password, ArrayList<Prenotazione> l) {
         super(username, password, RuoloUtente.ADDETTO_PRENOTAZIONI);
         this.lista_prenotazioni = l;
@@ -18,6 +19,12 @@ public class AddettoPrenotazioni extends Utente {
 
     public AddettoPrenotazioni(String username, String password) {
         super(username, password, RuoloUtente.ADDETTO_PRENOTAZIONI);
+    }
+
+*/
+
+    public AddettoPrenotazioni(ArrayList<Prenotazione> lista_prenotazioni) {
+        this.lista_prenotazioni = lista_prenotazioni;
     }
 
     public ArrayList<Prenotazione> getLista_prenotazioni() {
@@ -28,14 +35,21 @@ public class AddettoPrenotazioni extends Utente {
         this.lista_prenotazioni = lista_prenotazioni;
     }
 
-    public static boolean checkPosti(){
-        int posti = 0;/*
+    public boolean checkPosti(Ristorante ristorante){
+        int posti = 0;
         for(Prenotazione prenotazione : lista_prenotazioni){
             posti += prenotazione.getNum_coperti();
         }
 
-        if (posti <= ) return true;*/
+        if (posti <= ristorante.getNum_posti()) return true;
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "AddettoPrenotazioni{" +
+                "lista_prenotazioni=" + lista_prenotazioni +
+                '}';
     }
 
     public static void checkCarico(Ristorante r){}

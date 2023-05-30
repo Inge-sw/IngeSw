@@ -32,11 +32,22 @@ public class Costante {
 
     public static final String ERRORE_LETTURA="Impossibile leggere il file xml";
 
+    public static final String [] MENU_RUOLO = {
+            "Gestore",
+            "Addetto prenotazione",
+            "Magazziniere",
+            "Cliente"
+    };
+
     public static final String [] MENU_GESTORE = {
             "Gestisci il ristorante",
             "Gestisci i menu tematici",
             "Gestisci il ricettario",
             "Esci"
+    };
+
+    public static final String [] MENU_ADDETTO = {
+            "Visualizza prenotazioni"
     };
 
     public static final String [] MENU_RISTORANTE = {

@@ -4,18 +4,20 @@ import resto.*;
 
 import java.util.ArrayList;
 
-public class Gestore extends Utente {
+public class Gestore{
 
     Ristorante ristorante;
     Ricettario ricettario;
     ArrayList<MenuTematico> menu_tematici;
-
+/*
     public Gestore(String username, String password) {
         super(username, password, RuoloUtente.GESTORE);
         creaRistorante();
         ricettario = Xml.leggiRicettario();
         menu_tematici = Xml.leggiMenuTematico();
     }
+    */
+    public Gestore(){}
 
     public void avvio(){
         creaRistorante();

@@ -133,6 +133,8 @@ public class Xml {
 
     public static ArrayList<Prenotazione> leggiPrenotazioni() {
 
+        ArrayList<Prenotazione> prenotazioni = new ArrayList<>();
+
         try {
             // Crea un'istanza di DocumentBuilderFactory
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -149,7 +151,7 @@ public class Xml {
             // Legge tutti gli elementi <prenotazione>
             NodeList nodeList = doc.getElementsByTagName("prenotazione");
 
-            String anno, mese, giorno, numero_coperti;
+            int anno, mese, giorno, numero_coperti;
 
             // Scorre tutti gli elementi <prenotazione>
             for (int i = 0; i < nodeList.getLength(); i++) {
@@ -159,34 +161,51 @@ public class Xml {
                     Element element = (Element) node;
 
                     // Legge la data
-                    anno = element.getElementsByTagName("anno").item(0).getTextContent();
-                    mese = element.getElementsByTagName("mese").item(0).getTextContent();
-                    giorno = element.getElementsByTagName("giorno").item(0).getTextContent();
+                    anno = Integer.parseInt(element.getElementsByTagName("anno").item(0).getTextContent());
+                    mese = Integer.parseInt(element.getElementsByTagName("mese").item(0).getTextContent());
+                    giorno = Integer.parseInt(element.getElementsByTagName("giorno").item(0).getTextContent());
 
-                    LocalDate data = LocalDate.of(Integer.valueOf(anno), Integer.valueOf(mese), Integer.valueOf(giorno));
+                    LocalDate data = LocalDate.of(anno, mese, giorno);
 
                     //String data = giorno + "/" + mese + "/" + anno;
 
                     // Legge il numero di coperti
-                    numero_coperti = element.getElementsByTagName("numero_coperti").item(0).getTextContent();
+                    numero_coperti = Integer.parseInt(element.getElementsByTagName("numeroCoperti").item(0).getTextContent());
 
                     // Legge tutti i piatti ordinati
                     NodeList piatti_ordinati = element.getElementsByTagName("piatto");
+
                     HashMap<Prenotabile, Integer> lista_piatti = new HashMap<>();
 
                     for (int j = 0; j < piatti_ordinati.getLength(); j++) {
                         Node piatto = piatti_ordinati.item(j);
-                        String numero = ((Element) piatto).getAttribute("numero");
+                        int numero_piatto = Integer.parseInt(((Element) piatto).getAttribute("numero"));
+                        String tipo = ((Element) piatto).getAttribute("tipo");
                         String nome = piatto.getTextContent();
-                        //lista_piatti.put(, Integer.valueOf(numero));
-                        System.out.println("Prenotazione del " + data + " per " + numero_coperti + " coperti: " + nome + " (numero " + numero + ")");
+
+                        if (tipo.equalsIgnoreCase("ricetta")) {
+                            Ricettario ricettario = Xml.leggiRicettario();
+                            lista_piatti.put(new Piatto(Ricettario.getRicettaByNome(nome)), numero_piatto);
+                        } else {
+                            ArrayList<MenuTematico> menu_tematici = Xml.leggiMenuTematico();
+                            for (MenuTematico m : menu_tematici) {
+                                if (m.getNome().equalsIgnoreCase(nome)) {
+                                    lista_piatti.put(m, numero_piatto);
+                                    break;
+                                }
+                            }
+                        }
+
+                        System.out.println("Prenotazione del " + data + " per " + numero_coperti + " coperti: " + nome + " (numero " + numero_piatto + ")");
                     }
-                    Prenotazione p = new Prenotazione(Integer.valueOf(numero_coperti), data, lista_piatti);
+                    Prenotazione p = new Prenotazione(numero_coperti, data, lista_piatti);
+                    prenotazioni.add(p);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return prenotazioni;
     }
 
     public static Utente leggiUtente() {

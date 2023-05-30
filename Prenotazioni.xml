@@ -17,11 +17,11 @@
                 
         <piattiOrdinati>
                         
-            <piatto numero="10">pasta ragu</piatto>
+            <piatto tipo="ricetta" numero="10">pasta ragu</piatto>
                         
-            <piatto numero="5">risotto funghi</piatto>
+            <piatto tipo="ricetta" numero="5">risotto funghi</piatto>
                         
-            <piatto numero="2">pesce</piatto>
+            <piatto tipo="menu" numero="2">pesce</piatto>
                     
         </piattiOrdinati>
             
@@ -43,7 +43,7 @@
                 
         <piattiOrdinati>
                         
-            <piatto numero="2">pesce</piatto>
+            <piatto tipo="menu" numero="2">pesce</piatto>
                     
         </piattiOrdinati>
             
