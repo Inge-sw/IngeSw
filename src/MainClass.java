@@ -66,6 +66,7 @@ public class MainClass {
         switch (menu_addetto.scegli()){
             case 1:
                 addetto.toString();
+                addetto.stampa();
                 break;
             case 2:
                 break;

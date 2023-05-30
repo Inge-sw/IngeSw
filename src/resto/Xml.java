@@ -195,8 +195,6 @@ public class Xml {
                                 }
                             }
                         }
-
-                        System.out.println("Prenotazione del " + data + " per " + numero_coperti + " coperti: " + nome + " (numero " + numero_piatto + ")");
                     }
                     Prenotazione p = new Prenotazione(numero_coperti, data, lista_piatti);
                     prenotazioni.add(p);
