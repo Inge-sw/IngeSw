@@ -16,7 +16,7 @@ public class Cliente{
 */
     public Cliente (){}
 
-    public Prenotazione effettuaPrenotazione(Gestore gestore, AddettoPrenotazioni addetto){
+    public void effettuaPrenotazione(Gestore gestore, AddettoPrenotazioni addetto){
         int num_coperti = InputDati.leggiInteroNonNegativo("Inserisci num persone della prenotazione");
         LocalDate data= null;
        do {
@@ -29,17 +29,19 @@ public class Cliente{
        }while (data == null || data.isBefore(LocalDate.now())) ;
 
         Prenotazione p = new Prenotazione(num_coperti, data);
-        aggiungiCibo(p);
 
-        addetto.checkPosti(gestore.getRistorante());
-
-        Xml.aggiungiPrenotazione(p);
-
-        return p;
+        if (addetto.checkPosti(gestore.getRistorante(), num_coperti)) {
+            if (aggiungiCibo(p)) {
+                addetto.getLista_prenotazioni().add(p);
+                Xml.aggiungiPrenotazione(p);
+            }
+        } else{
+            System.out.println("ERRORE, SUPERATO I POSTI/CARICO DI LAVORO");
+        }
     }
 
 
-    private void aggiungiCibo(Prenotazione p){
+    private boolean aggiungiCibo(Prenotazione p){
         boolean exit;
         HashMap<String, Prenotabile> prenotabili = leggiMenu(p.getData().getMonthValue());
         do{
@@ -48,9 +50,12 @@ public class Cliente{
 
             p.addLista_prenotazioni(prenotabili.get(piatto), persone);
             exit = InputDati.yesOrNo("Uscire?");
-        }while(exit == false);
+        }while(!exit);
 
-        if(!p.check_posti()) System.out.println("ERRORE NELLA PRENOTAZIONE");
+        if(!p.check_numero_piatti()) {
+            System.out.println("ERRORE NELLA PRENOTAZIONE");
+            return false;
+        } else return true;
     }
 
 

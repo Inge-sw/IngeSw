@@ -35,8 +35,8 @@ public class AddettoPrenotazioni{
         this.lista_prenotazioni = lista_prenotazioni;
     }
 
-    public boolean checkPosti(Ristorante ristorante){
-        int posti = 0;
+    public boolean checkPosti(Ristorante ristorante, int num_coperti){
+        int posti = num_coperti;
         for(Prenotazione prenotazione : lista_prenotazioni){
             posti += prenotazione.getNum_coperti();
         }
@@ -52,5 +52,7 @@ public class AddettoPrenotazioni{
                 '}';
     }
 
-    public static void checkCarico(Ristorante r){}
+    public static void checkCarico(Ristorante r){
+
+    }
 }
