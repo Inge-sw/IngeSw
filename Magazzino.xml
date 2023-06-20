@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<merci>
+    <merce quantita="5" unita="kg">pomodoro</merce>
+    <merce quantita="5" unita="kg">pasta</merce>
+</merci>

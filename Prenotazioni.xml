@@ -1,52 +1,89 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <prenotazioni>
-        
-    <prenotazione>
-                
-        <data>
-                        
-            <anno>2023</anno>
-                        
-            <mese>8</mese>
-                        
-            <giorno>23</giorno>
-                    
-        </data>
-                
-        <numeroCoperti>5</numeroCoperti>
-                
-        <piattiOrdinati>
-                        
-            <piatto tipo="ricetta" numero="10">pasta ragu</piatto>
-                        
-            <piatto tipo="ricetta" numero="5">risotto funghi</piatto>
-                        
-            <piatto tipo="menu" numero="2">pesce</piatto>
-                    
-        </piattiOrdinati>
             
-    </prenotazione>
-        
-    <prenotazione>
-                
-        <data>
-                        
-            <anno>2022</anno>
-                        
-            <mese>1</mese>
-                        
-            <giorno>10</giorno>
-                    
-        </data>
-                
-        <numeroCoperti>2</numeroCoperti>
-                
-        <piattiOrdinati>
-                        
-            <piatto tipo="menu" numero="2">pesce</piatto>
-                    
-        </piattiOrdinati>
-            
-    </prenotazione>
     
+    <prenotazione>
+                        
+        
+        <data>
+                                    
+            
+            <anno>2023</anno>
+                                    
+            
+            <mese>8</mese>
+                                    
+            
+            <giorno>23</giorno>
+                                
+        
+        </data>
+                        
+        
+        <numeroCoperti>5</numeroCoperti>
+                        
+        
+        <piattiOrdinati>
+                                    
+            
+            <piatto numero="10" tipo="ricetta">pasta ragu</piatto>
+                                    
+            
+            <piatto numero="5" tipo="ricetta">risotto funghi</piatto>
+                                    
+            
+            <piatto numero="2" tipo="menu">pesce</piatto>
+                                
+        
+        </piattiOrdinati>
+                    
+    
+    </prenotazione>
+            
+    
+    <prenotazione>
+                        
+        
+        <data>
+                                    
+            
+            <anno>2022</anno>
+                                    
+            
+            <mese>1</mese>
+                                    
+            
+            <giorno>10</giorno>
+                                
+        
+        </data>
+                        
+        
+        <numeroCoperti>2</numeroCoperti>
+                        
+        
+        <piattiOrdinati>
+                                    
+            
+            <piatto numero="2" tipo="menu">pesce</piatto>
+                                
+        
+        </piattiOrdinati>
+                    
+    
+    </prenotazione>
+        
+
+    <prenotazione>
+        <data>
+            <anno>2023</anno>
+            <mese>6</mese>
+            <giorno>20</giorno>
+        </data>
+        <numeroCoperti>20</numeroCoperti>
+        <piattiOrdinati>
+            <piatto numero="1">
+	-pasta ragu</piatto>
+        </piattiOrdinati>
+    </prenotazione>
 </prenotazioni>

@@ -3,10 +3,12 @@ package prenotazione;
 import resto.RuoloUtente;
 import resto.Utente;
 import resto.Xml;
-import ristorante.Ristorante;
+import ristorante.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class AddettoPrenotazioni {
@@ -37,14 +39,50 @@ public class AddettoPrenotazioni {
         this.lista_prenotazioni = lista_prenotazioni;
     }
 
-    public boolean checkPosti(Ristorante ristorante, int num_coperti) {
-        int posti = num_coperti;
-        for (Prenotazione prenotazione : lista_prenotazioni) {
-            posti += prenotazione.getNum_coperti();
+    public boolean checkPosti(Ristorante ristorante, Prenotazione p) {
+        int posti = p.getNum_coperti();
+        for (Prenotazione prenotati : lista_prenotazioni) {
+            if (prenotati.getData().equals(p.getData()))
+                posti += prenotati.getNum_coperti();
         }
 
         if (posti <= ristorante.getNum_posti()) return true;
         return false;
+    }
+
+    public boolean checkCaricoLavoro(Ristorante ristorante, Prenotazione p){
+        double caricoDiLavoro = 0;
+        for (Prenotazione prenotati : lista_prenotazioni){
+            if (prenotati.getData().equals(p.getData())) {
+
+                HashMap<Prenotabile, Integer> lista_piatti = prenotati.getLista_prenotazioni_piatti();
+
+                for (Map.Entry<Prenotabile, Integer> entry : lista_piatti.entrySet()){
+                    String nome_prenotabile = entry.getKey().toString();
+                    int quantita = entry.getValue();
+
+                    Ricetta ricetta = Ricettario.getRicettaByNome(nome_prenotabile);
+
+                    if (ricetta != null){
+                        caricoDiLavoro += ricetta.getCarico_lavoro_porzione() * quantita;
+                    }else{
+                        ArrayList<MenuTematico> MenuTematici = Xml.leggiMenuTematico();
+                        for (MenuTematico m : MenuTematici){
+                            if (m.getNome().equalsIgnoreCase(nome_prenotabile)){
+                                ArrayList<Piatto> piatti = m.getPiatti();
+                                for (Piatto piatto : piatti){
+                                    caricoDiLavoro += piatto.getCarico_lavoro() * quantita;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (caricoDiLavoro <= ristorante.getCarico_lavoro_ristorante()) return true;
+        return false;
+
     }
 
     public void eliminaPrenotazioniScadute() {

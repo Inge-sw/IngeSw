@@ -17,7 +17,7 @@ public class Gestore{
         menu_tematici = Xml.leggiMenuTematico();
     }
     */
-    public Gestore(){}
+    public Gestore(){avvio();}
 
     public void avvio(){
         creaRistorante();

@@ -1,3 +1,4 @@
+import magazzino.Magazziniere;
 import prenotazione.AddettoPrenotazioni;
 import prenotazione.Prenotazione;
 import resto.*;
@@ -21,10 +22,11 @@ public class MainClass {
     }
 
     public static void opzioniRuolo(){
-        MyMenu menu_ruolo = new MyMenu("SCEGLI RUOLO", Costante.MENU_RUOLO);
-
         Gestore gestore = new Gestore();
         AddettoPrenotazioni addetto = new AddettoPrenotazioni(Xml.leggiPrenotazioni());
+        Magazziniere magazziniere = new Magazziniere();
+
+        MyMenu menu_ruolo = new MyMenu("SCEGLI RUOLO", Costante.MENU_RUOLO);
 
         switch(menu_ruolo.scegli()){
             case 1:
@@ -34,6 +36,7 @@ public class MainClass {
                 opzioniAddetto(addetto);
                 break;
             case 3:
+                opzioniMagazziniere(magazziniere);
                 break;
             case 4:
                 Cliente cliente = new Cliente();
@@ -70,6 +73,14 @@ public class MainClass {
                 break;
             case 2:
                 break;
+        }
+    }
+
+    public static void opzioniMagazziniere(Magazziniere magazziniere){
+        MyMenu menu_magazziniere = new MyMenu("OPERAZIONI MAGAZZINIERE", Costante.MENU_MAGAZZINIERE);
+        switch (menu_magazziniere.scegli()){
+            case 1:
+                magazziniere.toString();
         }
     }
 

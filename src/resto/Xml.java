@@ -206,6 +206,34 @@ public class Xml {
         return prenotazioni;
     }
 
+    public static HashMap<String, Integer> leggiMerci(){
+        HashMap<String, Integer> merci = new HashMap<>();
+        try {
+            // Carica il file XML
+            File file = new File(Costante.XML_MAGAZZINO);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(file);
+
+            // Ottieni l'elemento radice
+            Element radice = document.getDocumentElement();
+
+            // Itera sui figli dell'elemento radice
+            NodeList merceList = radice.getElementsByTagName("merce");
+            for (int i = 0; i < merceList.getLength(); i++) {
+                Element merceElement = (Element) merceList.item(i);
+                String quantita = merceElement.getAttribute("quantita");
+                String unita = merceElement.getAttribute("unita");
+                String nome_merce = merceElement.getTextContent();
+
+                merci.put(nome_merce, Integer.valueOf(quantita));
+            }
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return merci;
+    }
+
     public static Utente leggiUtente() {
 
         String username = "";
@@ -437,7 +465,7 @@ public class Xml {
         String nuovaPrenotazioneGiorno = String.valueOf(prenotazione.getData().getDayOfMonth());
         String nuovaPrenotazioneNumeroCoperti = String.valueOf(prenotazione.getNum_coperti());
         List<String> nuovaPrenotazionePiatti = new ArrayList<>();
-        for (Prenotabile prenotabile : prenotazione.getLista_prenotazioni().keySet()) {
+        for (Prenotabile prenotabile : prenotazione.getLista_prenotazioni_piatti().keySet()) {
             nuovaPrenotazionePiatti.add(prenotabile.toString());
         }
 

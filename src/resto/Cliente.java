@@ -30,7 +30,7 @@ public class Cliente{
 
         Prenotazione p = new Prenotazione(num_coperti, data);
 
-        if (addetto.checkPosti(gestore.getRistorante(), num_coperti)) {
+        if (addetto.checkPosti(gestore.getRistorante(), p) && addetto.checkCaricoLavoro(gestore.getRistorante(), p)) {
             if (aggiungiCibo(p)) {
                 addetto.getLista_prenotazioni().add(p);
                 Xml.aggiungiPrenotazione(p);

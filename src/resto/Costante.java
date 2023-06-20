@@ -6,6 +6,8 @@ public class Costante {
     public static final String XML_MENU="Menu.xml";
     public static final String XML_PRENOTAZIONI="Prenotazioni.xml";
     public static final String XML_UTENTI="Utenti.xml";
+    public static final String XML_MAGAZZINO="Magazzino.xml";
+
 
     public static final String NOME="nome";
     public static final String NOME_RICETTA="nomeRicetta";
@@ -48,6 +50,12 @@ public class Costante {
 
     public static final String [] MENU_ADDETTO = {
             "Visualizza prenotazioni"
+    };
+
+    public static final String [] MENU_MAGAZZINIERE = {
+            "Visualizza scorte",
+            "Acquista prodotti",
+            "Crea lista spesa"
     };
 
     public static final String [] MENU_RISTORANTE = {
