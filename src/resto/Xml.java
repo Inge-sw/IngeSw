@@ -522,4 +522,44 @@ public class Xml {
             e.printStackTrace();
         }
     }
+
+    public static void eliminaPrenotazione(Prenotazione da_eliminare) {
+        String xmlFilePath = Costante.XML_PRENOTAZIONI;
+        String annoDaEliminare = String.valueOf(da_eliminare.getData().getYear());
+        String meseDaEliminare = String.valueOf(da_eliminare.getData().getMonthValue());
+        String giornoDaEliminare = String.valueOf(da_eliminare.getData().getDayOfMonth());
+
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(new File(xmlFilePath));
+
+            // Trova la prenotazione da eliminare
+            NodeList prenotazioni = document.getElementsByTagName("prenotazione");
+            for (int i = 0; i < prenotazioni.getLength(); i++) {
+                Element prenotazione = (Element) prenotazioni.item(i);
+                Element data = (Element) prenotazione.getElementsByTagName("data").item(0);
+                String anno = data.getElementsByTagName("anno").item(0).getTextContent();
+                String mese = data.getElementsByTagName("mese").item(0).getTextContent();
+                String giorno = data.getElementsByTagName("giorno").item(0).getTextContent();
+                if (anno.equals(annoDaEliminare) && mese.equals(meseDaEliminare) && giorno.equals(giornoDaEliminare)) {
+                    Node parent = prenotazione.getParentNode();
+                    parent.removeChild(prenotazione);
+                    break;
+                }
+            }
+
+            // Salva il documento XML modificato
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult(new File(Costante.XML_PRENOTAZIONI));
+            transformer.transform(source, result);
+
+            System.out.println("Prenotazione eliminata con successo.");
+        } catch (ParserConfigurationException | TransformerException | org.xml.sax.SAXException |
+                 java.io.IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
