@@ -55,6 +55,7 @@ public class Costante {
     public static final String [] MENU_MAGAZZINIERE = {
             "Visualizza scorte",
             "Acquista prodotti",
+            "Rimuovi prodotti",
             "Crea lista spesa"
     };
 

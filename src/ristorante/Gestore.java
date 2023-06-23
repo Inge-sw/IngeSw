@@ -213,6 +213,14 @@ public class Gestore{
         return stagioni;
     }
 
+    public Ricettario getRicettario() {
+        return ricettario;
+    }
+
+    public void setRicettario(Ricettario ricettario) {
+        this.ricettario = ricettario;
+    }
+
     public Ristorante getRistorante() {
         return ristorante;
     }

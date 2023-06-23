@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <merci>
-    <merce quantita="5" unita="kg">pomodoro</merce>
-    <merce quantita="5" unita="kg">pasta</merce>
+    <merce quantita="10.0" unita="kg">timo</merce>
+    <merce quantita="120.0" unita="kg">riso</merce>
+    <merce quantita="0.0" unita="kg">pasta</merce>
+    <merce quantita="20.0" unita="kg">salvia</merce>
+    <merce quantita="100.0" unita="kg">arance</merce>
 </merci>

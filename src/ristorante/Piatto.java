@@ -43,6 +43,7 @@ public class Piatto implements Prenotabile{
 
     @Override
     public String toString() {
-        return "\n\t-" + nome;
+        return nome;
     }
+
 }

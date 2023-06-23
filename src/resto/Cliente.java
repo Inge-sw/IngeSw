@@ -45,10 +45,10 @@ public class Cliente{
         boolean exit;
         HashMap<String, Prenotabile> prenotabili = leggiMenu(p.getData().getMonthValue());
         do{
-            String piatto = InputDati.leggiStringaNonVuota("Inserisci nome del piatto / menu' tematico");
-            int persone = InputDati.leggiInteroNonNegativo("Per quante persone?");
+            String piatto = InputDati.leggiStringaNonVuota("Inserisci nome del piatto / menu' tematico: ");
+            int persone = InputDati.leggiInteroNonNegativo("Per quante persone? ");
 
-            p.addLista_prenotazioni(prenotabili.get(piatto), persone);
+            p.add_piatti(prenotabili.get(piatto), persone);
             exit = InputDati.yesOrNo("Uscire?");
         }while(!exit);
 

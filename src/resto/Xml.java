@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Xml {
 
@@ -206,8 +207,8 @@ public class Xml {
         return prenotazioni;
     }
 
-    public static HashMap<String, Integer> leggiMerci(){
-        HashMap<String, Integer> merci = new HashMap<>();
+    public static HashMap<String, Double> leggiMerci() {
+        HashMap<String, Double> merci = new HashMap<>();
         try {
             // Carica il file XML
             File file = new File(Costante.XML_MAGAZZINO);
@@ -226,7 +227,7 @@ public class Xml {
                 String unita = merceElement.getAttribute("unita");
                 String nome_merce = merceElement.getTextContent();
 
-                merci.put(nome_merce, Integer.valueOf(quantita));
+                merci.put(nome_merce, Double.valueOf(quantita));
             }
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
@@ -464,10 +465,12 @@ public class Xml {
         String nuovaPrenotazioneMese = String.valueOf(prenotazione.getData().getMonthValue());
         String nuovaPrenotazioneGiorno = String.valueOf(prenotazione.getData().getDayOfMonth());
         String nuovaPrenotazioneNumeroCoperti = String.valueOf(prenotazione.getNum_coperti());
-        List<String> nuovaPrenotazionePiatti = new ArrayList<>();
-        for (Prenotabile prenotabile : prenotazione.getLista_prenotazioni_piatti().keySet()) {
-            nuovaPrenotazionePiatti.add(prenotabile.toString());
+        HashMap<String, Integer> nuovaPrenotazionePiatti = new HashMap<>();
+
+        for (Map.Entry<Prenotabile, Integer> entry : prenotazione.getLista_prenotazioni_piatti().entrySet()){
+            nuovaPrenotazionePiatti.put(entry.getKey().toString(), entry.getValue());
         }
+
 
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -496,12 +499,19 @@ public class Xml {
 
             // Creazione elemento piattiOrdinati
             Element piattiOrdinati = doc.createElement("piattiOrdinati");
-            for (int i = 0; i < nuovaPrenotazionePiatti.size(); i++) {
+
+            for (Map.Entry<String, Integer> entry : nuovaPrenotazionePiatti.entrySet()){
                 Element piatto = doc.createElement("piatto");
-                piatto.setTextContent(nuovaPrenotazionePiatti.get(i));
-                piatto.setAttribute("numero", String.valueOf(i + 1));
+                piatto.setTextContent(entry.getKey().trim());
+                piatto.setAttribute("numero", String.valueOf(entry.getValue()));
+                if (Ricettario.getRicettaByNome(entry.getKey()) != null)
+                    piatto.setAttribute("tipo", "ricetta");
+                else
+                    piatto.setAttribute("tipo", "menu");
+
                 piattiOrdinati.appendChild(piatto);
             }
+
             nuovaPrenotazione.appendChild(piattiOrdinati);
 
             // Aggiunta della nuova prenotazione al documento
@@ -512,6 +522,8 @@ public class Xml {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4"); // Imposta il numero di spazi per l'indentazione
+
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File(Costante.XML_PRENOTAZIONI));
             transformer.transform(source, result);
@@ -562,4 +574,86 @@ public class Xml {
             e.printStackTrace();
         }
     }
+
+    public static void aggiungiMerce(String ingrediente, String unita){
+        try {
+            // Carica il file XML
+            File file = new File(Costante.XML_MAGAZZINO);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(file);
+
+            // Ottieni l'elemento radice
+            Element radice = document.getDocumentElement();
+
+            // Crea un nuovo elemento merce
+            Element nuovaMerceElement = document.createElement("merce");
+            nuovaMerceElement.setAttribute("quantita", "0");
+            nuovaMerceElement.setAttribute("unita", unita);
+            nuovaMerceElement.setTextContent(ingrediente);
+
+            // Aggiungi il nuovo elemento all'elemento radice
+            radice.appendChild(nuovaMerceElement);
+
+            // Scrivi il documento XML aggiornato su un file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult(new File(Costante.XML_MAGAZZINO));
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void aggiornaMerce(HashMap<String, Double> merci){
+        try {
+            // Creazione del documento XML
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document document = dBuilder.newDocument();
+
+            // Creazione del nodo radice <merci>
+            Element rootElement = document.createElement("merci");
+            document.appendChild(rootElement);
+
+            // Creazione degli elementi <merce> con attributi e testo
+            for (Map.Entry<String, Double> entry : merci.entrySet()) {
+                String merce = entry.getKey();
+                Double quantita = entry.getValue();
+                String unita = "kg"; // Unità di misura predefinita
+
+                Element merceElement = document.createElement("merce");
+                merceElement.setAttribute("quantita", quantita.toString());
+                merceElement.setAttribute("unita", unita);
+                merceElement.setTextContent(merce);
+
+                rootElement.appendChild(merceElement);
+            }
+
+            // Salvataggio del documento XML in un file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes"); // Abilita l'indentazione
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4"); // Imposta il numero di spazi per l'indentazione
+
+            // Salvataggio del documento XML in un file
+            DOMSource source = new DOMSource(document);
+
+            File xmlFile = new File(Costante.XML_MAGAZZINO);
+            FileOutputStream outputStream = new FileOutputStream(xmlFile);
+            StreamResult result = new StreamResult(outputStream);
+
+            transformer.transform(source, result);
+
+            System.out.println("File XML generato con successo!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

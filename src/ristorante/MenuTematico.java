@@ -33,9 +33,6 @@ public class MenuTematico extends Menu{
 
     @Override
     public String toString() {
-        return "\n-------------" + "MenuTematico: " + nome + "-------------" +
-                "\n Disponibilita': " + stagione +
-                "\n Piatti: " +
-                super.toString();
+        return nome;
     }
 }

@@ -42,7 +42,7 @@ public class Prenotazione {
         return lista_prenotazioni_piatti;
     }
 
-    public void addLista_prenotazioni(Prenotabile elem, int qnt) {
+    public void add_piatti(Prenotabile elem, int qnt) {
         this.lista_prenotazioni_piatti.put(elem, Integer.valueOf(qnt));
     }
 
@@ -59,10 +59,10 @@ public class Prenotazione {
 
     @Override
     public String toString() {
-        return "Prenotazione{" +
-                "num_coperti=" + num_coperti +
-                ", data=" + data +
-                ", lista_prenotazioni=" + lista_prenotazioni_piatti +
-                '}';
+        return "\nPrenotazione" +
+                "\n-Numero coperti = " + num_coperti +
+                "\n-Data=" + data +
+                "\n-Lista piatti = " + lista_prenotazioni_piatti
+                ;
     }
 }

@@ -99,16 +99,10 @@ public class AddettoPrenotazioni {
         }
     }
 
-    public void stampa() {
-        for (Prenotazione p : lista_prenotazioni) {
-            System.out.println(p.getData());
-        }
-    }
-
     @Override
     public String toString() {
-        return "AddettoPrenotazioni{" +
-                "lista_prenotazioni=" + lista_prenotazioni +
+        return "Lista delle prenotazioni:\n " +
+                lista_prenotazioni +
                 '}';
     }
 

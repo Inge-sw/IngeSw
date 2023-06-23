@@ -1,13 +1,9 @@
 import magazzino.Magazziniere;
 import prenotazione.AddettoPrenotazioni;
-import prenotazione.Prenotazione;
 import resto.*;
 import ristorante.Bevanda;
 import ristorante.GeneriExtra;
 import ristorante.Gestore;
-import ristorante.Ristorante;
-
-import java.util.ArrayList;
 
 public class MainClass {
     public static void main(String[] args) {
@@ -36,7 +32,7 @@ public class MainClass {
                 opzioniAddetto(addetto);
                 break;
             case 3:
-                opzioniMagazziniere(magazziniere);
+                opzioniMagazziniere(magazziniere, addetto, gestore);
                 break;
             case 4:
                 Cliente cliente = new Cliente();
@@ -68,19 +64,29 @@ public class MainClass {
         MyMenu menu_addetto = new MyMenu("OPERAZIONI ADDETTO PRENOTAZIONI", Costante.MENU_ADDETTO);
         switch (menu_addetto.scegli()){
             case 1:
-                addetto.toString();
-                addetto.stampa();
+                System.out.println(addetto.toString());
                 break;
             case 2:
                 break;
         }
     }
 
-    public static void opzioniMagazziniere(Magazziniere magazziniere){
+    public static void opzioniMagazziniere(Magazziniere magazziniere, AddettoPrenotazioni addetto, Gestore gestore){
         MyMenu menu_magazziniere = new MyMenu("OPERAZIONI MAGAZZINIERE", Costante.MENU_MAGAZZINIERE);
         switch (menu_magazziniere.scegli()){
             case 1:
-                magazziniere.toString();
+                System.out.println(magazziniere.toString());
+                break;
+            case 2:
+                magazziniere.ottieniIngredienti(gestore);
+                magazziniere.acquistaMerci();
+                break;
+            case 3:
+                magazziniere.rimuoviMerci();
+                break;
+            case 4 :
+                magazziniere.creaListaSpesa(addetto.getLista_prenotazioni());
+                break;
         }
     }
 
