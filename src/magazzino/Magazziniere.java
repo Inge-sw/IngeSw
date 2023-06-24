@@ -22,6 +22,16 @@ public class Magazziniere {
         magazzino = new Magazzino();
     }
 
+    /*Precondizioni:
+    Il parametro gestore non deve essere nullo.
+    La classe Gestore deve avere un metodo getRicettario() che restituisce un oggetto non nullo.
+    La classe Ricettario deve avere un metodo getRicette() che restituisce un elenco di oggetti Ricetta.
+    La classe Ricetta deve avere un metodo getIngredienti() che restituisce un elenco di oggetti Ingrediente.
+
+    Postcondizioni:
+    L'array ingredienti deve contenere i nomi degli ingredienti ottenuti da tutte le ricette presenti nel ricettario.
+    Viene chiamato il metodo checkIngredienti().*/
+
     public void ottieniIngredienti(Gestore gestore) {
         ArrayList<Ricetta> ricette = gestore.getRicettario().getRicette();
 
@@ -32,6 +42,12 @@ public class Magazziniere {
         }
         checkIngredienti();
     }
+    /*Precondizioni:
+    La variabile magazzino deve essere inizializzata e deve avere un metodo getScorta() che restituisce una mappa non nulla.
+    La variabile ingredienti deve essere un elenco non nullo.
+
+    Postcondizioni:
+    Se un ingrediente presente in ingredienti non è presente nella mappa scorta, viene chiamato il metodo Xml.aggiungiMerce per aggiungere l'ingrediente al magazzino.*/
 
     public void checkIngredienti() {
         boolean presente;
@@ -67,6 +83,13 @@ public class Magazziniere {
 
     }
 
+    /*Precondizioni:
+    La variabile magazzino deve essere inizializzata e deve avere un metodo getScorta() e setScorta() che gestiscono la mappa delle scorte.
+    Le variabili bevande e generi devono essere inizializzate e devono contenere le corrispondenti mappe di bevande e generi extra.
+
+    Postcondizioni:
+    Vengono acquisite nuove merci dall'utente e vengono aggiornate le scorte nel magazzino.
+    Viene chiamato il metodo Xml.aggiornaMerce per aggiornare il file XML delle merci con le scorte aggiornate.*/
     public void acquistaMerci() {
         boolean exit;
         HashMap<String, Double> scorte = magazzino.getScorta();
@@ -105,6 +128,13 @@ public class Magazziniere {
 
     }
 
+    /*Precondizioni:
+    La variabile magazzino deve essere inizializzata e deve avere un metodo getScorta() e setScorta() che gestiscono la mappa delle scorte.
+
+    Postcondizioni:
+    Vengono rimossi quantità specificate di merci dalla scorta del magazzino.
+    Viene chiamato il metodo Xml.aggiornaMerce per aggiornare il file XML delle merci con le scorte aggiornate.*/
+
     public void rimuoviMerci() {
         boolean exit, presente;
         HashMap<String, Double> scorte_positive = new HashMap<>();
@@ -138,6 +168,13 @@ public class Magazziniere {
         Xml.aggiornaMerce(magazzino.getScorta());
     }
 
+    /*Precondizioni:
+    La variabile prenotazioni deve essere un elenco non nullo di oggetti Prenotazione.
+
+    Postcondizioni:
+    Viene calcolato l'elenco delle merci necessarie in base alle prenotazioni del giorno corrente.
+    Viene creato un elenco della spesa (mappa) con i nomi degli ingredienti e le relative quantità richieste.
+    Viene restituita una stringa contenente l'elenco della spesa.*/
 
     public void creaListaSpesa(ArrayList<Prenotazione> prenotazioni) {
         calcolaMerciNecessari(prenotazioni);
@@ -160,6 +197,13 @@ public class Magazziniere {
             System.out.println(stampaListaSpesa(lista_della_spesa));
 
     }
+
+    /*Precondizioni:
+    La variabile prenotazioni deve essere un elenco non nullo di oggetti Prenotazione.
+
+    Postcondizioni:
+    Vengono calcolate le merci necessarie in base alle prenotazioni del giorno corrente.
+    Le merci necessarie vengono memorizzate nella mappa merci_neccessari.*/
 
     public void calcolaMerciNecessari(ArrayList<Prenotazione> prenotazioni) {
         LocalDate today = LocalDate.now();
@@ -194,6 +238,15 @@ public class Magazziniere {
         }
 
     }
+
+    /*Precondizioni:
+    La variabile ingredienti deve essere un elenco non nullo di oggetti Ingrediente.
+    Le variabili quantita e moltiplicatore devono essere valori numerici validi
+
+    Postcondizioni:
+    Viene verificato se ciascun ingrediente presente nella lista ingredienti è presente nella mappa merci_neccessari.
+    Se l'ingrediente è già presente nella mappa, la sua quantità viene aggiornata in base alla quantità richiesta.
+    Se l'ingrediente non è presente nella mappa, viene aggiunto con la quantità richiesta moltiplicata per il moltiplicatore.*/
 
     public void checkMerciGiornaliero(ArrayList<Ingrediente> ingredienti, int quantita, int moltiplicatore) {
         for (Ingrediente ingrediente : ingredienti) {

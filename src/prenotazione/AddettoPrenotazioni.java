@@ -22,6 +22,16 @@ public class AddettoPrenotazioni {
         return lista_prenotazioni;
     }
 
+    /*Precondizioni:
+    Il parametro ristorante non deve essere nullo.
+    Il parametro p non deve essere nullo.
+    La variabile lista_prenotazioni deve essere un elenco di oggetti Prenotazione non nullo.
+
+    Postcondizioni:
+    Viene calcolato il numero totale di posti occupati considerando tutte le prenotazioni presenti nella lista per la stessa data di prenotazione di p.
+    Viene verificato se il numero totale di posti occupati, incluso il numero di posti richiesti da p, è minore o uguale al numero di posti disponibili nel ristorante.
+    Restituisce true se ci sono posti disponibili, altrimenti restituisce false.*/
+
     public boolean checkPosti(Ristorante ristorante, Prenotazione p) {
         int posti = p.getNum_coperti();
         for (Prenotazione prenotati : lista_prenotazioni) {
@@ -32,6 +42,20 @@ public class AddettoPrenotazioni {
         if (posti <= ristorante.getNum_posti()) return true;
         return false;
     }
+    /*Precondizioni:
+    Il parametro ristorante non deve essere nullo.
+    Il parametro p non deve essere nullo.
+    La variabile lista_prenotazioni deve essere un elenco di oggetti Prenotazione non nullo.
+    La classe Ricettario deve avere un metodo getRicettaByNome che restituisce un oggetto Ricetta corrispondente al nome passato come argomento.
+    Il metodo Xml.leggiMenuTematico restituisce un elenco di oggetti MenuTematico.
+
+    Postcondizioni:
+    Viene calcolato il carico di lavoro totale considerando tutte le prenotazioni presenti nella lista per la stessa data di prenotazione di p.
+    Per ciascuna prenotazione, vengono recuperati i piatti prenotati dalla mappa lista_prenotazioni_piatti.
+    Per ciascun piatto, viene calcolato il carico di lavoro in base alla ricetta o al piatto tematico corrispondente.
+    Il carico di lavoro totale viene aggiornato sommando i carichi di lavoro dei singoli piatti.
+    Viene verificato se il carico di lavoro totale, incluso il carico di lavoro dei piatti richiesti da p, è minore o uguale al carico di lavoro massimo del ristorante.
+    Restituisce true se il carico di lavoro è accettabile, altrimenti restituisce false.*/
 
     public boolean checkCaricoLavoro(Ristorante ristorante, Prenotazione p) {
         double caricoDiLavoro = 0;
@@ -67,6 +91,15 @@ public class AddettoPrenotazioni {
         return false;
 
     }
+
+    /*Precondizioni:
+    La variabile lista_prenotazioni deve essere un elenco di oggetti Prenotazione non nullo.
+    Il metodo Xml.eliminaPrenotazione elimina una prenotazione dal sistema di persistenza.
+
+    Postcondizioni:
+    Vengono identificate le prenotazioni scadute in base alla data corrente.
+    Le prenotazioni scadute vengono aggiunte all'elenco da_eliminare.
+    Le prenotazioni scadute vengono rimosse dalla lista_prenotazioni e dal sistema di persistenza chiamando Xml.eliminaPrenotazione.*/
 
     public void eliminaPrenotazioniScadute() {
         ArrayList<Prenotazione> da_eliminare = new ArrayList<>();

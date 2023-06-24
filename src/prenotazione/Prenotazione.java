@@ -39,6 +39,15 @@ public class Prenotazione {
         this.lista_prenotazioni_piatti.put(elem, Integer.valueOf(qnt));
     }
 
+    /*Precondizioni:
+    La variabile lista_prenotazioni_piatti dell'oggetto this deve essere una mappa non nulla.
+    Il valore num_coperti dell'oggetto this deve essere un intero non negativo.
+
+    Postcondizioni:
+    Viene calcolato il numero totale di piatti prenotati sommando le quantità di ciascun piatto nella mappa lista_prenotazioni_piatti.
+    Viene verificato se il numero totale di piatti prenotati è maggiore o uguale al numero di coperti specificato nell'oggetto this.
+    Restituisce true se il numero di piatti è sufficiente per coprire i coperti, altrimenti restituisce false.*/
+
     public boolean check_numero_piatti(Prenotazione this) {
         int check = 0;
         for (Prenotabile elem : this.lista_prenotazioni_piatti.keySet()) {
