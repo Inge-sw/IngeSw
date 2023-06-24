@@ -1,6 +1,6 @@
 package magazzino;
 
-import resto.Xml;
+import letturaFile.Xml;
 
 import java.util.HashMap;
 import java.util.Map;

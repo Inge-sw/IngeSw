@@ -1,6 +1,6 @@
 package ristorante;
 
-import resto.FileTesto;
+import letturaFile.FileTesto;
 
 import java.util.HashMap;
 

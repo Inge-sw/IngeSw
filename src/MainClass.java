@@ -1,3 +1,6 @@
+import input.InputDati;
+import input.MyMenu;
+import letturaFile.Xml;
 import magazzino.Magazziniere;
 import prenotazione.AddettoPrenotazioni;
 import resto.*;

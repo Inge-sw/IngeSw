@@ -1,8 +1,11 @@
-package resto;
+package letturaFile;
 
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 import prenotazione.Prenotazione;
+import resto.Costante;
+import resto.Misura;
+import resto.Stagioni;
 import ristorante.*;
 
 import javax.xml.parsers.*;
@@ -143,7 +146,7 @@ public class Xml {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
             // Parsa il file XML e lo converte in un oggetto Document
-            Document doc = dBuilder.parse("Prenotazioni.xml");
+            Document doc = dBuilder.parse(Costante.XML_PRENOTAZIONI);
 
             // Normalizza il documento per gestire eventuali spazi bianchi
             doc.getDocumentElement().normalize();

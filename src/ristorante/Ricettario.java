@@ -1,7 +1,7 @@
 package ristorante;
 
 import resto.Stagioni;
-import resto.Xml;
+import letturaFile.Xml;
 
 import java.util.ArrayList;
 

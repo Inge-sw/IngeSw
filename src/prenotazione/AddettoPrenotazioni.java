@@ -1,6 +1,6 @@
 package prenotazione;
 
-import resto.Xml;
+import letturaFile.Xml;
 import ristorante.*;
 
 import java.time.LocalDate;

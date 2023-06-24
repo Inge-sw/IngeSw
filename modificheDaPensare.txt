@@ -1,3 +1,0 @@
-1. corrispondeza tra ricetta e piatto: ho fatto un metodo statico nella classe Ricettario (da pensare come modificarlo)
-
-

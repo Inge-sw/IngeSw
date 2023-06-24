@@ -1,4 +1,4 @@
-package resto;
+package input;
 
 /**
  * Questa classe rappresenta un menu testuale generico a piu' voci

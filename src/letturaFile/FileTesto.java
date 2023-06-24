@@ -1,5 +1,6 @@
-package resto;
+package letturaFile;
 
+import resto.Costante;
 import ristorante.Bevanda;
 import ristorante.GeneriExtra;
 import ristorante.Prodotto;

@@ -1,4 +1,4 @@
-package resto;
+package input;
 
 import java.time.LocalDate;
 import java.util.InputMismatchException;

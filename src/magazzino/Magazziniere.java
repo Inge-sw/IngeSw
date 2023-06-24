@@ -1,9 +1,9 @@
 package magazzino;
 
 import prenotazione.Prenotazione;
-import resto.FileTesto;
-import resto.InputDati;
-import resto.Xml;
+import letturaFile.FileTesto;
+import input.InputDati;
+import letturaFile.Xml;
 import ristorante.*;
 
 import java.time.LocalDate;

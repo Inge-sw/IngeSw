@@ -2,14 +2,13 @@ package resto;
 
 public class Costante {
 
-    public static final String XML_RICETTARIO = "Ricettario.xml";
-    public static final String XML_MENU = "Menu.xml";
-    public static final String XML_PRENOTAZIONI = "Prenotazioni.xml";
-    public static final String XML_UTENTI = "Utenti.xml";
-    public static final String XML_MAGAZZINO = "Magazzino.xml";
+    public static final String XML_RICETTARIO = "File/Ricettario.xml";
+    public static final String XML_MENU = "File/Menu.xml";
+    public static final String XML_PRENOTAZIONI = "File/Prenotazioni.xml";
+    public static final String XML_MAGAZZINO = "File/Magazzino.xml";
 
-    public static final String FILE_BEVANDE = "Bevande.txt";
-    public static final String FILE_GENERI = "Generi.txt";
+    public static final String FILE_BEVANDE = "File/Bevande.txt";
+    public static final String FILE_GENERI = "File/Generi.txt";
 
     public static final String NOME = "nome";
     public static final String NOME_RICETTA = "nomeRicetta";
