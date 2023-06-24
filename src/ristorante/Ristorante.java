@@ -40,42 +40,14 @@ public class Ristorante {
         this.num_posti = num_posti;
     }
 
-    public double getCarico_lavoro_persona() {
-        return carico_lavoro_persona;
-    }
-
-    public void setCarico_lavoro_persona(double carico_lavoro_persona) {
-        this.carico_lavoro_persona = carico_lavoro_persona;
-    }
-
     public double getCarico_lavoro_ristorante() {
         return carico_lavoro_ristorante;
     }
 
-    public void setCarico_lavoro_ristorante(double carico_lavoro_ristorante) {
-        this.carico_lavoro_ristorante = carico_lavoro_ristorante;
-    }
-
-    public HashMap<Bevanda, Double> getBevande_persona() {
-        return bevande_persona;
-    }
-
     public void bevanda_persona() {
-        for (Bevanda bevanda : this.bevande_persona.keySet()){
+        for (Bevanda bevanda : this.bevande_persona.keySet()) {
             this.bevande_persona.put(bevanda, qnt);
         }
-    }
-
-    public HashMap<GeneriExtra, Double> getGeneri_extra_persona() {
-        return generi_extra_persona;
-    }
-
-    public double getQnt() {
-        return qnt;
-    }
-
-    public void setQnt(double qnt) {
-        this.qnt = qnt;
     }
 
     public void setGeneri_extra_persona() {
@@ -90,7 +62,7 @@ public class Ristorante {
     }
 
     public boolean checkProdotto(Prodotto da_aggiungere) {
-        if (isBevanda(da_aggiungere)){
+        if (isBevanda(da_aggiungere)) {
             return this.bevande_persona.containsKey(da_aggiungere);
         } else {
             return this.generi_extra_persona.containsKey(da_aggiungere);
@@ -106,17 +78,17 @@ public class Ristorante {
     }
 
     public void addProdotto(Prodotto da_aggiungere) {
-        if (isBevanda(da_aggiungere)){
+        if (isBevanda(da_aggiungere)) {
             this.bevande_persona.put((Bevanda) da_aggiungere, qnt);
-        } else if (isGenere(da_aggiungere)){
+        } else if (isGenere(da_aggiungere)) {
             this.generi_extra_persona.put((GeneriExtra) da_aggiungere, qnt);
         }
     }
 
     public void visualizza(String discriminante) {
-        if(discriminante.equalsIgnoreCase("BEVANDE")){
-                this.bevande_persona.forEach((key, value) -> System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura()));
-        } else if (discriminante.equalsIgnoreCase("GENERI")){
+        if (discriminante.equalsIgnoreCase("BEVANDE")) {
+            this.bevande_persona.forEach((key, value) -> System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura()));
+        } else if (discriminante.equalsIgnoreCase("GENERI")) {
             this.generi_extra_persona.forEach((key, value) -> System.out.println("- " + key.getNome() + " " + value + " " + key.getU_misura()));
         }
     }

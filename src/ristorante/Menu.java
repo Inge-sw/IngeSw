@@ -1,10 +1,8 @@
 package ristorante;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 
-public class Menu implements Prenotabile{
+public class Menu implements Prenotabile {
     private ArrayList<Piatto> piatti;
 
     public Menu() {
@@ -17,10 +15,6 @@ public class Menu implements Prenotabile{
 
     public ArrayList<Piatto> getPiatti() {
         return piatti;
-    }
-
-    public void addPiatto(Piatto piatto) {
-        piatti.add(piatto);
     }
 
     @Override

@@ -4,7 +4,7 @@ import resto.Stagioni;
 
 import java.util.ArrayList;
 
-public class MenuTematico extends Menu{
+public class MenuTematico extends Menu {
 
     String nome;
     ArrayList<Stagioni> stagione;
@@ -29,6 +29,13 @@ public class MenuTematico extends Menu{
 
     public void setStagione(ArrayList<Stagioni> stagione) {
         this.stagione = stagione;
+    }
+
+    public String stampa() {
+        return "----------" + nome.toUpperCase() + "----------" +
+                "\n Disponibilita': " + stagione + "\n" +
+                "Piatti presenti nel menu: " + super.toString();
+
     }
 
     @Override

@@ -4,71 +4,68 @@ import resto.*;
 
 import java.util.ArrayList;
 
-public class Gestore{
+public class Gestore {
 
     Ristorante ristorante;
     Ricettario ricettario;
     ArrayList<MenuTematico> menu_tematici;
-/*
-    public Gestore(String username, String password) {
-        super(username, password, RuoloUtente.GESTORE);
-        creaRistorante();
-        ricettario = Xml.leggiRicettario();
-        menu_tematici = Xml.leggiMenuTematico();
-    }
-    */
-    public Gestore(){avvio();}
 
-    public void avvio(){
+    public Gestore() {
+        avvio();
+    }
+
+    public void avvio() {
         creaRistorante();
         ricettario = Xml.leggiRicettario();
         menu_tematici = Xml.leggiMenuTematico();
     }
 
-    public void visulizzaRistorante(){
+    public void visulizzaRistorante() {
         System.out.println(ristorante.toString());
     }
 
-    public void creaRistorante(){
+    public void creaRistorante() {
         String nome_ristorante = InputDati.leggiStringaNonVuota("Inserisci un nome per il tuo ristorante: ");
         int num_posti = InputDati.leggiInteroNonNegativo("Inserisci il numero di posti a sedere: ");
 
         ristorante = new Ristorante(nome_ristorante, num_posti);
     }
 
-    public void modificaRistorante(int scelta){
+    public void modificaRistorante(int scelta) {
         if (scelta == 2) {
             ristorante.setNome(InputDati.leggiStringaNonVuota("Inserire un nuovo nome per il ristorante: "));
-        }
-        else {
+        } else {
             ristorante.setNum_posti(InputDati.leggiInteroPositivo("Inserire posti disponibili per il ristorante: "));
         }
         System.out.println("Modificato con successo!");
     }
 
-    public void visualizzaMenuTematici(){
-       System.out.println(menu_tematici.toString().replace('[', ' ').replace(']', ' '));
+    public void visualizzaMenuTematici() {
+        for (MenuTematico m : menu_tematici) {
+            System.out.println(m.stampa().replace('[', ' ').replace(']', ' '));
+            System.out.println("\n");
+        }
     }
 
-    public void visualizzaRicettario(){
+    public void visualizzaRicettario() {
         System.out.println(ricettario.toString().replace('[', ' ').replace(']', ' '));
     }
 
-    public void creaRicetta(){
+    public void creaRicetta() {
 
         String check;
         ArrayList<Ingrediente> ingredienti = new ArrayList<>();
         ArrayList<Stagioni> stagioni;
 
         String nome_ricetta;
-        do{
+        do {
             nome_ricetta = InputDati.leggiStringa("Inserisci il nome della ricetta: ");
-            if (!checkNomeRicetta(nome_ricetta)){
+            if (!checkNomeRicetta(nome_ricetta)) {
                 System.out.println("Il nome della ricetta esiste gia'");
                 boolean ancora = InputDati.yesOrNo("Reinserire il nome? ");
                 if (!ancora) break;
             }
-        }while(!checkNomeRicetta(nome_ricetta));
+        } while (!checkNomeRicetta(nome_ricetta));
 
         if (checkNomeRicetta(nome_ricetta)) {
             int porzione = InputDati.leggiInteroNonNegativo("Inserisci il numero di porzione: ");
@@ -152,19 +149,19 @@ public class Gestore{
         }
     }
 
-    public boolean checkStagione(String stagione){
+    public boolean checkStagione(String stagione) {
         return stagione.equalsIgnoreCase(Costante.INVERNO) || stagione.equalsIgnoreCase(Costante.PRIMAVERA) || stagione.equalsIgnoreCase(Costante.ESTATE) || stagione.equalsIgnoreCase(Costante.AUTUNNO);
     }
 
-    public boolean checkNomeTematico(String nome){
-        for (int i = 0; i < menu_tematici.size(); i++){
+    public boolean checkNomeTematico(String nome) {
+        for (int i = 0; i < menu_tematici.size(); i++) {
             if (menu_tematici.get(i).getNome().equalsIgnoreCase(nome)) return false;
         }
         return true;
     }
 
-    public boolean checkNomeRicetta(String nome){
-        for (int i = 0; i < ricettario.getRicette().size(); i++){
+    public boolean checkNomeRicetta(String nome) {
+        for (int i = 0; i < ricettario.getRicette().size(); i++) {
             Ricetta ricetta = ricettario.getRicette().get(i);
             if (ricetta.getNome().equalsIgnoreCase(nome)) return false;
         }
@@ -172,53 +169,48 @@ public class Gestore{
         return true;
     }
 
-    public void aggiungiProdotto(Prodotto prodotto, String nome_file){
+    public void aggiungiProdotto(Prodotto prodotto, String nome_file) {
 
         if (ristorante.checkProdotto(prodotto)) System.out.println("esiste già!");
-        else{
+        else {
             ristorante.addProdotto(prodotto);
             FileTesto.aggiungiProdotto(prodotto, nome_file);
         }
     }
 
-    public void visualizzaProdotti(String discriminante){
+    public void visualizzaProdotti(String discriminante) {
         ristorante.visualizza(discriminante);
     }
 
-    public ArrayList<Stagioni> aggiungiStagione(){
+    public ArrayList<Stagioni> aggiungiStagione() {
         ArrayList<Stagioni> stagioni = new ArrayList<>();
         String check;
 
 
         String stagione_str;
-        do{
+        do {
             boolean duplicato = false;
             stagione_str = InputDati.leggiStringa("Inserisci la disponibilita'(Inverno/Primavera/Estate/Autunno): ");
-            if(checkStagione(stagione_str)){
+            if (checkStagione(stagione_str)) {
                 for (Stagioni value : stagioni) {
                     if (value.name().equalsIgnoreCase(stagione_str)) {
                         duplicato = true;
                         break;
                     }
                 }
-                if (duplicato)  System.out.println("Stagione gia' inserita");
+                if (duplicato) System.out.println("Stagione gia' inserita");
                 else stagioni.add(Stagioni.getStagione(stagione_str));
-            }
-            else {
+            } else {
                 System.out.println("stagione invalida!");
             }
             check = InputDati.leggiStringa("Inserire un altra stagione?(Si/No)");
-        }while(check.equalsIgnoreCase("si") || stagioni.size() == 0);
+        } while (check.equalsIgnoreCase("si") || stagioni.size() == 0);
 
         return stagioni;
     }
 
     public Ricettario getRicettario() {
         return ricettario;
-    }
-
-    public void setRicettario(Ricettario ricettario) {
-        this.ricettario = ricettario;
     }
 
     public Ristorante getRistorante() {

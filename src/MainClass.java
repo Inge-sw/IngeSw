@@ -7,15 +7,9 @@ import ristorante.Gestore;
 
 public class MainClass {
     public static void main(String[] args) {
-
-
         opzioniRuolo();
-        /*
-        UserDB userDB = new UserDB();
-        login(userDB);
-*/
-
     }
+
 
     public static void opzioniRuolo(){
         Gestore gestore = new Gestore();
@@ -65,6 +59,7 @@ public class MainClass {
         switch (menu_addetto.scegli()){
             case 1:
                 System.out.println(addetto.toString());
+                opzioniAddetto(addetto);
                 break;
             case 2:
                 break;
@@ -76,16 +71,22 @@ public class MainClass {
         switch (menu_magazziniere.scegli()){
             case 1:
                 System.out.println(magazziniere.toString());
+                opzioniMagazziniere(magazziniere, addetto, gestore);
                 break;
             case 2:
                 magazziniere.ottieniIngredienti(gestore);
                 magazziniere.acquistaMerci();
+                opzioniMagazziniere(magazziniere, addetto, gestore);
                 break;
             case 3:
                 magazziniere.rimuoviMerci();
+                opzioniMagazziniere(magazziniere, addetto, gestore);
                 break;
             case 4 :
                 magazziniere.creaListaSpesa(addetto.getLista_prenotazioni());
+                opzioniMagazziniere(magazziniere, addetto, gestore);
+                break;
+            case 5:
                 break;
         }
     }
@@ -100,15 +101,20 @@ public class MainClass {
             case 2:
                 gestore.modificaRistorante(2);
                 opzioniRistorante(gestore);
+                break;
             case 3:
                 gestore.modificaRistorante(3);
                 opzioniRistorante(gestore);
+                break;
             case 4:
                 opzioniBevande(gestore);
+                break;
             case 5:
                 opzioniGeneri(gestore);
+                break;
             case 6:
                 opzioniGestore(gestore);
+                break;
         }
     }
 
@@ -122,10 +128,10 @@ public class MainClass {
             case 2:
                 gestore.creaMenuTematico();
                 opzioniMenuTematici(gestore);
-            case 3:
                 break;
-            case 4:
+            case 3:
                 opzioniGestore(gestore);
+                break;
         }
     }
     
@@ -139,10 +145,10 @@ public class MainClass {
             case 2:
                 gestore.creaRicetta();
                 opzioniRicettario(gestore);
-            case 3:
                 break;
-            case 4:
+            case 3:
                 opzioniGestore(gestore);
+                break;
         }
     }
 
@@ -162,9 +168,8 @@ public class MainClass {
                 opzioniBevande(gestore);
                 break;
             case 3:
-                break;
-            case 4:
                 opzioniRistorante(gestore);
+                break;
         }
     }
 
@@ -184,57 +189,8 @@ public class MainClass {
                 opzioniGeneri(gestore);
                 break;
             case 3:
-                break;
-            case 4:
                 opzioniRistorante(gestore);
-        }
-    }
-/*
-    public static void login(UserDB userDB){
-        //ArrayList<Prenotazione> lista_pren = new ArrayList<>();
-        ArrayList<Prenotazione> lista_pren = Xml.leggiPrenotazioni();
-        MyMenu menu = new MyMenu("SIGN UP SIGN IN", Costante.MENU_USERDB);
-        switch (menu.scegli()){
-            case 1:
-                String user = InputDati.leggiStringaNonVuota("Inserisci il tuo username: ");
-                String pw = InputDati.leggiStringaNonVuota("Inserisci la tua password: ");
-                userDB.register(user, pw);
-                login(userDB);
-                break;
-            case 2:
-                if(userDB.getUtenti().keySet().isEmpty())
-                    System.out.println("Non ci sono utenti registrati");
-                else {
-                    String user1 = InputDati.leggiStringaNonVuota("Inserisci il tuo username: ");
-                    String pw1 = InputDati.leggiStringaNonVuota("Inserisci la tua password: ");
-                    if(userDB.login(user1, pw1)) {
-                        switch (userDB.getUtenti().get(user1).getRuolo()){
-                            case GESTORE:
-                                Gestore g = (Gestore) userDB.getUtenti().get(user1);
-                                opzioniGestore(g);
-                                break;
-
-                            case CLIENTE:
-                                 Cliente c = (Cliente) userDB.getUtenti().get(user1);
-                                 lista_pren.add(c.effettuaPrenotazione());
-                                break;
-
-                            case ADDETTO_PRENOTAZIONI:
-                                AddettoPrenotazioni a = (AddettoPrenotazioni) userDB.getUtenti().get(user1);
-                                a.setLista_prenotazioni(lista_pren);
-                                break;
-
-                            case MAGAZZINIERE:
-                                break;
-                        }
-                    }
-                    else System.out.println("Username o password errati");
-                }
-                login(userDB);
-                break;
-            case 3:
                 break;
         }
     }
-    */
 }

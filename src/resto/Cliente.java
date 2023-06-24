@@ -8,25 +8,22 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Cliente{
-/*
-    public Cliente(String username, String password) {
-        super(username, password, RuoloUtente.CLIENTE);
+public class Cliente {
+
+    public Cliente() {
     }
-*/
-    public Cliente (){}
 
-    public void effettuaPrenotazione(Gestore gestore, AddettoPrenotazioni addetto){
+    public void effettuaPrenotazione(Gestore gestore, AddettoPrenotazioni addetto) {
         int num_coperti = InputDati.leggiInteroNonNegativo("Inserisci num persone della prenotazione");
-        LocalDate data= null;
-       do {
-           try {
-               data = InputDati.leggiData("Inserisci la data (formato YYYY-MM-DD)");
+        LocalDate data = null;
+        do {
+            try {
+                data = InputDati.leggiData("Inserisci la data (formato YYYY-MM-DD)");
 
-           } catch (Exception e) {
-               System.out.println(e.getMessage());
-           }
-       }while (data == null || data.isBefore(LocalDate.now())) ;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } while (data == null || data.isBefore(LocalDate.now()));
 
         Prenotazione p = new Prenotazione(num_coperti, data);
 
@@ -35,38 +32,38 @@ public class Cliente{
                 addetto.getLista_prenotazioni().add(p);
                 Xml.aggiungiPrenotazione(p);
             }
-        } else{
+        } else {
             System.out.println("ERRORE, SUPERATO I POSTI/CARICO DI LAVORO");
         }
     }
 
 
-    private boolean aggiungiCibo(Prenotazione p){
+    private boolean aggiungiCibo(Prenotazione p) {
         boolean exit;
         HashMap<String, Prenotabile> prenotabili = leggiMenu(p.getData().getMonthValue());
-        do{
+        do {
             String piatto = InputDati.leggiStringaNonVuota("Inserisci nome del piatto / menu' tematico: ");
             int persone = InputDati.leggiInteroNonNegativo("Per quante persone? ");
 
             p.add_piatti(prenotabili.get(piatto), persone);
             exit = InputDati.yesOrNo("Uscire?");
-        }while(!exit);
+        } while (!exit);
 
-        if(!p.check_numero_piatti()) {
+        if (!p.check_numero_piatti()) {
             System.out.println("ERRORE NELLA PRENOTAZIONE");
             return false;
         } else return true;
     }
 
 
-    private HashMap<String, Prenotabile> leggiMenu(int mese){
+    private HashMap<String, Prenotabile> leggiMenu(int mese) {
         Ricettario ricettario = Xml.leggiRicettario();
         ArrayList<MenuTematico> menuTematici = Xml.leggiMenuTematico();
 
         HashMap<String, Prenotabile> piattiPrenotabili = new HashMap<>();
 
         System.out.println("PIATTI DEL MENU' ALLA CARTA:");
-        for (int i = 0; i < ricettario.getRicette().size(); i++){
+        for (int i = 0; i < ricettario.getRicette().size(); i++) {
             Ricetta ricetta = ricettario.getRicette().get(i);
             if (ricetta.getStagione().contains(Stagioni.getStagione(mese))) {
                 piattiPrenotabili.put(ricetta.getNome(), new Piatto(ricetta));
@@ -75,7 +72,7 @@ public class Cliente{
         }
 
         System.out.println("MENU' TEMATICI");
-        for(MenuTematico menuTematico : menuTematici){
+        for (MenuTematico menuTematico : menuTematici) {
             if (menuTematico.getStagione().contains(Stagioni.getStagione(mese))) {
                 piattiPrenotabili.put(menuTematico.getNome(), menuTematico);
                 System.out.println(menuTematico.getNome());

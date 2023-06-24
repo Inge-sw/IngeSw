@@ -4,6 +4,7 @@ import ristorante.Prenotabile;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Prenotazione {
     private int num_coperti;
@@ -26,16 +27,8 @@ public class Prenotazione {
         return num_coperti;
     }
 
-    public void setNum_coperti(int num_coperti) {
-        this.num_coperti = num_coperti;
-    }
-
     public LocalDate getData() {
         return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
     }
 
     public HashMap<Prenotabile, Integer> getLista_prenotazioni_piatti() {
@@ -46,23 +39,26 @@ public class Prenotazione {
         this.lista_prenotazioni_piatti.put(elem, Integer.valueOf(qnt));
     }
 
-    public boolean check_numero_piatti(Prenotazione this){
+    public boolean check_numero_piatti(Prenotazione this) {
         int check = 0;
-        for (Prenotabile elem: this.lista_prenotazioni_piatti.keySet()) {
+        for (Prenotabile elem : this.lista_prenotazioni_piatti.keySet()) {
             check += this.lista_prenotazioni_piatti.get(elem);
         }
 
-        if(check >= this.num_coperti) return true;
+        if (check >= this.num_coperti) return true;
 
         return false;
     }
 
     @Override
     public String toString() {
-        return "\nPrenotazione" +
+        String da_concatenare = "";
+        for (Map.Entry<Prenotabile, Integer> entry : lista_prenotazioni_piatti.entrySet()) {
+            da_concatenare += "\n\t" + entry.getKey() + " " + entry.getValue() + " porzioni";
+        }
+        return "\n------------Prenotazione------------" +
                 "\n-Numero coperti = " + num_coperti +
-                "\n-Data=" + data +
-                "\n-Lista piatti = " + lista_prenotazioni_piatti
-                ;
+                "\n-Data = " + data +
+                "\n-Lista piatti = " + da_concatenare;
     }
 }

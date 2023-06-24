@@ -3,12 +3,13 @@ package magazzino;
 import resto.Xml;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Magazzino {
 
     HashMap<String, Double> scorta;
 
-    public Magazzino(){
+    public Magazzino() {
         scorta = Xml.leggiMerci();
     }
 
@@ -16,14 +17,13 @@ public class Magazzino {
         return scorta;
     }
 
-    public void setScorta(HashMap<String, Double> scorta) {
-        this.scorta = scorta;
-    }
-
     @Override
     public String toString() {
-        return "Magazzino: " +
-                "\nscorta = " + scorta +
-                '}';
+        String da_concatenare = "";
+        for (Map.Entry<String, Double> entry : scorta.entrySet()) {
+            da_concatenare += "\n\t" + entry.getKey() + " = " + entry.getValue() + "Kg";
+        }
+        return "Merci rimanenti nel magazzino: " +
+                da_concatenare;
     }
 }

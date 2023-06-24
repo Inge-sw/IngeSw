@@ -4,7 +4,7 @@ import resto.Stagioni;
 
 import java.util.ArrayList;
 
-public class Piatto implements Prenotabile{
+public class Piatto implements Prenotabile {
     private String nome;
     private ArrayList<Stagioni> stagione;
     private Ricetta ricetta;
@@ -23,14 +23,6 @@ public class Piatto implements Prenotabile{
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public ArrayList<Stagioni> getStagione() {
-        return stagione;
-    }
-
-    public void setStagione(ArrayList<Stagioni> stagione) {
-        this.stagione = stagione;
     }
 
     public Ricetta getRicetta() {

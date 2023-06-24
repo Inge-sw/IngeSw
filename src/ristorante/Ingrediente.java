@@ -2,7 +2,7 @@ package ristorante;
 
 import resto.Misura;
 
-public class Ingrediente extends Prodotto{
+public class Ingrediente extends Prodotto {
 
     private double quantita;
 
@@ -13,10 +13,6 @@ public class Ingrediente extends Prodotto{
 
     public double getQuantita() {
         return quantita;
-    }
-
-    public void setQuantita(double quantita) {
-        this.quantita = quantita;
     }
 
     public String toString() {

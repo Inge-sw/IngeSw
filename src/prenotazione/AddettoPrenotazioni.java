@@ -14,17 +14,6 @@ import java.util.Map;
 public class AddettoPrenotazioni {
 
     private ArrayList<Prenotazione> lista_prenotazioni;
-/*
-    public AddettoPrenotazioni(String username, String password, ArrayList<Prenotazione> l) {
-        super(username, password, RuoloUtente.ADDETTO_PRENOTAZIONI);
-        this.lista_prenotazioni = l;
-    }
-
-    public AddettoPrenotazioni(String username, String password) {
-        super(username, password, RuoloUtente.ADDETTO_PRENOTAZIONI);
-    }
-
-*/
 
     public AddettoPrenotazioni(ArrayList<Prenotazione> lista_prenotazioni) {
         this.lista_prenotazioni = lista_prenotazioni;
@@ -33,10 +22,6 @@ public class AddettoPrenotazioni {
 
     public ArrayList<Prenotazione> getLista_prenotazioni() {
         return lista_prenotazioni;
-    }
-
-    public void setLista_prenotazioni(ArrayList<Prenotazione> lista_prenotazioni) {
-        this.lista_prenotazioni = lista_prenotazioni;
     }
 
     public boolean checkPosti(Ristorante ristorante, Prenotazione p) {
@@ -50,27 +35,27 @@ public class AddettoPrenotazioni {
         return false;
     }
 
-    public boolean checkCaricoLavoro(Ristorante ristorante, Prenotazione p){
+    public boolean checkCaricoLavoro(Ristorante ristorante, Prenotazione p) {
         double caricoDiLavoro = 0;
-        for (Prenotazione prenotati : lista_prenotazioni){
+        for (Prenotazione prenotati : lista_prenotazioni) {
             if (prenotati.getData().equals(p.getData())) {
 
                 HashMap<Prenotabile, Integer> lista_piatti = prenotati.getLista_prenotazioni_piatti();
 
-                for (Map.Entry<Prenotabile, Integer> entry : lista_piatti.entrySet()){
+                for (Map.Entry<Prenotabile, Integer> entry : lista_piatti.entrySet()) {
                     String nome_prenotabile = entry.getKey().toString();
                     int quantita = entry.getValue();
 
                     Ricetta ricetta = Ricettario.getRicettaByNome(nome_prenotabile);
 
-                    if (ricetta != null){
+                    if (ricetta != null) {
                         caricoDiLavoro += ricetta.getCarico_lavoro_porzione() * quantita;
-                    }else{
+                    } else {
                         ArrayList<MenuTematico> MenuTematici = Xml.leggiMenuTematico();
-                        for (MenuTematico m : MenuTematici){
-                            if (m.getNome().equalsIgnoreCase(nome_prenotabile)){
+                        for (MenuTematico m : MenuTematici) {
+                            if (m.getNome().equalsIgnoreCase(nome_prenotabile)) {
                                 ArrayList<Piatto> piatti = m.getPiatti();
-                                for (Piatto piatto : piatti){
+                                for (Piatto piatto : piatti) {
                                     caricoDiLavoro += piatto.getCarico_lavoro() * quantita;
                                 }
                             }
@@ -101,12 +86,7 @@ public class AddettoPrenotazioni {
 
     @Override
     public String toString() {
-        return "Lista delle prenotazioni:\n " +
-                lista_prenotazioni +
-                '}';
+        return lista_prenotazioni.toString().replace('[', ' ').replace(']', ' ');
     }
 
-    public static void checkCarico(Ristorante r) {
-
-    }
 }

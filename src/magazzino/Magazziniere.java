@@ -12,11 +12,6 @@ import java.util.Map;
 
 
 public class Magazziniere {
-
-    /*public Magazziniere(String username, String password) {
-        super(username, password, RuoloUtente.GESTORE);
-
-    }*/
     Magazzino magazzino;
     ArrayList<String> ingredienti = new ArrayList<>();
     HashMap<String, Double> lista_della_spesa = new HashMap<>();
@@ -90,12 +85,12 @@ public class Magazziniere {
 
     }
 
-    public void rimuoviMerci(){
+    public void rimuoviMerci() {
         boolean exit, presente;
         HashMap<String, Double> scorte = new HashMap<>();
 
         for (Map.Entry<String, Double> entry : magazzino.getScorta().entrySet()) {
-            if (entry.getValue() > 0){
+            if (entry.getValue() > 0) {
                 scorte.put(entry.getKey(), entry.getValue());
                 System.out.println(entry.getKey() + "-->" + entry.getValue());
             }
@@ -128,27 +123,33 @@ public class Magazziniere {
     }
 
 
-    public void creaListaSpesa(ArrayList<Prenotazione> prenotazioni){
+    public void creaListaSpesa(ArrayList<Prenotazione> prenotazioni) {
         calcolaMerciNecessari(prenotazioni);
 
         for (Map.Entry<String, Double> entry : merci_neccessari.entrySet()) {
             String nome_ingrediente = entry.getKey();
-            double quantita_richiesta = entry.getValue() - magazzino.getScorta().get(nome_ingrediente);
+            double quantita_richiesta;
+            if (magazzino.getScorta().get(nome_ingrediente) == null)
+                quantita_richiesta = entry.getValue();
+            else
+                quantita_richiesta = entry.getValue() - magazzino.getScorta().get(nome_ingrediente);
             if (quantita_richiesta < 0)
                 quantita_richiesta = 0;
             lista_della_spesa.put(entry.getKey(), quantita_richiesta);
 
         }
-
-        System.out.println(lista_della_spesa.toString());
+        if (lista_della_spesa == null)
+            System.out.println("Lista della spesa vuota , non ci sono prenotazioni per il giorno corrente");
+        else
+            System.out.println(stampaListaSpesa(lista_della_spesa));
 
     }
 
-    public void calcolaMerciNecessari(ArrayList<Prenotazione> prenotazioni){
+    public void calcolaMerciNecessari(ArrayList<Prenotazione> prenotazioni) {
         LocalDate today = LocalDate.now();
 
-        for (Prenotazione prenotazione : prenotazioni){
-            if (prenotazione.getData().equals(today)){
+        for (Prenotazione prenotazione : prenotazioni) {
+            if (prenotazione.getData().equals(today)) {
                 HashMap<Prenotabile, Integer> piatti = prenotazione.getLista_prenotazioni_piatti();
 
                 for (Map.Entry<Prenotabile, Integer> entry : piatti.entrySet()) {
@@ -157,14 +158,14 @@ public class Magazziniere {
 
                     Ricetta ricetta = Ricettario.getRicettaByNome(nome_prenotabile);
 
-                    if (ricetta != null){
+                    if (ricetta != null) {
                         checkMerciGiornaliero(ricetta.getIngredienti(), quantita, ricetta.getPorzioni());
-                    }else{
+                    } else {
                         ArrayList<MenuTematico> MenuTematici = Xml.leggiMenuTematico();
-                        for (MenuTematico m : MenuTematici){
-                            if (m.getNome().equalsIgnoreCase(nome_prenotabile)){
+                        for (MenuTematico m : MenuTematici) {
+                            if (m.getNome().equalsIgnoreCase(nome_prenotabile)) {
                                 ArrayList<Piatto> piatti_del_menu = m.getPiatti();
-                                for (Piatto piatto : piatti_del_menu){
+                                for (Piatto piatto : piatti_del_menu) {
                                     Ricetta ricetta_del_piatto = piatto.getRicetta();
                                     checkMerciGiornaliero(ricetta_del_piatto.getIngredienti(), quantita, ricetta_del_piatto.getPorzioni());
                                 }
@@ -176,10 +177,9 @@ public class Magazziniere {
             }
         }
 
-        System.out.println(merci_neccessari.toString());
     }
 
-    public void checkMerciGiornaliero(ArrayList<Ingrediente> ingredienti, int quantita, int moltiplicatore){
+    public void checkMerciGiornaliero(ArrayList<Ingrediente> ingredienti, int quantita, int moltiplicatore) {
         for (Ingrediente ingrediente : ingredienti) {
             String nome_ingrediente = ingrediente.getNome();
 
@@ -188,6 +188,16 @@ public class Magazziniere {
             else
                 merci_neccessari.put(ingrediente.getNome(), ingrediente.getQuantita() * quantita * moltiplicatore);
         }
+    }
+
+    public String stampaListaSpesa(HashMap<String, Double> lista_spesa) {
+        String da_concatenare = "";
+
+        for (Map.Entry<String, Double> entry : lista_spesa.entrySet()) {
+            da_concatenare += "\n\t" + entry.getKey() + " = " + entry.getValue() + " Kg";
+        }
+
+        return "Lista della spesa:" + da_concatenare;
     }
 
     @Override

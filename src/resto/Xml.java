@@ -13,7 +13,6 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Xml {
@@ -235,92 +234,6 @@ public class Xml {
         return merci;
     }
 
-    public static Utente leggiUtente() {
-
-        String username = "";
-        String password = "";
-        String ruolo = "";
-
-        try {
-            File inputFile = new File(Costante.XML_UTENTI);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(inputFile);
-            doc.getDocumentElement().normalize();
-
-            NodeList utentiList = doc.getElementsByTagName("utente");
-
-            for (int i = 0; i < utentiList.getLength(); i++) {
-                Node utenteNode = utentiList.item(i);
-
-                if (utenteNode.getNodeType() == Node.ELEMENT_NODE) {
-                    NodeList infoUtenteList = utenteNode.getChildNodes();
-
-
-                    for (int j = 0; j < infoUtenteList.getLength(); j++) {
-                        Node infoUtenteNode = infoUtenteList.item(j);
-
-                        if (infoUtenteNode.getNodeType() == Node.ELEMENT_NODE) {
-                            String tagName = infoUtenteNode.getNodeName();
-
-                            if (tagName.equals("username")) {
-                                username = infoUtenteNode.getTextContent();
-                            } else if (tagName.equals("password")) {
-                                password = infoUtenteNode.getTextContent();
-                            } else if (tagName.equals("ruolo")) {
-                                ruolo = infoUtenteNode.getTextContent();
-                            }
-                        }
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return new Utente(username, password, RuoloUtente.getRuolo(ruolo));
-    }
-
-    public static void aggiungiUtente(Utente utente) {
-        try {
-            File inputFile = new File(Costante.XML_UTENTI);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(inputFile);
-            doc.getDocumentElement().normalize();
-
-            // Creazione del nuovo utente
-            Element newUtente = doc.createElement("utente");
-            Element newUsername = doc.createElement("username");
-            newUsername.setTextContent(utente.getUsername());
-            Element newPassword = doc.createElement("password");
-            newPassword.setTextContent(utente.getPassword());
-            Element newRuolo = doc.createElement("ruolo");
-            newRuolo.setTextContent(utente.getRuolo().toString());
-
-            newUtente.appendChild(newUsername);
-            newUtente.appendChild(newPassword);
-            newUtente.appendChild(newRuolo);
-
-            // Aggiunta del nuovo utente alla lista di utenti
-            Element root = doc.getDocumentElement();
-            root.appendChild(newUtente);
-
-            // Salva le modifiche nel file XML
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(Costante.XML_UTENTI));
-            transformer.transform(source, result);
-
-            System.out.println("Utente aggiunto correttamente.");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void aggiungiRicetta(Ricetta ricetta) {
         try {
             // Carica il documento XML
@@ -467,7 +380,7 @@ public class Xml {
         String nuovaPrenotazioneNumeroCoperti = String.valueOf(prenotazione.getNum_coperti());
         HashMap<String, Integer> nuovaPrenotazionePiatti = new HashMap<>();
 
-        for (Map.Entry<Prenotabile, Integer> entry : prenotazione.getLista_prenotazioni_piatti().entrySet()){
+        for (Map.Entry<Prenotabile, Integer> entry : prenotazione.getLista_prenotazioni_piatti().entrySet()) {
             nuovaPrenotazionePiatti.put(entry.getKey().toString(), entry.getValue());
         }
 
@@ -500,7 +413,7 @@ public class Xml {
             // Creazione elemento piattiOrdinati
             Element piattiOrdinati = doc.createElement("piattiOrdinati");
 
-            for (Map.Entry<String, Integer> entry : nuovaPrenotazionePiatti.entrySet()){
+            for (Map.Entry<String, Integer> entry : nuovaPrenotazionePiatti.entrySet()) {
                 Element piatto = doc.createElement("piatto");
                 piatto.setTextContent(entry.getKey().trim());
                 piatto.setAttribute("numero", String.valueOf(entry.getValue()));
@@ -575,7 +488,7 @@ public class Xml {
         }
     }
 
-    public static void aggiungiMerce(String ingrediente, String unita){
+    public static void aggiungiMerce(String ingrediente, String unita) {
         try {
             // Carica il file XML
             File file = new File(Costante.XML_MAGAZZINO);
@@ -609,7 +522,7 @@ public class Xml {
         }
     }
 
-    public static void aggiornaMerce(HashMap<String, Double> merci){
+    public static void aggiornaMerce(HashMap<String, Double> merci) {
         try {
             // Creazione del documento XML
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

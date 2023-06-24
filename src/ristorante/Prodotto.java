@@ -13,11 +13,6 @@ public class Prodotto {
         this.u_misura = u_misura;
     }
 
-    public Prodotto(String nome) {
-        this.nome = nome;
-        this.u_misura = null;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -55,8 +50,7 @@ public class Prodotto {
         if (obj instanceof Bevanda) {
             Bevanda b = (Bevanda) obj;
             return getNome().equalsIgnoreCase(b.getNome());
-        }
-        else {
+        } else {
             Prodotto p = (Prodotto) obj;
             return getNome().equalsIgnoreCase(p.getNome());
         }

@@ -49,14 +49,16 @@ public class Costante {
     };
 
     public static final String [] MENU_ADDETTO = {
-            "Visualizza prenotazioni"
+            "Visualizza prenotazioni",
+            "Esci"
     };
 
     public static final String [] MENU_MAGAZZINIERE = {
             "Visualizza scorte",
             "Acquista prodotti",
             "Rimuovi prodotti",
-            "Crea lista spesa"
+            "Crea lista spesa",
+            "Esci"
     };
 
     public static final String [] MENU_RISTORANTE = {
@@ -71,14 +73,12 @@ public class Costante {
     public static final String [] MENU_MENU = {
             "Visualizza i menu tematici",
             "Crea un menu tematico",
-            "Modifica un menu tematico",
             "Indietro"
     };
 
     public static final String [] MENU_RICETTARIO = {
             "Visualizza il ricettario",
             "Crea una ricetta",
-            "Modifica una ricetta",
             "Indietro"
     };
 
