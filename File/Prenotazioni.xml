@@ -1,40 +1,76 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <prenotazioni>
+            
+    
+    <prenotazione>
+                        
         
+        <data>
+                                    
+            
+            <anno>2023</anno>
+                                    
+            
+            <mese>8</mese>
+                                    
+            
+            <giorno>23</giorno>
+                                
+        
+        </data>
+                        
+        
+        <numeroCoperti>5</numeroCoperti>
+                        
+        
+        <piattiOrdinati>
+                                    
+            
+            <piatto numero="10" tipo="ricetta">pasta ragu</piatto>
+                                    
+            
+            <piatto numero="5" tipo="ricetta">risotto funghi</piatto>
+                                    
+            
+            <piatto numero="2" tipo="menu">pesce</piatto>
+                                
+        
+        </piattiOrdinati>
+                    
+    
+    </prenotazione>
+            
+
+    
     <prenotazione>
                 
         <data>
                         
             <anno>2023</anno>
                         
-            <mese>8</mese>
+            <mese>6</mese>
                         
-            <giorno>23</giorno>
+            <giorno>24</giorno>
                     
         </data>
                 
-        <numeroCoperti>5</numeroCoperti>
+        <numeroCoperti>2</numeroCoperti>
                 
         <piattiOrdinati>
                         
-            <piatto numero="10" tipo="ricetta">pasta ragu</piatto>
-                        
-            <piatto numero="5" tipo="ricetta">risotto funghi</piatto>
-                        
-            <piatto numero="2" tipo="menu">pesce</piatto>
+            <piatto numero="3" tipo="ricetta">pasta ragu</piatto>
                     
         </piattiOrdinati>
             
     </prenotazione>
-        
-
+    
     <prenotazione>
         <data>
             <anno>2023</anno>
-            <mese>6</mese>
-            <giorno>24</giorno>
+            <mese>7</mese>
+            <giorno>15</giorno>
         </data>
-        <numeroCoperti>2</numeroCoperti>
+        <numeroCoperti>3</numeroCoperti>
         <piattiOrdinati>
             <piatto numero="3" tipo="ricetta">pasta ragu</piatto>
         </piattiOrdinati>

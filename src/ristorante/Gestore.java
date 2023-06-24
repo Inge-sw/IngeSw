@@ -16,7 +16,11 @@ public class Gestore {
     public Gestore() {
         avvio();
     }
-
+    /*
+    * Precondizione: Nessuna.
+    * Postcondizione: Inizializza l'istanza della classe "Gestore"
+    * creando un nuovo ristorante, leggendo il ricettario e i menu tematici dal file XML.
+    * */
     public void avvio() {
         creaRistorante();
         ricettario = Xml.leggiRicettario();
