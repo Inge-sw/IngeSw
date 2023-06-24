@@ -1,6 +1,7 @@
 package magazzino;
 
 import prenotazione.Prenotazione;
+import resto.FileTesto;
 import resto.InputDati;
 import resto.Xml;
 import ristorante.*;
@@ -49,28 +50,46 @@ public class Magazziniere {
             if (!presente) Xml.aggiungiMerce(nome_da_aggiungere, "kg");
         }
 
+        HashMap<Bevanda, Double> bevande = FileTesto.leggiBevande();
+        HashMap<GeneriExtra, Double> generi = FileTesto.leggiGeneri();
+
+        for (Map.Entry<Bevanda, Double> entry : bevande.entrySet()) {
+            if (!scorta.containsKey(entry.getKey().getNome().toLowerCase())) {
+                Xml.aggiungiMerce(entry.getKey().getNome().toLowerCase(), "L");
+            }
+        }
+
+        for (Map.Entry<GeneriExtra, Double> entry : generi.entrySet()) {
+            if (!scorta.containsKey(entry.getKey().getNome().toLowerCase())) {
+                Xml.aggiungiMerce(entry.getKey().getNome().toLowerCase(), "Kg");
+            }
+        }
+
     }
 
     public void acquistaMerci() {
-        boolean exit, presente;
+        boolean exit;
         HashMap<String, Double> scorte = magazzino.getScorta();
+
+        HashMap<Bevanda, Double> bevande = FileTesto.leggiBevande();
+        HashMap<GeneriExtra, Double> generi = FileTesto.leggiGeneri();
 
         for (String s : ingredienti) {
             System.out.println(s);
         }
+
+        for (Map.Entry<Bevanda, Double> entry : bevande.entrySet()) {
+            System.out.println(entry.getKey());
+        }
+        for (Map.Entry<GeneriExtra, Double> entry : generi.entrySet()) {
+            System.out.println(entry.getKey());
+        }
+
         do {
-            presente = false;
             String merce = InputDati.leggiStringaNonVuota("Inserisci la merce da acquistare: ").toLowerCase();
 
-
-            for (String s : ingredienti) {
-                if (s.equalsIgnoreCase(merce)) {
-                    presente = true;
-                    break;
-                }
-            }
-            if (presente) {
-                double quantita = InputDati.leggiInteroNonNegativo("Quantità: ?");
+            if (scorte.containsKey(merce)) {
+                double quantita = InputDati.leggiInteroNonNegativo("Quantita': ?");
                 if (scorte.containsKey(merce))
                     scorte.replace(merce, scorte.get(merce) + quantita);
                 else
@@ -82,44 +101,41 @@ public class Magazziniere {
         } while (!exit);
 
         Xml.aggiornaMerce(scorte);
+        magazzino.setScorta(Xml.leggiMerci());
 
     }
 
     public void rimuoviMerci() {
         boolean exit, presente;
-        HashMap<String, Double> scorte = new HashMap<>();
+        HashMap<String, Double> scorte_positive = new HashMap<>();
 
         for (Map.Entry<String, Double> entry : magazzino.getScorta().entrySet()) {
             if (entry.getValue() > 0) {
-                scorte.put(entry.getKey(), entry.getValue());
+                scorte_positive.put(entry.getKey(), entry.getValue());
                 System.out.println(entry.getKey() + "-->" + entry.getValue());
             }
         }
 
         do {
-            presente = false;
             String merce = InputDati.leggiStringaNonVuota("Inserisci la merce da rimuovere: ").toLowerCase();
 
-
-            for (Map.Entry<String, Double> entry : magazzino.getScorta().entrySet()) {
-                if (entry.getKey().equalsIgnoreCase(merce)) {
-                    presente = true;
-                    break;
-                }
-            }
-            if (presente) {
+            if (magazzino.getScorta().containsKey(merce)) {
                 int quantita = InputDati.leggiInteroNonNegativo("Quantità: ?");
-                if (scorte.get(merce) - quantita < 0)
+                if (scorte_positive.get(merce) - quantita < 0)
                     System.out.println("Impossibile rimuovere l'ingrediente");
                 else
-                    scorte.replace(merce, scorte.get(merce) - quantita);
+                    scorte_positive.replace(merce, scorte_positive.get(merce) - quantita);
             } else
                 System.out.println("Merce non presenta nella lista");
 
             exit = InputDati.yesOrNo("Uscire?");
         } while (!exit);
 
-        Xml.aggiornaMerce(scorte);
+        for (Map.Entry<String, Double> entry : scorte_positive.entrySet()) {
+            magazzino.getScorta().replace(entry.getKey(), entry.getValue());
+        }
+
+        Xml.aggiornaMerce(magazzino.getScorta());
     }
 
 

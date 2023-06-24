@@ -13,6 +13,10 @@ public class Magazzino {
         scorta = Xml.leggiMerci();
     }
 
+    public void setScorta(HashMap<String, Double> scorta) {
+        this.scorta = scorta;
+    }
+
     public HashMap<String, Double> getScorta() {
         return scorta;
     }

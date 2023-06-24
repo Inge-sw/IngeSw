@@ -9,9 +9,10 @@ import java.util.HashMap;
 
 public class FileTesto {
 
-    public static HashMap<Bevanda, Double> leggiBevande(String filename){
+    public static HashMap<Bevanda, Double> leggiBevande(){
         HashMap<Bevanda, Double> bevandeMap = new HashMap<>();
 
+        String filename = Costante.FILE_BEVANDE;
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;
@@ -24,9 +25,10 @@ public class FileTesto {
         return bevandeMap;
     }
 
-    public static HashMap<GeneriExtra, Double> leggiGeneri(String filename){
+    public static HashMap<GeneriExtra, Double> leggiGeneri(){
         HashMap<GeneriExtra, Double> generiMap = new HashMap<>();
 
+        String filename = Costante.FILE_GENERI;
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String line;

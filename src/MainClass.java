@@ -68,6 +68,8 @@ public class MainClass {
 
     public static void opzioniMagazziniere(Magazziniere magazziniere, AddettoPrenotazioni addetto, Gestore gestore){
         MyMenu menu_magazziniere = new MyMenu("OPERAZIONI MAGAZZINIERE", Costante.MENU_MAGAZZINIERE);
+        magazziniere.ottieniIngredienti(gestore);
+
         switch (menu_magazziniere.scegli()){
             case 1:
                 System.out.println(magazziniere.toString());

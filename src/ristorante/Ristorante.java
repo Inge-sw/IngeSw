@@ -17,8 +17,8 @@ public class Ristorante {
     public Ristorante(String nome, int num_posti) {
         this.nome = nome;
         this.num_posti = num_posti;
-        this.bevande_persona = FileTesto.leggiBevande("Bevande.txt");
-        this.generi_extra_persona = FileTesto.leggiGeneri("Generi.txt");
+        this.bevande_persona = FileTesto.leggiBevande();
+        this.generi_extra_persona = FileTesto.leggiGeneri();
         this.qnt = 5;
         bevanda_persona();
         setGeneri_extra_persona();

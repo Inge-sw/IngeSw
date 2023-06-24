@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <merci>
     <merce quantita="0.0" unita="kg">timo</merce>
+    <merce quantita="0.0" unita="kg">riso</merce>
+    <merce quantita="0.0" unita="kg">burro</merce>
+    <merce quantita="0.0" unita="kg">acqua frizzante</merce>
+    <merce quantita="0.0" unita="kg">ghj</merce>
+    <merce quantita="0.0" unita="kg">pomodoro</merce>
+    <merce quantita="0.0" unita="kg">fanta</merce>
+    <merce quantita="0.0" unita="kg">vino rosso </merce>
+    <merce quantita="0.0" unita="kg">birra</merce>
+    <merce quantita="20.0" unita="kg">gin</merce>
+    <merce quantita="0.0" unita="kg">genere</merce>
+    <merce quantita="0.0" unita="kg">coca cola</merce>
+    <merce quantita="0.0" unita="kg">the</merce>
+    <merce quantita="200.0" unita="kg">grissini</merce>
+    <merce quantita="0.0" unita="kg">por</merce>
+    <merce quantita="20.0" unita="kg">vodka</merce>
     <merce quantita="30.0" unita="kg">casoncelli</merce>
-    <merce quantita="120.0" unita="kg">riso</merce>
     <merce quantita="20.0" unita="kg">salvia</merce>
-    <merce quantita="100.0" unita="kg">arance</merce>
+    <merce quantita="0.0" unita="kg">pasta</merce>
+    <merce quantita="0.0" unita="kg">arance</merce>
+    <merce quantita="0.0" unita="kg">fegato d'anatra</merce>
+    <merce quantita="100.0" unita="kg">pane</merce>
+    <merce quantita="100.0" unita="kg">acqua naturale</merce>
 </merci>

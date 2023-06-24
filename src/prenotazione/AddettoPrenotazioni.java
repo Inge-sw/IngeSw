@@ -1,7 +1,5 @@
 package prenotazione;
 
-import resto.RuoloUtente;
-import resto.Utente;
 import resto.Xml;
 import ristorante.*;
 
