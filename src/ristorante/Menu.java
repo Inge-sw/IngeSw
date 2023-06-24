@@ -13,9 +13,19 @@ public class Menu implements Prenotabile {
         this.piatti = piatti;
     }
 
+    /*
+    Precondizioni: Nessuna.
+    Postcondizioni: Restituisce l'elenco dei piatti come un'istanza di ArrayList<Piatto>.
+     */
+
     public ArrayList<Piatto> getPiatti() {
         return piatti;
     }
+
+    /*
+    Precondizioni: Nessuna.
+    Postcondizioni: Restituisce una rappresentazione testuale dell'oggetto Menu, che corrisponde alla rappresentazione testuale dell'elenco dei piatti come una stringa.
+     */
 
     @Override
     public String toString() {

@@ -21,29 +21,50 @@ public class Ricetta {
         this.carico_lavoro_porzione = tempo_preparazione / ((double) porzioni);
     }
 
+    /*Precondizioni: Nessuna.
+    Postcondizioni: Restituisce l'elenco degli ingredienti della ricetta come un oggetto di tipo ArrayList<Ingrediente>.*/
+
     public ArrayList<Ingrediente> getIngredienti() {
         return ingredienti;
     }
+
+    /*Precondizioni: Nessuna.
+    Postcondizioni: Restituisce il numero di porzioni della ricetta come un valore intero.*/
 
     public int getPorzioni() {
         return porzioni;
     }
 
+    /*Precondizioni: Nessuna.
+    Postcondizioni: Restituisce il tempo di preparazione della ricetta come un valore intero.*/
+
     public int getTempo_preparazione() {
         return tempo_preparazione;
     }
+
+    /*Precondizioni: Nessuna.
+    Postcondizioni: Restituisce il carico di lavoro per porzione della ricetta come un valore decimale.*/
 
     public double getCarico_lavoro_porzione() {
         return carico_lavoro_porzione;
     }
 
+    /*Precondizioni: Nessuna.
+    Postcondizioni: Restituisce il nome della ricetta come una stringa.*/
+
     public String getNome() {
         return nome;
     }
 
+    /*Precondizioni: nome è una stringa non nulla.
+    Postcondizioni: Imposta il nome della ricetta con il valore specificato dal parametro nome.*/
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    /*Precondizioni: Nessuna.
+    Postcondizioni: Restituisce l'elenco delle stagioni della ricetta come un oggetto di tipo ArrayList<Stagioni>.*/
 
     public ArrayList<Stagioni> getStagione() {
         return stagione;
