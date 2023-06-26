@@ -4,7 +4,6 @@
     <merce quantita="0.0" unita="kg">riso</merce>
     <merce quantita="0.0" unita="kg">burro</merce>
     <merce quantita="0.0" unita="kg">acqua frizzante</merce>
-    <merce quantita="0.0" unita="kg">ghj</merce>
     <merce quantita="0.0" unita="kg">pomodoro</merce>
     <merce quantita="0.0" unita="kg">fanta</merce>
     <merce quantita="0.0" unita="kg">vino rosso </merce>
@@ -14,7 +13,6 @@
     <merce quantita="0.0" unita="kg">coca cola</merce>
     <merce quantita="0.0" unita="kg">the</merce>
     <merce quantita="200.0" unita="kg">grissini</merce>
-    <merce quantita="0.0" unita="kg">por</merce>
     <merce quantita="20.0" unita="kg">vodka</merce>
     <merce quantita="30.0" unita="kg">casoncelli</merce>
     <merce quantita="20.0" unita="kg">salvia</merce>

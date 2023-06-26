@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menuTematici>
+    <menuTematico>
+        <nome>Pesce</nome>
+        <disponibilità>
+            <stagione>Primavera</stagione>
+            <stagione>Autunno</stagione>
+        </disponibilità>
+        <piatti>
+            <piatto>Pasta ragu</piatto>
+            <piatto>Risotto funghi</piatto>
+        </piatti>
+    </menuTematico>
+    <menuTematico>
+        <nome>montagna</nome>
+        <disponibilità>
+            <stagione>INVERNO</stagione>
+            <stagione>AUTUNNO</stagione>
+        </disponibilità>
+        <piatti>
+            <piatto>Pasta ragu</piatto>
+        </piatti>
+    </menuTematico>
+    <menuTematico>
+        <nome>sium's special</nome>
+        <disponibilità>
+            <stagione>PRIMAVERA</stagione>
+        </disponibilità>
+        <piatti>
+            <piatto>casoncelli burro e salvia</piatto>
+            <piatto>risotto funghi</piatto>
+        </piatti>
+    </menuTematico>
+</menuTematici>
