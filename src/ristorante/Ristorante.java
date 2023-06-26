@@ -14,6 +14,13 @@ public class Ristorante {
     private double qnt;
     private HashMap<GeneriExtra, Double> generi_extra_persona;
 
+    /*
+    Precondizione: nessuna.
+    Postcondizione: dopo l'esecuzione del costruttore Ristorante, viene creato un nuovo oggetto Ristorante con i parametri nome e num_posti.
+        Gli attributi bevande_persona e generi_extra_persona vengono inizializzati leggendo i dati da file tramite i metodi FileTesto.leggiBevande() e FileTesto.leggiGeneri().
+        L'attributo qnt viene impostato a 5. Vengono quindi chiamati i metodi bevanda_persona() e setGeneri_extra_persona().
+     */
+
     public Ristorante(String nome, int num_posti) {
         this.nome = nome;
         this.num_posti = num_posti;

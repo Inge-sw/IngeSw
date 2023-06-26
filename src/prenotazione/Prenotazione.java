@@ -11,11 +11,22 @@ public class Prenotazione {
     private LocalDate data;
     HashMap<Prenotabile, Integer> lista_prenotazioni_piatti;
 
+    /*
+    Precondizione: nessuna.
+    Postcondizione: dopo l'esecuzione del costruttore, l'oggetto Prenotazione viene istanziato con i parametri num_coperti e data. L'attributo lista_prenotaz
+     */
+
     public Prenotazione(int num_coperti, LocalDate data) {
         this.num_coperti = num_coperti;
         this.data = data;
         this.lista_prenotazioni_piatti = new HashMap<>();
     }
+
+    /*
+    Precondizione: nessuna.
+    Postcondizione: dopo l'esecuzione del costruttore, l'oggetto Prenotazione viene istanziato con i parametri num_coperti, data e l.
+        L'attributo lista_prenotazioni_piatti viene inizializzato con il valore fornito come argomento l.
+     */
 
     public Prenotazione(int num_coperti, LocalDate data, HashMap<Prenotabile, Integer> l) {
         this.num_coperti = num_coperti;
@@ -23,17 +34,38 @@ public class Prenotazione {
         this.lista_prenotazioni_piatti = l;
     }
 
+    /*
+    Precondizione: nessuna.
+    Postcondizione: viene restituito il valore dell'attributo num_coperti.
+     */
+
     public int getNum_coperti() {
         return num_coperti;
     }
+
+    /*
+    Precondizione: nessuna.
+    Postcondizione: viene restituito il valore dell'attributo data.
+     */
 
     public LocalDate getData() {
         return data;
     }
 
+    /*
+    Precondizione: nessuna.
+    Postcondizione: viene restituito il valore dell'attributo lista_prenotazioni_piatti.
+     */
+
     public HashMap<Prenotabile, Integer> getLista_prenotazioni_piatti() {
         return lista_prenotazioni_piatti;
     }
+
+    /*
+    Precondizione: elem è un oggetto valido di tipo Prenotabile e qnt è un valore intero valido.
+    Postcondizione: l'oggetto elem viene aggiunto come chiave nell'attributo lista_prenotazioni_piatti con il valore qnt.
+        Se elem era già presente come chiave, il suo valore viene sovrascritto con il nuovo valore qnt.
+     */
 
     public void add_piatti(Prenotabile elem, int qnt) {
         this.lista_prenotazioni_piatti.put(elem, Integer.valueOf(qnt));

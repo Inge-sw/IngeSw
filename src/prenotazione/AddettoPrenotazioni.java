@@ -13,6 +13,12 @@ public class AddettoPrenotazioni {
 
     private ArrayList<Prenotazione> lista_prenotazioni;
 
+    /*
+    Prima dell'esecuzione del costruttore AddettoPrenotazioni, la variabile lista_prenotazioni contiene un riferimento valido a un oggetto ArrayList<Prenotazione>.
+    Dopo l'esecuzione del costruttore AddettoPrenotazioni, l'attributo lista_prenotazioni viene inizializzato
+            con il valore fornito come parametro e successivamente viene chiamato il metodo eliminaPrenotazioniScadute().
+     */
+
     public AddettoPrenotazioni(ArrayList<Prenotazione> lista_prenotazioni) {
         this.lista_prenotazioni = lista_prenotazioni;
         eliminaPrenotazioniScadute();

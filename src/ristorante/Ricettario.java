@@ -9,6 +9,12 @@ public class Ricettario {
 
     private static ArrayList<Ricetta> ricette;
 
+    /*
+    Precondizione: ricette è un oggetto valido di tipo ArrayList<Ricetta>.
+    Postcondizione: dopo l'esecuzione del costruttore Ricettario, viene creato un nuovo oggetto Ricettario.
+        L'attributo statico ricette della classe Ricettario viene assegnato con il valore fornito come parametro ricette.
+     */
+
     public Ricettario(ArrayList<Ricetta> ricette) {
         Ricettario.ricette = ricette;
     }

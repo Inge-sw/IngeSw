@@ -18,6 +18,11 @@ public class Magazziniere {
     HashMap<String, Double> lista_della_spesa = new HashMap<>();
     HashMap<String, Double> merci_neccessari = new HashMap<>();
 
+    /*
+    Prima dell'esecuzione del costruttore "Magazziniere", la variabile "magazzino" è inizializzata a null o contiene un riferimento valido a un oggetto "Magazzino".
+    Dopo l'esecuzione del costruttore "Magazziniere", la variabile "magazzino" contiene un nuovo oggetto "Magazzino" correttamente inizializzato.
+    L'invariante garantisce che, al termine del costruttore "Magazziniere", la variabile "magazzino" sia sempre in uno stato valido e pronto per essere utilizzata.
+     */
     public Magazziniere() {
         magazzino = new Magazzino();
     }

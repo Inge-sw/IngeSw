@@ -10,6 +10,12 @@ public class Piatto implements Prenotabile {
     private Ricetta ricetta;
     private double carico_lavoro;
 
+    /*
+    Precondizione: ricetta è un oggetto valido di tipo Ricetta.
+    Postcondizione: dopo l'esecuzione del costruttore Piatto, viene creato un nuovo oggetto Piatto. Gli attributi nome,
+        stagione, ricetta e carico_lavoro vengono inizializzati con i valori corrispondenti presi dalla ricetta fornita come parametro.
+     */
+
     public Piatto(Ricetta ricetta) {
         this.nome = ricetta.getNome();
         this.stagione = ricetta.getStagione();

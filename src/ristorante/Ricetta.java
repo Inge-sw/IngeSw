@@ -12,6 +12,13 @@ public class Ricetta {
     private String nome;
     private ArrayList<Stagioni> stagione;
 
+    /*
+    Precondizione: nome è una stringa non vuota, stagione è un oggetto valido di tipo ArrayList<Stagioni>, porzioni
+        è un valore intero non negativo, tempo_preparazione è un valore intero non negativo e ingredienti è un oggetto valido di tipo ArrayList<Ingrediente>.
+    Postcondizione: dopo l'esecuzione del costruttore Ricetta, viene creato un nuovo oggetto Ricetta. Gli attributi nome, stagione,
+        ingredienti, porzioni e tempo_preparazione vengono inizializzati con i valori forniti come parametri corrispondenti. L'attributo carico_lavoro_porzione
+        viene calcolato dividendo il tempo di preparazione per il numero di porzioni, convertito in valore decimale.
+     */
     public Ricetta(String nome, ArrayList<Stagioni> stagione, int porzioni, int tempo_preparazione, ArrayList<Ingrediente> ingredienti) {
         this.nome = nome;
         this.stagione = stagione;

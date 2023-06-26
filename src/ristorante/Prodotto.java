@@ -8,6 +8,12 @@ public class Prodotto {
     private String nome;
     private Misura u_misura;
 
+    /*
+    Precondizione: nome è una stringa non vuota e u_misura è un oggetto valido di tipo Misura.
+    Postcondizione: dopo l'esecuzione del costruttore Prodotto, viene creato un nuovo oggetto Prodotto. Gli attributi nome
+        e u_misura vengono inizializzati con i valori forniti come parametri corrispondenti.
+     */
+
     public Prodotto(String nome, Misura u_misura) {
         this.nome = nome;
         this.u_misura = u_misura;
