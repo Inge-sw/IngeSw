@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<prenotazioni>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><prenotazioni>
             
     
     <prenotazione>
@@ -42,27 +41,7 @@
             
 
     
-    <prenotazione>
-                
-        <data>
-                        
-            <anno>2023</anno>
-                        
-            <mese>6</mese>
-                        
-            <giorno>24</giorno>
-                    
-        </data>
-                
-        <numeroCoperti>2</numeroCoperti>
-                
-        <piattiOrdinati>
-                        
-            <piatto numero="3" tipo="ricetta">pasta ragu</piatto>
-                    
-        </piattiOrdinati>
-            
-    </prenotazione>
+    
     
     <prenotazione>
         <data>

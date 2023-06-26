@@ -10,6 +10,7 @@ import ristorante.Gestore;
 
 public class MainClass {
     public static void main(String[] args) {
+
         opzioniRuolo();
     }
 
