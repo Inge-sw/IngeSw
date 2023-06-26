@@ -1,9 +1,10 @@
-package resto;
+package cliente;
 
 import input.InputDati;
 import letturaFile.Xml;
 import prenotazione.AddettoPrenotazioni;
 import prenotazione.Prenotazione;
+import resto.Stagioni;
 import ristorante.*;
 
 import java.time.LocalDate;

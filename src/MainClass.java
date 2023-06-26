@@ -1,3 +1,4 @@
+import cliente.Cliente;
 import input.InputDati;
 import input.MyMenu;
 import letturaFile.Xml;

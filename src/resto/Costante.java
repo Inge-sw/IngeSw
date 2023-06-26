@@ -20,7 +20,6 @@ public class Costante {
     public static final String TEMPO = "tempo";
     public static final String DOSAGGIO = "dosaggio";
     public static final String UNITA = "unità";
-    public static final String TEMP = "tempo";
     public static final String PORZIONE = "porzione";
     public static final String STAGIONE = "stagione";
     public static final String PIATTO = "piatto";
@@ -32,8 +31,6 @@ public class Costante {
     public static final String ESTATE = "estate";
     public static final String AUTUNNO = "autunno";
     public static final String PRIMAVERA = "primavera";
-
-    public static final String ERRORE_LETTURA = "Impossibile leggere il file xml";
 
     public static final String[] MENU_RUOLO = {
             "Gestore",
@@ -81,12 +78,6 @@ public class Costante {
             "Visualizza il ricettario",
             "Crea una ricetta",
             "Indietro"
-    };
-
-    public static final String[] MENU_USERDB = {
-            "Sign up",
-            "Sign in",
-            "Esci"
     };
 
     public static final String[] MENU_BEVANDA = {
