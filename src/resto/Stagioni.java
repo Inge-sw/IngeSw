@@ -27,4 +27,13 @@ public enum Stagioni {
             return INVERNO;
         }
     }
+
+    /*
+     * Precondizione: Deve essere passata una stringa come argomento "stagione".
+     * Postcondizione: Restituisce true se la stringa corrisponde a una delle stagioni valide (Inverno, Primavera, Estate, Autunno),
+     * altrimenti restituisce false.
+     * */
+    public static boolean checkStagione(String stagione) {
+        return stagione.equalsIgnoreCase(Costante.INVERNO) || stagione.equalsIgnoreCase(Costante.PRIMAVERA) || stagione.equalsIgnoreCase(Costante.ESTATE) || stagione.equalsIgnoreCase(Costante.AUTUNNO);
+    }
 }

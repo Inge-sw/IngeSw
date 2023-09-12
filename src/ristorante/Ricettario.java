@@ -37,6 +37,11 @@ public class Ricettario {
         Xml.aggiungiRicetta(new Ricetta(nome, stagione, porzioni, tempo_preparazione, ingredienti));
     }
 
+    public void aggiungiRicetta(Ricetta da_aggiungere) {
+        ricette.add(da_aggiungere);
+        Xml.aggiungiRicetta(da_aggiungere);
+    }
+
     /*Precondizioni: nome è una stringa non nulla.
     Postcondizioni: Restituisce l'istanza di Ricetta corrispondente al nome specificato se presente nell'elenco delle ricette. Altrimenti, restituisce null.*/
 

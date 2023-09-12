@@ -196,4 +196,8 @@ public class BelleStringhe {
         return j;
 
     }
+
+    public static void stampa(String str){
+        System.out.println(str);
+    }
 }
