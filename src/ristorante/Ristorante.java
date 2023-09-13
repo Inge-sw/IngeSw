@@ -3,7 +3,6 @@ package ristorante;
 import letturaFile.Controller;
 import letturaFile.FTBevande;
 import letturaFile.FTGeneri;
-import letturaFile.FileTesto;
 
 import java.util.HashMap;
 

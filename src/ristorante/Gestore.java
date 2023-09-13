@@ -4,7 +4,6 @@ import input.BelleStringhe;
 import input.InputDati;
 import letturaFile.Controller;
 import letturaFile.FTBevande;
-import letturaFile.FileTesto;
 import letturaFile.Xml;
 import resto.*;
 
