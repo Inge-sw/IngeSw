@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Xml {
+public class Xml{
 
     public static Ricettario leggiRicettario() {
 
@@ -451,6 +451,40 @@ public class Xml {
         }
     }
 
+    public static void aggiungiMerce(String ingrediente, String unita) {
+        try {
+            // Carica il file XML
+            File file = new File(Costante.XML_MAGAZZINO);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(file);
+
+            // Ottieni l'elemento radice
+            Element radice = document.getDocumentElement();
+
+            // Crea un nuovo elemento merce
+            Element nuovaMerceElement = document.createElement("merce");
+            nuovaMerceElement.setAttribute("quantita", "0");
+            nuovaMerceElement.setAttribute("unita", unita);
+            nuovaMerceElement.setTextContent(ingrediente);
+
+            // Aggiungi il nuovo elemento all'elemento radice
+            radice.appendChild(nuovaMerceElement);
+
+            // Scrivi il documento XML aggiornato su un file
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            DOMSource source = new DOMSource(document);
+            StreamResult result = new StreamResult(new File(Costante.XML_MAGAZZINO));
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void eliminaPrenotazione(Prenotazione da_eliminare) {
         String xmlFilePath = Costante.XML_PRENOTAZIONI;
         String annoDaEliminare = String.valueOf(da_eliminare.getData().getYear());
@@ -487,40 +521,6 @@ public class Xml {
             System.out.println("Prenotazione eliminata con successo.");
         } catch (ParserConfigurationException | TransformerException | org.xml.sax.SAXException |
                  java.io.IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void aggiungiMerce(String ingrediente, String unita) {
-        try {
-            // Carica il file XML
-            File file = new File(Costante.XML_MAGAZZINO);
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(file);
-
-            // Ottieni l'elemento radice
-            Element radice = document.getDocumentElement();
-
-            // Crea un nuovo elemento merce
-            Element nuovaMerceElement = document.createElement("merce");
-            nuovaMerceElement.setAttribute("quantita", "0");
-            nuovaMerceElement.setAttribute("unita", unita);
-            nuovaMerceElement.setTextContent(ingrediente);
-
-            // Aggiungi il nuovo elemento all'elemento radice
-            radice.appendChild(nuovaMerceElement);
-
-            // Scrivi il documento XML aggiornato su un file
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-            DOMSource source = new DOMSource(document);
-            StreamResult result = new StreamResult(new File(Costante.XML_MAGAZZINO));
-            transformer.transform(source, result);
-
-        } catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
             e.printStackTrace();
         }
     }

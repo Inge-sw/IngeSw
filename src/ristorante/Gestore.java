@@ -2,6 +2,8 @@ package ristorante;
 
 import input.BelleStringhe;
 import input.InputDati;
+import letturaFile.Controller;
+import letturaFile.FTBevande;
 import letturaFile.FileTesto;
 import letturaFile.Xml;
 import resto.*;
@@ -245,7 +247,9 @@ public class Gestore {
         if (ristorante.checkProdotto(prodotto)) BelleStringhe.stampa("Esiste già!");
         else {
             ristorante.addProdotto(prodotto);
-            FileTesto.aggiungiProdotto(prodotto, nome_file);
+            Controller c = new Controller(new FTBevande());
+
+            c.aggiungi(prodotto,nome_file);
         }
     }
 

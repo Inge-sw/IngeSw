@@ -1,9 +1,8 @@
 package magazzino;
 
+import letturaFile.*;
 import prenotazione.Prenotazione;
-import letturaFile.FileTesto;
 import input.InputDati;
-import letturaFile.Xml;
 import ristorante.*;
 
 import java.time.LocalDate;
@@ -71,16 +70,19 @@ public class Magazziniere {
             if (!presente) Xml.aggiungiMerce(nome_da_aggiungere, "kg");
         }
 
-        HashMap<Bevanda, Double> bevande = FileTesto.leggiBevande();
-        HashMap<GeneriExtra, Double> generi = FileTesto.leggiGeneri();
+        Controller c = new Controller(new FTBevande());
 
-        for (Map.Entry<Bevanda, Double> entry : bevande.entrySet()) {
+        HashMap<Prodotto, Double> bevande = c.leggi();
+        c.setRepo(new FTGeneri());
+        HashMap<Prodotto, Double> generi = c.leggi();
+
+        for (Map.Entry<Prodotto, Double> entry : bevande.entrySet()) {
             if (!scorta.containsKey(entry.getKey().getNome().toLowerCase())) {
                 Xml.aggiungiMerce(entry.getKey().getNome().toLowerCase(), "L");
             }
         }
 
-        for (Map.Entry<GeneriExtra, Double> entry : generi.entrySet()) {
+        for (Map.Entry<Prodotto, Double> entry : generi.entrySet()) {
             if (!scorta.containsKey(entry.getKey().getNome().toLowerCase())) {
                 Xml.aggiungiMerce(entry.getKey().getNome().toLowerCase(), "Kg");
             }
@@ -99,17 +101,20 @@ public class Magazziniere {
         boolean exit;
         HashMap<String, Double> scorte = magazzino.getScorta();
 
-        HashMap<Bevanda, Double> bevande = FileTesto.leggiBevande();
-        HashMap<GeneriExtra, Double> generi = FileTesto.leggiGeneri();
+        Controller c = new Controller(new FTBevande());
+
+        HashMap<Prodotto, Double> bevande = c.leggi();
+        c.setRepo(new FTGeneri());
+        HashMap<Prodotto, Double> generi = c.leggi();
 
         for (String s : ingredienti) {
             System.out.println(s);
         }
 
-        for (Map.Entry<Bevanda, Double> entry : bevande.entrySet()) {
+        for (Map.Entry<Prodotto, Double> entry : bevande.entrySet()) {
             System.out.println(entry.getKey());
         }
-        for (Map.Entry<GeneriExtra, Double> entry : generi.entrySet()) {
+        for (Map.Entry<Prodotto, Double> entry : generi.entrySet()) {
             System.out.println(entry.getKey());
         }
 

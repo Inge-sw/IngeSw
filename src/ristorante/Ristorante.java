@@ -1,5 +1,8 @@
 package ristorante;
 
+import letturaFile.Controller;
+import letturaFile.FTBevande;
+import letturaFile.FTGeneri;
 import letturaFile.FileTesto;
 
 import java.util.HashMap;
@@ -10,9 +13,9 @@ public class Ristorante {
     private int num_posti;
     private double carico_lavoro_persona;
     private double carico_lavoro_ristorante;
-    private HashMap<Bevanda, Double> bevande_persona;
+    private HashMap<Prodotto, Double> bevande_persona;
     private double qnt;
-    private HashMap<GeneriExtra, Double> generi_extra_persona;
+    private HashMap<Prodotto, Double> generi_extra_persona;
 
     /*
     Precondizione: nessuna.
@@ -24,8 +27,10 @@ public class Ristorante {
     public Ristorante(String nome, int num_posti) {
         this.nome = nome;
         this.num_posti = num_posti;
-        this.bevande_persona = FileTesto.leggiBevande();
-        this.generi_extra_persona = FileTesto.leggiGeneri();
+        Controller c = new Controller(new FTBevande());
+        this.bevande_persona = c.leggi();
+        c.setRepo(new FTGeneri());
+        this.generi_extra_persona = c.leggi();
         this.qnt = 5;
         bevanda_persona();
         setGeneri_extra_persona();
@@ -70,7 +75,7 @@ public class Ristorante {
     Postcondizioni: Imposta la quantità qnt per ciascuna bevanda nella mappa bevande_persona dell'oggetto.*/
 
     public void bevanda_persona() {
-        for (Bevanda bevanda : this.bevande_persona.keySet()) {
+        for (Prodotto bevanda : this.bevande_persona.keySet()) {
             this.bevande_persona.put(bevanda, qnt);
         }
     }
