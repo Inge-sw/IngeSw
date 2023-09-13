@@ -38,10 +38,10 @@ public class Cliente {
             }
         } while (data == null || data.isBefore(LocalDate.now()));
 
-        Prenotazione p = new Prenotazione(num_coperti, data);
+        Prenotazione p = addetto.creaPrenotazione(num_coperti, data);
 
         if (addetto.checkPosti(gestore.getRistorante(), p) && addetto.checkCaricoLavoro(gestore.getRistorante(), p)) {
-            if (aggiungiCibo(p)) {
+            if (aggiungiCibo(p, addetto)) {
                 addetto.getLista_prenotazioni().add(p);
                 Xml.aggiungiPrenotazione(p);
             }
@@ -58,7 +58,7 @@ public class Cliente {
         viene stampato un messaggio di errore e viene restituito false. Altrimenti, viene restituito true.
      */
 
-    private boolean aggiungiCibo(Prenotazione p) {
+    private boolean aggiungiCibo(Prenotazione p, AddettoPrenotazioni addetto) {
         boolean exit;
         HashMap<String, Prenotabile> prenotabili = leggiMenu(p.getData().getMonthValue());
         do {
@@ -66,7 +66,7 @@ public class Cliente {
             int persone = InputDati.leggiInteroNonNegativo("Per quante persone? ");
 
             if (prenotabili.containsKey(piatto.toLowerCase()))
-                p.add_piatti(prenotabili.get(piatto), persone);
+                addetto.aggiungi(p,prenotabili.get(piatto), persone);
             else
                 System.out.println("Piatto inserito non esiste");
             exit = InputDati.yesOrNo("Uscire?");

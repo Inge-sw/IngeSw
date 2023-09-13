@@ -121,6 +121,14 @@ public class AddettoPrenotazioni {
         }
     }
 
+    public Prenotazione creaPrenotazione(int num_coperti, LocalDate data){
+        return new Prenotazione(num_coperti, data);
+    }
+
+    public void aggiungi(Prenotazione p, Prenotabile pren, int qnt){
+        p.add_piatti(pren, qnt);
+    }
+
     @Override
     public String toString() {
         return lista_prenotazioni.toString().replace('[', ' ').replace(']', ' ');
