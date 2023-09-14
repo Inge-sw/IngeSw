@@ -106,9 +106,8 @@ public class Gestore {
         int porzione = InputDati.leggiInteroNonNegativo("Inserisci il numero di porzione: ");
         int tempo = InputDati.leggiInteroNonNegativo("Inserisci il tempo di preparazione: ");
 
-        collectIngredients(ingredienti);
-
         String nome_ricetta = selezioneNomeRicetta();
+        collectIngredients(ingredienti);
 
         ricettario.aggiungiRicetta(new Ricetta(nome_ricetta, stagioni, porzione, tempo, ingredienti));
 
