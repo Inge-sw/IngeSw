@@ -1,28 +1,22 @@
 package Testing;
 
 import letturaFile.Xml;
-import org.junit.rules.ExpectedException;
 import resto.Stagioni;
-import ristorante.Gestore;
-import ristorante.MenuTematico;
-import ristorante.Piatto;
+import ristorante.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class Testing {
-
-    String[] list = new String[] {"Autunno","Primavera","Inverno"};
-    ArrayList<Stagioni> stagioni = new ArrayList<>();
+    ArrayList<Stagioni> stagioni = new ArrayList<>(Arrays.asList(Stagioni.getStagione("Autunno"), Stagioni.getStagione("Primavera"), Stagioni.getStagione("Inverno")));
     Gestore g = new Gestore("Paolo");
+    ArrayList<Ingrediente> ings = new ArrayList<>();
+    Ingrediente ing = new Ingrediente("lalala", 5.0);
 
     @org.junit.jupiter.api.Test
     void checkStagioneDuplicata() {
-
-        for (String elem : list)
-            stagioni.add(Stagioni.getStagione(elem));
-
         assertFalse(g.checkStagioneDuplicata(stagioni,"Estate"));
         assertTrue(g.checkStagioneDuplicata(stagioni,"Inverno"));
     }
@@ -62,4 +56,18 @@ class Testing {
         assertFalse(g.getMenu_tematici().contains(menu));
     }
 
+    @org.junit.jupiter.api.Test
+    void checkCheUnMenuCorrettoVengaAggiuntoAiMenu() {
+        ArrayList<Piatto> piatti = new ArrayList<>();
+        String nome_menu = "menù nuovo 2";
+
+        ings.add(ing);
+        Ricetta ric = new Ricetta("pasta ragu", stagioni, 3, 4, ings);
+        piatti.add(new Piatto(ric));
+
+        MenuTematico menu = new MenuTematico(nome_menu, stagioni, piatti);
+        g.aggiungiMenu(menu);
+
+        assertTrue(g.getMenu_tematici().contains(menu));
+    }
 }
