@@ -11,12 +11,18 @@ import java.util.ArrayList;
 
 public class Gestore {
 
+    String nome;
     Ristorante ristorante;
     Ricettario ricettario;
     ArrayList<MenuTematico> menu_tematici;
 
     public Gestore() {
         avvio();
+    }
+
+    public Gestore(String nome){
+        this.nome = nome;
+        getFromXml();
     }
 
     /*
@@ -26,6 +32,10 @@ public class Gestore {
      * */
     public void avvio() {
         creaRistorante();
+        getFromXml();
+    }
+
+    private void getFromXml() {
         ricettario = Xml.leggiRicettario();
         menu_tematici = Xml.leggiMenuTematico();
     }
@@ -145,10 +155,17 @@ public class Gestore {
         aggiungiMenu(piatti, stagioni, nome_menu);
     }
 
-    private void aggiungiMenu(ArrayList<Piatto> piatti, ArrayList<Stagioni> stagioni, String nome_menu) {
+    public void aggiungiMenu(ArrayList<Piatto> piatti, ArrayList<Stagioni> stagioni, String nome_menu) {
         if (!piatti.isEmpty()) {
             MenuTematico da_aggiungere = new MenuTematico(nome_menu, stagioni, piatti);
             menu_tematici.add(da_aggiungere);
+            Xml.aggiungiMenuTematico(menu_tematici.get(menu_tematici.size() - 1));
+        }
+    }
+
+    public void aggiungiMenu(MenuTematico menu) {
+        if (!menu.getPiatti().isEmpty()) {
+            menu_tematici.add(menu);
             Xml.aggiungiMenuTematico(menu_tematici.get(menu_tematici.size() - 1));
         }
     }
@@ -243,7 +260,7 @@ public class Gestore {
      * */
     public void aggiungiProdotto(Prodotto prodotto, String nome_file) {
 
-        if (ristorante.checkProdotto(prodotto)) BelleStringhe.stampa("Esiste già!");
+        if (ristorante. checkProdotto(prodotto)) BelleStringhe.stampa("Esiste già!");
         else {
             ristorante.addProdotto(prodotto);
             Controller c = new Controller(new FTBevande());
@@ -285,11 +302,11 @@ public class Gestore {
         return stagioni;
     }
 
-    private void aggiungiStagione(ArrayList<Stagioni> dove_aggiungere, Stagioni da_aggiungere) {
+    public void aggiungiStagione(ArrayList<Stagioni> dove_aggiungere, Stagioni da_aggiungere) {
         dove_aggiungere.add(da_aggiungere);
     }
 
-    private boolean checkStagioneDuplicata(ArrayList<Stagioni> stagioni, String stagione_str) {
+    public boolean checkStagioneDuplicata(ArrayList<Stagioni> stagioni, String stagione_str) {
         boolean duplicato = false;
 
         for (Stagioni value : stagioni) {
@@ -316,5 +333,9 @@ public class Gestore {
      * */
     public Ristorante getRistorante() {
         return ristorante;
+    }
+
+    public ArrayList<MenuTematico> getMenu_tematici() {
+        return menu_tematici;
     }
 }

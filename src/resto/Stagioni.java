@@ -10,8 +10,10 @@ public enum Stagioni {
             return ESTATE;
         } else if (mese >= 9 && mese <= 11) {
             return AUTUNNO;
-        } else {
+        } else if (mese == 12 || (mese >= 1 && mese <= 2)) {
             return INVERNO;
+        }else {
+            return null;
         }
     }
 
@@ -23,8 +25,10 @@ public enum Stagioni {
             return ESTATE;
         } else if (stagione.equalsIgnoreCase("autunno")) {
             return AUTUNNO;
-        } else {
+        } else if (stagione.equalsIgnoreCase("inverno")) {
             return INVERNO;
+        } else {
+            return null;
         }
     }
 
